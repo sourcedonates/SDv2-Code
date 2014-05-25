@@ -1,0 +1,151 @@
+*, *:before, *:after{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+ 
+.clearfix:after {
+    clear: both;
+}
+ 
+/* IE6/7 support */
+.clearfix {
+    *zoom: 1;
+}
+
+/*selection*/
+::-moz-selection { background: @highlight; color: #fff; text-shadow: none; }
+::selection { background: @highlight; color: #fff; text-shadow: none; }
+/*end selection*/
+
+/*placeholders*/
+::-webkit-input-placeholder {
+   color: #a3a3a3;
+}
+
+:-moz-placeholder {  
+   color: #a3a3a3;  
+}
+.placeholder{
+    color: #a3a3a3 !important; 
+}
+/*end placeholders*/
+
+/*re-useable tags*/
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.visuallyhidden {
+    position: absolute;
+    width: 1px; /* Setting this to 0 make it invisible for VoiceOver */
+    height: 1px; /* Setting this to 0 make it invisible for VoiceOver */
+    padding: 0;
+    margin: -1px;
+    border: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;    
+}
+
+.ir {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.break {
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+.relative{
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}
+.fixed{
+    position: fixed;
+}
+.block{
+    display: block;
+}
+.bold{
+    font-weight: bold;
+}
+.align-left{
+    text-align: left;
+}
+.align-right{
+    text-align: right;
+}
+.align-center{
+    text-align: center;
+}
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+.clean-list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    li,a{
+        display: inline-block;
+    }
+}
+/*end re-useable tags*/
+
+pre {
+    white-space: pre-wrap;       /* Chrome & Safari */
+    white-space: -moz-pre-wrap;  /* Mozilla since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+table tr:nth-child(even) {
+    background: rgba(0,0,0,0.1);
+}
+
+a {
+    text-decoration: none;
+    color: @highlight;
+    .transition(~"all 0.2s ease");
+
+    &:hover{
+        .transition(~"all 0.2s ease");
+    }
+}
+
+p{
+    a{
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+ 
+a:hover { color: @highlight; }
+
+nav{
+    ul{
+        .clean-list();
+        li,a{
+            display: inline-block;
+        }
+    }
+}

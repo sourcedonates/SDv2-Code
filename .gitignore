@@ -1,0 +1,11 @@
+/bootstrap/compiled.php
+/vendor
+composer.phar
+composer.lock
+.DS_Store
+itemviewer.sublime-project
+itemviewer.sublime-workspace
+sftp-config.json
+/public/assets/images/items/*.*
+/public/assets/images/items/groot/*.*
+/app/config/development
