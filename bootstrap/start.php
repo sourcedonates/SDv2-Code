@@ -29,7 +29,7 @@ $app->redirectIfTrailingSlash();
 $env = $app->detectEnvironment(array(
 
 	'local' => array(''),
-	'development' => array('dev.dimension-gaming.com'),
+	'development' => array('dev.sourcedonates.com','dd34714'),
 
 ));
 

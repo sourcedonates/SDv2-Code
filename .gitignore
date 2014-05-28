@@ -9,3 +9,5 @@ sftp-config.json
 /public/assets/images/items/*.*
 /public/assets/images/items/groot/*.*
 /app/config/development
+/nbproject/private/
+/nbproject/

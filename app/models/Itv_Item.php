@@ -2,7 +2,7 @@
 
 class Itv_Item extends Eloquent
 {
-	protected $table = 'itemsviewer_items'
+	protected $table = 'itemsviewer_items';
 }
 
 ?>

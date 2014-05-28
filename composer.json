@@ -39,7 +39,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "http://stash.sourcedonates.com/scm/sd2/paypal_class.git"
+            "url": "git@bitbucket.org:Arrow768/paypal-library.git"
         }
     ]
 }
