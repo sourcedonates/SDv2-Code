@@ -25,7 +25,6 @@ class CreateSdPaymentTransactionsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->primary('id');
-            $table->unique('name_short');
         });
     }
 
