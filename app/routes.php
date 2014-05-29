@@ -29,7 +29,10 @@ Route::any('/payment/success', function()
 
 Route::any('/payment/cancel', function()
 {
-    return "<pre>".var_dump(Input::all())."</pre>"."Cancel Page";
+    echo "<pre>";
+    var_dump(Input::all());
+    echo "</pre>";
+    return "Cancel Page";
 });
 
 //Route::any('/ipn/{provider}', 'PaymentController@process_ipn'); //Route for processing the IPN

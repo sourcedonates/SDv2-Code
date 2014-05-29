@@ -35,18 +35,4 @@ return array(
     */
     'payment_paypal_email'  => 'testuser@sbg.com',
 
-
-    /*
-    |------------------------------
-    | payment_paypal_currency
-    |------------------------------
-    |
-    | The PayPal Currency
-    | € => 'EUR'
-    | $ => 'USD'
-    | Something else => use google
-    |
-    */
-    'payment_paypal_currency'  => 'EUR',
-
 );
