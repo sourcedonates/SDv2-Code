@@ -15,6 +15,7 @@ class CreateSdPaymentTransactionsTable extends Migration
         Schema::create('sd_payment_transactions', function($table)
         {
             $table->string('id'); //id
+            $table->bigInteger('user_id');
             $table->string('payment_provider');
             $table->string('currency');
             $table->string('price');

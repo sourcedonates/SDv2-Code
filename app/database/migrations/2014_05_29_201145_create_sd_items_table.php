@@ -23,6 +23,7 @@ class CreateSdItemsTable extends Migration
             $table->longText('handler_attrs');
             $table->longText('handler_params');
             $table->longText('web_attrs');
+            $table->longText('expires_after');
             $table->timestamps();
             $table->softDeletes();
             $table->unique('name_short');
