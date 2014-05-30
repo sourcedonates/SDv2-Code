@@ -20,9 +20,8 @@ class CreateSdPaymentTransactionsTable extends Migration
             $table->string('currency');
             $table->string('price');
             $table->longText('items');
-            $table->longText('parameters');
-            $table->enum('status', array('sent','confirmed','rejected','completed','error'));
-            $table->longText('log');
+            $table->enum('status', array('sent','confirmed','rejected','completed','error','queued'));
+            $table->longText('log')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->primary('id');
