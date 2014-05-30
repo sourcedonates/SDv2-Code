@@ -2,7 +2,7 @@
     "name": "arrow768/sdv2",
     "description": "SourceDonatesv2",
     "require": {
-        "laravel/framework": "4.0.*"
+        "laravel/framework": "4.1.*"
     },
     "autoload": {
         "classmap": [
@@ -15,6 +15,9 @@
         ]
     },
     "scripts": {
+        "pre-install-cmd": [
+            "php artisan clear-compiled"
+        ],
         "post-install-cmd": [
             "php artisan optimize"
         ],
@@ -23,19 +26,10 @@
         ],
         "post-update-cmd": [
             "php artisan optimize"
-        ],
-        "post-create-project-cmd": [
-            "php artisan key:generate"
         ]
     },
     "config": {
         "preferred-install": "dist"
     },
-    "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:Arrow768/paypal-library.git"
-        }
-    ]
+    "minimum-stability": "stable"
 }
