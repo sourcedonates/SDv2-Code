@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Handling user Operations
+ * Handling User Operations
  * 
  * The UserController handles the login / logout / pasword reset / user details of a specific user
  * 

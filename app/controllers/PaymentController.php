@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Handling Payment Operations
+ * 
+ * The PaymentController handles all the Payment Functions after the user has confirmed his purchase
+ * Selecting the correct provider, Redirecting the user to the provider (if required), 
+ * Updating the transaction table if the transaction is successful (if using a instant provider, that doesnt send a ipn)
+ * 
+ * @author Werner Maisl
+ * @copyright (c) 2014, Werner Maisl
+ */
 class PaymentController extends BaseController
 {
     public function process_payment()
