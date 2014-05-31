@@ -16,7 +16,7 @@
   return "Redirect::to('items')";
   });
  */
-//Route::controller('/', 'ItemsController');
+Route::controller('/', 'ItemsController');
 #
 # Payment Routes
 #
