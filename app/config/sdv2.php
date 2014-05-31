@@ -10,7 +10,7 @@ return array(
     | default => 'default'
     |
     */
-    'sdv2_system_usertemplate'  => 'default',
+    'sdv2_system_usertemplate'  => 'user_default',
     
     /*
     |------------------------------
@@ -21,6 +21,6 @@ return array(
     | default => 'default'
     |
     */
-    'sdv2_system_admintemplate'  => 'default',
+    'sdv2_system_admintemplate'  => 'admin_default',
 
 );
