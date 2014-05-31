@@ -94,6 +94,7 @@ return array(
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
+        'Cartalyst\Sentry\Laravel\SentryServiceProvider',
         'Arrow768\Sdv2ppPaypal\Sdv2ppPaypalServiceProvider'
     ),
     /*
@@ -155,5 +156,6 @@ return array(
         'URL' => 'Illuminate\Support\Facades\URL',
         'Validator' => 'Illuminate\Support\Facades\Validator',
         'View' => 'Illuminate\Support\Facades\View',
+        'Sentry' => 'Cartalyst\Sentry\Laravel\Facades\Sentry',
     ),
 );

@@ -16,6 +16,10 @@
   return "Redirect::to('items')";
   });
  */
+//Route::controller('/', 'ItemsController');
+#
+# Payment Routes
+#
 
 Route::any('/payment/process', 'PaymentController@process_payment'); //Route for accepting the posted form
 
@@ -35,7 +39,22 @@ Route::any('/payment/cancel', function()
     return "Cancel Page";
 });
 
-//Route::any('/ipn/{provider}', 'PaymentController@process_ipn'); //Route for processing the IPN
+#
+# User Routes
+#
+Route::get('/user', function()
+{
+    return Redirect::to('user/login');
+});
 
-Route::controller('/', 'ItemsController');
+#Login
+Route::get('/user/login', 'UserController@show_login');
+Route::post('/user/login', 'UserController@do_login');
 
+#Register
+Route::get('/user/register', 'UserController@show_register');
+Route::post('/user/register', 'UserController@do_register');
+
+#Forgot Password
+Route::get('/user/forgot_password', 'UserController@show_password_reset');
+Route::post('/user/forgot_password', 'UserController@do_password_reset');

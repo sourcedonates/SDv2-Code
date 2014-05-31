@@ -10,15 +10,35 @@
  */
 class UserController extends BaseController
 {
-    
+
     /**
      * Displays the login page and the password reset button
      */
-    public function show_login()
+    public function show_login($data_in = array())
     {
-        
+        $data = array(
+            "page_name" => "SDv2 | Login",
+        );
+        $data = array_merge($data, $data_in);
+
+        $template = Config::get('sdv2.system_usertemplate');
+        return View::make($template . ".login.login", $data);
     }
-    
+
+    /**
+     * Displays the register page and the password reset button
+     */
+    public function show_register($data_in = array())
+    {
+        $data = array(
+            "page_name" => "SDv2 | Registration",
+        );
+        $data = array_merge($data, $data_in);
+
+        $template = Config::get('sdv2.system_usertemplate');
+        return View::make($template . ".login.register", $data);
+    }
+
     /**
      * Displays the password reset page
      */
@@ -26,7 +46,7 @@ class UserController extends BaseController
     {
         
     }
-    
+
     /**
      * Displays the user profile
      * 
@@ -36,7 +56,7 @@ class UserController extends BaseController
     {
         
     }
-    
+
     /**
      * Displays the change profile page
      * 
@@ -49,16 +69,116 @@ class UserController extends BaseController
     {
         
     }
-    
-    
+
     /**
      * Handles the post of the show_login() page
      */
     public function do_login()
     {
+        try
+        {
+            $remember_me = false;
+            if (Input::get('remember_me') == "on")
+                $remember_me = true;
+
+            // Login credentials
+            $credentials = array(
+                'email' => Input::get('email'),
+                'password' => Input::get('password'),
+            );
+
+            // Authenticate the user
+            $user = Sentry::authenticate($credentials, false);
+            print_r($user);
+        }
+        catch (Exception $e)
+        {
+            $data["message"] = "There has been a problem with your login: ". $e->getMessage();
+            return $this->show_login($data);
+            exit(0);
+        }
         
+        if(!isset($user) | $user == "")
+        {
+            $data["message"] = "There has been a problem with your login";
+            return $this->show_login($data);
+            exit(0);
+        }
     }
-    
+
+    /**
+     * Handles the post of the show_register() page
+     */
+    public function do_register()
+    {
+        $data = array();
+
+        //Check if the passwords match
+        if (Input::get('password') != Input::get('password2'))
+        {
+            $data["message"] = "PWs dont match";
+            return $this->show_register($data);
+            exit(0);
+        }
+
+        //Check if E-Mail is valid
+        if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", Input::get('email')))
+        {
+            $data["message"] = "Invalid E-Mail";
+            return $this->show_register($data);
+            exit(0);
+        }
+
+        //Try to register the user
+        try
+        {
+            // Create the user
+            $user = Sentry::register(array(
+                        'email' => Input::get('email'),
+                        'password' => Input::get('password'),
+                        'activated' => true,
+            ));
+
+            // Find the group using the group id
+            //$adminGroup = Sentry::findGroupById(1);
+            // Assign the group to the user
+            //$user->addGroup($adminGroup);
+            $data["message"] = "Registration Successful -> Please log in";
+            return $this->show_login($data);
+            exit(0);
+        }
+        catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+        {
+            $data["message"] = "Email field is required.";
+            return $this->show_register($data);
+            exit(0);
+        }
+        catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+        {
+            $data["message"] = "Password field is required.";
+            return $this->show_register($data);
+            exit(0);
+        }
+        catch (Cartalyst\Sentry\Users\UserExistsException $e)
+        {
+            $data["message"] = "User with this login already exists.";
+            return $this->show_register($data);
+            exit(0);
+        }
+        catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+        {
+            $data["message"] = "Group was not found.";
+            return $this->show_register($data);
+            exit(0);
+        }
+        catch (Exception $e)
+        {
+            $data["message"] = "There has been a problem: " . $e->getMessage();
+            return $this->show_register($data);
+            exit(0);
+        }
+    }
+
     /**
      * Handles the post of the show_password_reset() page
      */
@@ -66,7 +186,7 @@ class UserController extends BaseController
     {
         
     }
-    
+
     /**
      * Handles the post of the change_profile()page
      */
@@ -74,7 +194,7 @@ class UserController extends BaseController
     {
         
     }
-    
+
     /**
      * Handles the post of the logout button
      */
@@ -82,4 +202,5 @@ class UserController extends BaseController
     {
         
     }
+
 }
