@@ -18,17 +18,17 @@ test:
     php_mess_detector:
         path: "app"
         ignore:
-            - "/app/database"
-            - "/app/tests"
-            - "/app/views"
+            - "/database"
+            - "/tests"
+            - "/views"
         allow_failures: true
     php_code_sniffer:
         standard: "PSR1,PSR2"
         path: "app"
         ignore:
-            - "/app/database"
-            - "/app/tests"
-            - "/app/views"
+            - "/database"
+            - "/tests"
+            - "/views"
     php_cpd:
         allow_failures: true
     lint:

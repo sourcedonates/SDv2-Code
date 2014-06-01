@@ -16,13 +16,16 @@
   return "Redirect::to('items')";
   });
  */
-//Route::controller('/', 'ItemsController');
+
+Route::get('/', 'ItemsController@getIndex');
+
 #
 # Payment Routes
 #
 
 Route::any('/payment/process', 'PaymentController@process_payment'); //Route for accepting the posted form
 
+# Success / Cancel Return URL
 Route::any('/payment/success', function()
 {
     echo "<pre>";
@@ -30,7 +33,6 @@ Route::any('/payment/success', function()
     echo "</pre>";
     return "Success Page";
 });
-
 Route::any('/payment/cancel', function()
 {
     echo "<pre>";
