@@ -32,5 +32,4 @@ test:
             - "/workbench"
     php_cpd:
         allow_failures: true
-    php_dockblock_checker:
 complete:
