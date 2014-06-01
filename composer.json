@@ -39,7 +39,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@bitbucket.org:Arrow768/sdv2pp-paypal.git"
+            "url": "https://Arrow768@bitbucket.org/Arrow768/sdv2pp-paypal.git"
         }
     ]
 }
