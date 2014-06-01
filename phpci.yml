@@ -16,20 +16,21 @@ test:
     php_unit:
         args: "--stderr"
     php_mess_detector:
-        ignore:
-            - "/app/database"
-            - "/app/tests"
-            - "/vendor"
-            - "/workbench"
-        allow_failures: true
-    php_code_sniffer:
-        standard: "PSR1,PSR2"
+        path: "app"
         ignore:
             - "/app/database"
             - "/app/tests"
             - "/app/views"
-            - "/vendor"
-            - "/workbench"
+        allow_failures: true
+    php_code_sniffer:
+        standard: "PSR1,PSR2"
+        path: "app"
+        ignore:
+            - "/app/database"
+            - "/app/tests"
+            - "/app/views"
     php_cpd:
         allow_failures: true
+    lint:
+        directory: "app"
 complete:
