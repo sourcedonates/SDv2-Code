@@ -21,7 +21,9 @@
             
         ],
         "post-install-cmd": [
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan migrate",
+            "php artisan migrate --package=cartalyst/sentry"
         ],
         "pre-update-cmd": [
             
