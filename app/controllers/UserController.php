@@ -133,10 +133,10 @@ class UserController extends BaseController
         try
         {
             // Create the user
-            $user = Sentry::register(array(
-                        'email' => Input::get('email'),
-                        'password' => Input::get('password'),
-                        'activated' => true,
+            Sentry::register(array(
+                'email' => Input::get('email'),
+                'password' => Input::get('password'),
+                'activated' => true,
             ));
 
             // Find the group using the group id

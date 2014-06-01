@@ -55,37 +55,4 @@ class PaymentController extends BaseController
         $payment_paypal->initiate_payment($price, $transaction_id);
         **/
     }
-
-    public function process_ipn($provider)
-    {
-        //Get the module for the selected Provider
-
-        //Check if the IPN is vaild
-
-        //Check if the IPN matches the transaction ID
-
-        //Update the transaction (code/table)
-
-        //Get the action for each item from the itemsviewer-items db
-
-        //Perform the required action for each item with the according action_module
-
-        //Update the transaction (code/table)
-
-
-
-
-        /** Temporary
-        switch ($provider) {
-            case 'paypal': //process paypal ipn
-                $payment_paypal = new arrow768\payment_paypal;
-                $payment_paypal->process_ipn();
-                break;
-            
-            default:
-                echo "unknown provider";
-                break;
-        }
-        **/
-    }
 }

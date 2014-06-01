@@ -22,18 +22,18 @@ class ItemsController extends BaseController
 
         //Build the view
         $this->layout->content = View::make('item.overview', array(
-                    'items' => $items, //Items data
+            'items' => $items, //Items data
         ));
     }
 
 
-    public function getDetails($id)
+    public function getDetails($item_id)
     {
         
-        $item = Item::find($id);
+        $item = Item::find($item_id);
 //      var_dump($item);
         $this->layout->content = View::make('item.details', array(
-                    'item' => $item,
+            'item' => $item,
         ));
     }
 }

@@ -1,17 +1,30 @@
 <?php
 
-class ExampleTest extends TestCase {
+class ExampleTest extends TestCase
+{
 
-	/**
-	 * A basic functional test example.
-	 *
-	 * @return void
-	 */
-	public function testBasicExample()
-	{
-		$crawler = $this->client->request('GET', '/');
+    /**
+     * Tests if the user Login page is OK
+     *
+     * @return void
+     */
+    public function testUserLoginOk()
+    {
+        $crawler = $this->client->request('GET', '/user/login');
 
-		$this->assertTrue($this->client->getResponse()->isOk());
-	}
+        $this->assertTrue($this->client->getResponse()->isOk());
+    }
 
+    
+    /**
+     * Tests if the user Login page is OK
+     *
+     * @return void
+     */
+    public function testUserRegisterOk()
+    {
+        $crawler = $this->client->request('GET', '/user/register');
+
+        $this->assertTrue($this->client->getResponse()->isOk());
+    }
 }

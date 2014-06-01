@@ -17,13 +17,20 @@ test:
         args: "--stderr"
     php_mess_detector:
         ignore:
-            - "/app/database/*"
-            - "/app/tests/*"
-            - "/vendor/*"
-            - "/workbench/*"
+            - "/app/database"
+            - "/app/tests"
+            - "/vendor"
+            - "/workbench"
         allow_failures: true
     php_code_sniffer:
-        standard: "PSR2"
+        standard: "PSR1,PSR2"
+        ignore:
+            - "/app/database"
+            - "/app/tests"
+            - "/app/views"
+            - "/vendor"
+            - "/workbench"
     php_cpd:
         allow_failures: true
+    php_dockblock_checker:
 complete:
