@@ -19,6 +19,8 @@ test:
         ignore:
             - "/app/database/*"
             - "/app/tests/*"
+            - "/vendor/*"
+            - "/workbench/*"
         allow_failures: true
     php_code_sniffer:
         standard: "PSR2"
