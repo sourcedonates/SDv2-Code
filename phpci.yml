@@ -18,17 +18,35 @@ test:
     php_mess_detector:
         path: "app"
         ignore:
-            - "/database"
-            - "/tests"
-            - "/views"
+            - "bootstrap"
+            - "build"
+            - "public"
+            - "vendor"
+            - "workbench"
+            - "app/config"
+            - "app/database"
+            - "app/lang"
+            - "app/start"
+            - "app/storage"
+            - "app/tests"
+            - "app/views"  
         allow_failures: true
     php_code_sniffer:
-        standard: "PSR1,PSR2"
+        standard: "PSR2"
         path: "app"
         ignore:
-            - "/database"
-            - "/tests"
-            - "/views"
+            - "bootstrap"
+            - "build"
+            - "public"
+            - "vendor"
+            - "workbench"
+            - "app/config"
+            - "app/database"
+            - "app/lang"
+            - "app/start"
+            - "app/storage"
+            - "app/tests"
+            - "app/views"            
     php_cpd:
         allow_failures: true
     lint:

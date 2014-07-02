@@ -88,17 +88,17 @@ class UserController extends BaseController
             );
 
             // Authenticate the user
-            $user = Sentry::authenticate($credentials, false);
+            $user = Sentinel::authenticate($credentials, false);
             print_r($user);
         }
         catch (Exception $e)
         {
-            $data["message"] = "There has been a problem with your login: ". $e->getMessage();
+            $data["message"] = "There has been a problem with your login: " . $e->getMessage();
             return $this->show_login($data);
             exit(0);
         }
-        
-        if(!isset($user) | $user == "")
+
+        if (!isset($user) | $user == "")
         {
             $data["message"] = "There has been a problem with your login";
             return $this->show_login($data);
@@ -133,10 +133,9 @@ class UserController extends BaseController
         try
         {
             // Create the user
-            Sentry::register(array(
+            Sentinel::registerAndActivate(array(
                 'email' => Input::get('email'),
-                'password' => Input::get('password'),
-                'activated' => true,
+                'password' => Input::get('password')
             ));
 
             // Find the group using the group id
@@ -145,30 +144,6 @@ class UserController extends BaseController
             //$user->addGroup($adminGroup);
             $data["message"] = "Registration Successful -> Please log in";
             return $this->show_login($data);
-            exit(0);
-        }
-        catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
-        {
-            $data["message"] = "Email field is required.";
-            return $this->show_register($data);
-            exit(0);
-        }
-        catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
-        {
-            $data["message"] = "Password field is required.";
-            return $this->show_register($data);
-            exit(0);
-        }
-        catch (Cartalyst\Sentry\Users\UserExistsException $e)
-        {
-            $data["message"] = "User with this login already exists.";
-            return $this->show_register($data);
-            exit(0);
-        }
-        catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
-        {
-            $data["message"] = "Group was not found.";
-            return $this->show_register($data);
             exit(0);
         }
         catch (Exception $e)

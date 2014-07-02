@@ -1,19 +1,18 @@
 <?php
 /**
- * Part of the Sentry package.
+ * Part of the Sentinel package.
  *
  * NOTICE OF LICENSE
  *
- * Licensed under the 3-clause BSD License.
+ * Licensed under the Cartalyst PSL License.
  *
- * This source file is subject to the 3-clause BSD License that is
- * bundled with this package in the LICENSE file.  It is also available at
- * the following URL: http://www.opensource.org/licenses/BSD-3-Clause
+ * This source file is subject to the Cartalyst PSL License that is
+ * bundled with this package in the license.txt file.
  *
- * @package    Sentry
- * @version    3.0.0
+ * @package    Sentinel
+ * @version    1.0.0
  * @author     Cartalyst LLC
- * @license    BSD License (3-clause)
+ * @license    Cartalyst PSL
  * @copyright  (c) 2011-2014, Cartalyst LLC
  * @link       http://cartalyst.com
  */
@@ -25,35 +24,35 @@ return [
 	| Session Key
 	|--------------------------------------------------------------------------
 	|
-	| Please provide your session key for Sentry.
+	| Please provide your session key for Sentinel.
 	|
 	*/
 
-	'session' => 'cartalyst_sentry',
+	'session' => 'cartalyst_sentinel',
 
 	/*
 	|--------------------------------------------------------------------------
 	| Cookie Key
 	|--------------------------------------------------------------------------
 	|
-	| Please provide your cookie key for Sentry.
+	| Please provide your cookie key for Sentinel.
 	|
 	*/
 
-	'cookie' => 'cartalyst_sentry',
+	'cookie' => 'cartalyst_sentinel',
 
 	/*
 	|--------------------------------------------------------------------------
 	| Users
 	|--------------------------------------------------------------------------
 	|
-	| Please provide the user model used in Sentry.
+	| Please provide the user model used in Sentinel.
 	|
 	*/
 
 	'users' => [
 
-		'model' => 'Cartalyst\Sentry\Users\EloquentUser',
+		'model' => 'Cartalyst\Sentinel\Users\EloquentUser',
 
 	],
 
@@ -62,13 +61,13 @@ return [
 	| Groups
 	|--------------------------------------------------------------------------
 	|
-	| Please provide the group model used in Sentry.
+	| Please provide the group model used in Sentinel.
 	|
 	*/
 
 	'groups' => [
 
-		'model' => 'Cartalyst\Sentry\Groups\EloquentGroup',
+		'model' => 'Cartalyst\Sentinel\Groups\EloquentGroup',
 
 	],
 
@@ -106,7 +105,7 @@ return [
 
 	'activations' => [
 
-		'model' => 'Cartalyst\Sentry\Activations\EloquentActivation',
+		'model' => 'Cartalyst\Sentinel\Activations\EloquentActivation',
 
 		'expires' => 259200,
 
@@ -125,7 +124,7 @@ return [
 
 	'reminders' => [
 
-		'model' => 'Cartalyst\Sentry\Reminders\EloquentReminder',
+		'model' => 'Cartalyst\Sentinel\Reminders\EloquentReminder',
 
 		'expires' => 14400,
 
@@ -140,7 +139,7 @@ return [
 	| types of throttling.
 	|
 	| The first type is "global". Global throttling will monitor the overall
-	| failed login attempts across your site and can limit the affects of an
+	| failed login attempts across your site and can limit the effects of an
 	| attempted DDoS attack.
 	|
 	| The second type is "ip". This allows you to throttle the failed login
@@ -175,7 +174,7 @@ return [
 
 	'throttling' => [
 
-		'model' => 'Cartalyst\Sentry\Throttling\EloquentThrottle',
+		'model' => 'Cartalyst\Sentinel\Throttling\EloquentThrottle',
 
 		'global' => [
 
@@ -222,7 +221,7 @@ return [
 	| protecting those users who use common passwords against
 	| themselves.
 	|
-	| At this stage, Sentry supports Swipe Identity using either "swipe" or
+	| At this stage, Sentinel supports Swipe Identity using either "swipe" or
 	| "sms" methods. You must also provide your developer account email,
 	| password, API key and app code.
 	|
