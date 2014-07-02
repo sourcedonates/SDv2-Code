@@ -60,3 +60,11 @@ Route::post('/user/register', 'UserController@do_register');
 #Forgot Password
 Route::get('/user/forgot_password', 'UserController@show_password_reset');
 Route::post('/user/forgot_password', 'UserController@do_password_reset');
+
+
+#
+# Dashboard Routes
+#
+
+# Index
+Route::get('/dashboard/index','DashboardController@show_index');
