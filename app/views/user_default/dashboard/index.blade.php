@@ -536,7 +536,7 @@
         <!-- Bootstrap -->
         <script src="{{asset('assets/js/bootstrap.min.js')}}" type="text/javascript"></script>
         <!-- Morris.js charts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="{{asset('assets/js/plugins/morris/morris.min.js')}}" type="text/javascript"></script>
         <!-- Sparkline -->
         <script src="{{asset('assets/js/plugins/sparkline/jquery.sparkline.min.js')}}" type="text/javascript"></script>
@@ -561,7 +561,7 @@
         <script src="{{asset('assets/js/AdminLTE/dashboard.js')}}" type="text/javascript"></script>     
         
         <!-- AdminLTE for demo purposes -->
-        <script src="js/AdminLTE/demo.js" type="text/javascript"></script>
+        <script src="{{asset('js/AdminLTE/demo.js')}}" type="text/javascript"></script>
 
     </body>
 </html>
