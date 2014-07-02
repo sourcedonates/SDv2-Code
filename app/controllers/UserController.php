@@ -89,7 +89,7 @@ class UserController extends BaseController
 
             // Authenticate the user
             $user = Sentinel::authenticate($credentials, false);
-            print_r($user);
+            //print_r($user);
         }
         catch (Exception $e)
         {
@@ -104,6 +104,7 @@ class UserController extends BaseController
             return $this->show_login($data);
             exit(0);
         }
+        Redirect::to('/user/dashboard');
     }
 
     /**

@@ -16,7 +16,6 @@ test:
     php_unit:
         args: "--stderr"
     php_mess_detector:
-        path: "app"
         ignore:
             - "bootstrap"
             - "build"
@@ -33,7 +32,6 @@ test:
         allow_failures: true
     php_code_sniffer:
         standard: "PSR2"
-        path: "app"
         ignore:
             - "bootstrap"
             - "build"
