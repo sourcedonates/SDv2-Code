@@ -104,7 +104,7 @@ class UserController extends BaseController
             return $this->show_login($data);
             exit(0);
         }
-        Redirect::to('/user/dashboard');
+        return Redirect::to('/dashboard/overview');
     }
 
     /**
