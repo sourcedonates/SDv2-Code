@@ -24,7 +24,6 @@ Route::get('/', 'ItemsController@getIndex');
 #
 
 Route::any('/payment/process', 'PaymentController@process_payment'); //Route for accepting the posted form
-
 # Success / Cancel Return URL
 Route::any('/payment/success', function()
 {
@@ -46,7 +45,14 @@ Route::any('/payment/cancel', function()
 #
 Route::get('/user', function()
 {
-    return Redirect::to('user/login');
+    if ($user = Sentinel::check())
+    {
+        return Redirect::to('user/dashboard');
+    }
+    else
+    {
+        return Redirect::to('user/login');
+    }
 });
 
 #Login
@@ -61,10 +67,8 @@ Route::post('/user/register', 'UserController@do_register');
 Route::get('/user/forgot_password', 'UserController@show_password_reset');
 Route::post('/user/forgot_password', 'UserController@do_password_reset');
 
+#Dashboard
+Route::get('/user/dashboard', 'UserController@show_dashboard');
 
-#
-# Dashboard Routes
-#
-
-# Index
-Route::get('/dashboard/index','DashboardController@show_index');
+#Profile
+Route::get('/user/profile', 'UserCrontroller@show_profile');

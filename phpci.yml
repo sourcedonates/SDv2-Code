@@ -31,7 +31,7 @@ test:
             - "app/views"  
         allow_failures: true
     php_code_sniffer:
-        standard: "PSR2"
+        standard: "PSR1,PSR2"
         ignore:
             - "bootstrap"
             - "build"

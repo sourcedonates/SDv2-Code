@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="bg-black">
 
-    @include('user_default.parts.head')
+    @include('user_default.login.head')
 
     <body class="bg-black">
 

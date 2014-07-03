@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     
-    @include('user_default.parts.head-dashboard')
+    @include('user_default.parts.head')
     
     <body class="skin-blue">
         

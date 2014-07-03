@@ -16,13 +16,22 @@ class UserController extends BaseController
      */
     public function show_login($data_in = array())
     {
-        $data = array(
-            "page_name" => "SDv2 | Login",
-        );
-        $data = array_merge($data, $data_in);
+        $login = $this->check_login();
 
-        $template = Config::get('sdv2.system_usertemplate');
-        return View::make($template . ".login.login", $data);
+        if ($login != false)
+        {
+            return Redirect::to('/user/dashboard');
+        }
+        else
+        {
+            $data = array(
+                "page_name" => "SDv2 | Login",
+            );
+            $data = array_merge($data, $data_in);
+
+            $template = Config::get('sdv2.system_usertemplate');
+            return View::make($template . ".login.login", $data);
+        }
     }
 
     /**
@@ -30,13 +39,22 @@ class UserController extends BaseController
      */
     public function show_register($data_in = array())
     {
-        $data = array(
-            "page_name" => "SDv2 | Registration",
-        );
-        $data = array_merge($data, $data_in);
+        $login = $this->check_login();
 
-        $template = Config::get('sdv2.system_usertemplate');
-        return View::make($template . ".login.register", $data);
+        if ($login != false)
+        {
+            return Redirect::to('/user/dashboard');
+        }
+        else
+        {
+            $data = array(
+                "page_name" => "SDv2 | Registration",
+            );
+            $data = array_merge($data, $data_in);
+
+            $template = Config::get('sdv2.system_usertemplate');
+            return View::make($template . ".login.register", $data);
+        }
     }
 
     /**
@@ -44,7 +62,22 @@ class UserController extends BaseController
      */
     public function show_password_reset()
     {
-        
+        $login = $this->check_login();
+
+        if ($login != false)
+        {
+            return Redirect::to('/user/dashboard');
+        }
+        else
+        {
+            $data = array(
+                "page_name" => "SDv2 | Password Reset",
+            );
+            $data = array_merge($data, $data_in);
+
+            $template = Config::get('sdv2.system_usertemplate');
+            return View::make($template . ".login.reset_passwort", $data);
+        }
     }
 
     /**
@@ -58,16 +91,21 @@ class UserController extends BaseController
     }
 
     /**
-     * Displays the change profile page
-     * 
-     * Allows the user to change his userinfos (the data stored in the user_info table)
-     * 
-     * @todo Add APs (Auth Provider) that make the changes for the user (For example redirect him to steam->openid to log him in)
-     * 
+     * Shows the Dashboard
      */
-    public function change_profile()
+    public function show_dashboard()
     {
-        
+        $login = $this->check_login();
+
+        if ($login != false)
+        {
+            $template = Config::get('sdv2.system_usertemplate');
+            return View::make($template . ".dashboard.index");
+        }
+        else
+        {
+            return Redirect::to('/user/login');
+        }
     }
 
     /**
@@ -104,7 +142,7 @@ class UserController extends BaseController
             return $this->show_login($data);
             exit(0);
         }
-        return Redirect::to('/dashboard/index');
+        return Redirect::to('/user/dashboard');
     }
 
     /**
@@ -143,7 +181,7 @@ class UserController extends BaseController
             //$adminGroup = Sentry::findGroupById(1);
             // Assign the group to the user
             //$user->addGroup($adminGroup);
-            $data["message"] = "Registration Successful -> Please log in";
+            $data["message"] = "Registration Successful -> Please log in below";
             return $this->show_login($data);
             exit(0);
         }
@@ -172,11 +210,29 @@ class UserController extends BaseController
     }
 
     /**
-     * Handles the post of the logout button
+     * Logs the user out
      */
     public function do_logout()
     {
-        
+        Sentinel::logout(true);
+        return Redirect::to('/user/login');
+    }
+
+    /**
+     * Login Check
+     * 
+     * Checks if a User is logged in and redirects him to the login page if he is not
+     */
+    private function check_login()
+    {
+        if ($user = Sentinel::check())
+        {
+            return $user;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }
