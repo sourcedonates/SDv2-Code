@@ -243,18 +243,15 @@ class UserController extends BaseController
 
         if ($user != false)
         {
-            
-            echo var_dump(Input::all());
-            /*
             //Get the posted values and write them into the database
             $username = new SDUserinfo();
             $username->type = "username";
-            $username->value = Input::get('usernameInput');
+            $username->value = Input::get('username');
             $username->save();
 
             $steam_id = new SDUserinfo();
             $steam_id->type = "steamid";
-            $steam_id->value = Input::get('steamidInput');
+            $steam_id->value = Input::get('steamid');
             $steam_id->save();
             
             //Check if the userprofile is setup;
@@ -265,8 +262,6 @@ class UserController extends BaseController
                 $is_setup->type = "setup";
                 $is_setup->value = "true";
             }
-             * 
-             */
         }
         else
         {
