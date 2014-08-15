@@ -35,7 +35,8 @@ class PaymentController extends BaseController
         var_dump($ava_curr);
         echo "</br>";
         
-        if($ava_curr[$data["currency"]] != "true") exit("Currency not supported by provider");
+        if($ava_curr == false) exit("Provider Currency JSON invalid");
+        if($ava_curr->$data["currency"] != "true") exit("Currency not supported by provider");
 
         
         //query the items db to get the price of the plan
