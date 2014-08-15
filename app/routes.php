@@ -60,7 +60,7 @@ Route::get('/user/login', 'UserController@show_login');
 Route::post('/user/login', 'UserController@do_login');
 
 #Logout
-Route::any('/user/logout', 'UserCrontroller@do_logout');
+Route::any('/user/logout', 'UserController@do_logout');
 
 #Register
 Route::get('/user/register', 'UserController@show_register');
