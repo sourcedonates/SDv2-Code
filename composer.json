@@ -3,6 +3,7 @@
     "description": "SourceDonatesv2",
     "require": {
         "laravel/framework": "4.2.*",
+        "cartalyst/sentinel": "1.0.*",
         "arrow768/sdv2pp-paypal": "@dev",
         "arrow768/sdv2ip-storeag": "@dev"
     },
