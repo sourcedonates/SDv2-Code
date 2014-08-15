@@ -38,11 +38,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/Arrow768/SDv2PP-PayPal.git"
+            "url": "https://github.com/sourcedonates/SDv2PP-PayPal.git"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/Arrow768/SDv2Ip-StoreAg.git"
+            "url": "https://github.com/sourcedonates/SDv2Ip-StoreAg.git"
         },
         {
             "type": "composer",
