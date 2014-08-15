@@ -26,6 +26,10 @@ class PaymentController extends BaseController
 
         //Get the payment provider and check if the provider can handle the currency    
         $provider = SDPaymentProvider::find($data["provider_id"]);
+        
+        echo $provider->currencies;
+        echo "</br>";
+        
         $ava_curr = json_decode($provider->currencies);
         
         var_dump($ava_curr);
