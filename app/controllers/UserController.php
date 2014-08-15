@@ -87,9 +87,9 @@ class UserController extends BaseController
      */
     public function show_profile($data_in = array())
     {
-        $login = $this->check_login();
+        $user = $this->check_login();
 
-        if ($login != false)
+        if ($user != false)
         {
             $data = array();
             
