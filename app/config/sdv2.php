@@ -22,5 +22,17 @@ return array(
     |
     */
     'system_admintemplate'  => 'admin_default',
+    
+        /*
+    |------------------------------
+    | Admin Template
+    |------------------------------
+    |
+    | The name of the template that should be used at the backend
+    | default => true
+    | disabled => false
+    |
+    */
+    'system_debug'  => true,
 
 );

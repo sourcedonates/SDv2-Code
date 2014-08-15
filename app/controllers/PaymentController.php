@@ -20,20 +20,20 @@ class PaymentController extends BaseController
      */
     public function process_payment()
     {
+        $debug = Config::get('sdv2.debug');
+        
         $data = Input::all();
-    	var_dump($data);
-        echo "</br>";
+    	if ($debug) var_dump($data);
+        if ($debug) echo "</br>";
 
         //Get the payment provider and check if the provider can handle the currency    
         $provider = SDPaymentProvider::find($data["provider_id"]);
-        
-        echo $provider->currencies;
-        echo "</br>";
+        if ($debug) echo $provider->currencies;
+        if ($debug) echo "</br>";
         
         $ava_curr = json_decode($provider->currencies);
-        
-        var_dump($ava_curr);
-        echo "</br>";
+        if ($debug) var_dump($ava_curr);
+        if ($debug) echo "</br>";
         
         if($ava_curr == false) exit("Provider Currency JSON invalid");
         if($ava_curr->$data["currency"] != "true") exit("Currency not supported by provider");
@@ -42,8 +42,8 @@ class PaymentController extends BaseController
         //query the items db to get the price of the plan
         echo "Item-id:" . $data["item_id"]. "</br>";
         $item = SDItem::find($data['item_id']);
-        var_dump($item);
-        
+        if ($debug) var_dump($item);
+        if ($debug) echo "</br>";
         
         //get the price of the item in the selected currency
         $price_array = json_decode($item->price);
