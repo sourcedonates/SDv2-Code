@@ -154,7 +154,7 @@ class UserController extends BaseController
         }
         
         //Check if User has setup his profile
-        $setup = SDUserinfos::where('user_id',$user->id)->where('type','setup')->fistOrFail();
+        $setup = SDUserinfo::where('user_id',$user->id)->where('type','setup')->fistOrFail();
         
         var_dump($setup);
         

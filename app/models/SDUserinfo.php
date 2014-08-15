@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class SDUserinfos extends Eloquent
+class SDUserinfo extends Eloquent
 {
 
     use SoftDeletingTrait;
