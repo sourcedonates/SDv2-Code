@@ -91,8 +91,16 @@ class UserController extends BaseController
 
         if ($login != false)
         {
+            $data = array();
+            
+            //Check if User has setup his profile
+            $setup = SDUserinfo::where('user_id', $user->id)->where('type', 'setup')->first();
+            
+            if($setup == NULL) $data['profile_setup'] = false;
+            
+            $data = array_merge($data, $data_in);
             $template = Config::get('sdv2.system_usertemplate');
-            return View::make($template . ".dashboard.userprofile");
+            return View::make($template . ".dashboard.userprofile",$data);
         }
         else
         {
