@@ -65,7 +65,7 @@ class PaymentController extends BaseController
         $transaction->id = $transaction_id;
         $transaction->payment_provider = $provider->id;
         $transaction->currency = $data["currency"];
-        $transaction->price = $data["price"];
+        $transaction->price = $price;
         $transaction->items = $item->id;
         $transaction->status = "sent";
         $transaction->save();
