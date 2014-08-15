@@ -2,7 +2,7 @@
     "name": "arrow768/sdv2",
     "description": "SourceDonatesv2",
     "require": {
-        "laravel/framework": "4.1.*",
+        "laravel/framework": "4.2.*",
         "arrow768/sdv2pp-paypal": "@dev",
         "cartalyst/sentinel": "dev-master"
     },
