@@ -33,15 +33,15 @@
                                     <h3 class="box-title">User Profile</h3>
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
-                                <form role="form" method="post" action="{{url('/user/profile')}}">
+                                <form role="form" action="{{url('/user/profile')}}" method="post">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="usernameInput">Username</label>
-                                            <input type="text" class="form-control" id="usernameInput" placeholder="Enter your Username">
+                                            <input name="username" type="text" class="form-control" id="usernameInput" placeholder="Enter your Username">
                                         </div>
                                         <div class="form-group">
                                             <label for="steamidInput">Username</label>
-                                            <input type="text" class="form-control" id="steamidInput" placeholder="STEAM_0:0:0000000">
+                                            <input name="steamid" type="text" class="form-control" id="steamidInput" placeholder="STEAM_0:0:0000000">
                                         </div>
                                     </div><!-- /.box-body -->
 
