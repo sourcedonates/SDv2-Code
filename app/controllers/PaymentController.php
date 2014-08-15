@@ -40,7 +40,7 @@ class PaymentController extends BaseController
 
         
         //query the items db to get the price of the plan
-        echo "Item-id:" . $data["item_id"]. "</br>";
+        if ($debug) echo "Item-id:" . $data["item_id"]. "</br>";
         $item = SDItem::find($data['item_id']);
         if ($debug) var_dump($item);
         if ($debug) echo "</br>";
