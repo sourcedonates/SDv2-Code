@@ -24,13 +24,22 @@ class PaymentController extends BaseController
     	var_dump($data);
         echo "</br>";
 
+        //Get the payment provider and check if the provider can handle the currency    
+        $provider = SDPaymentProvider::find($data["provider_id"]);
+        $ava_curr = json_decode($provider->currencies);
+        
+        if($ava_curr[$data["currency"]] != "true") exit("Currency not supported by provider");
 
-
+        
         //query the items db to get the price of the plan
         echo "Item-id:" . $data["item_id"]. "</br>";
         $item = SDItem::find($data['item_id']);
         var_dump($item);
         
+        
+        //get the price of the item in the selected currency
+        $price_array = json_decode($item->price);
+        $price = $price_array["currency"];
         
         
         //create a transaction with a transaction code
@@ -44,7 +53,15 @@ class PaymentController extends BaseController
         
         
         //save the steamid, the username, the email, the provider, the amount and the items to the trasaction DB
-
+        $transaction = new SDPaymentTransaction;
+        $transaction->id = $transaction_id;
+        $transaction->payment_provider = $provider->id;
+        $transaction->currency = $data["currency"];
+        $transaction->price = $data["price"];
+        $transaction->items = $item->id;
+        $transaction->status = "sent";
+        $transaction->save();
+        
         //Get the module name of the selected provider
 
         //Create the payment with the provider, the transaction code and the price

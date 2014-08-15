@@ -126,6 +126,7 @@
               </div>
             </div>
             <input name="item_id" id="buy-value" type="input" value="5" hidden>
+            <input name="currency" value="EUR" hidden>
           </form>
         </div>
       </div>
