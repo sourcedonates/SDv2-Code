@@ -3,7 +3,8 @@
     "description": "SourceDonatesv2",
     "require": {
         "laravel/framework": "4.2.*",
-        "arrow768/sdv2pp-paypal": "@dev"
+        "arrow768/sdv2pp-paypal": "@dev",
+        "arrow768/sdv2ip-storeag": "@dev"
     },
     "autoload": {
         "classmap": [
@@ -36,7 +37,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://Arrow768@bitbucket.org/Arrow768/sdv2pp-paypal.git"
+            "url": "https://github.com/Arrow768/SDv2PP-PayPal.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Arrow768/SDv2Ip-StoreAg.git"
         },
         {
             "type": "composer",
