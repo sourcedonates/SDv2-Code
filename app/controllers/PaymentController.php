@@ -28,7 +28,7 @@ class PaymentController extends BaseController
 
         //query the items db to get the price of the plan
         $item = Item::find($data['item_id']);
-        var_dump($data);
+        var_dump($item);
         
         
         
