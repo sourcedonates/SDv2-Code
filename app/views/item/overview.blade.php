@@ -57,31 +57,31 @@
     <div class="buy-contentcontainer">
       <div class="buy-content row">
         <div id="packages" class="desktop-12 buy-packages contained table">
-          <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="Koop alles" data-price="€50" data-id="p50">
+          <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="Koop alles" data-price="€50" data-id="5">
             <span>Koop alles</span>
             <div class="price">
               €50
             </div>
           </a>
-          <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="45.000 credits" data-price="€25" data-id="p40">
+          <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="45.000 credits" data-price="€25" data-id="4">
             <span>45.000 credits</span>
             <div class="price">
               €25
             </div>
           </a>
-          <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="25.000 credits" data-price="€15" data-id="p30">
+          <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="25.000 credits" data-price="€15" data-id="3">
             <span>25.000 credits</span>
             <div class="price">
               €15
             </div>
           </a>
-          <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="16.000 credits" data-price="€10" data-id="p20">
+          <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="16.000 credits" data-price="€10" data-id="2">
             <span>16.000 credits</span>
             <div class="price">
               €10
             </div>
           </a>
-          <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="7.000 credits" data-price="€5" data-id="p10">
+          <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="7.000 credits" data-price="€5" data-id="1">
             <span>7.000 credits</span>
             <div class="price">
               €5
@@ -98,18 +98,18 @@
             
             <div class="desktop-4 equal">
               <label for="steamID">SteamID</label>
-              <input class="input" type="text" id="steamID" name="steamID" placeholder="STEAM_0:X:XXXXXX" value="">
+              <input class="input" type="text" id="steamID" name="steamid" placeholder="STEAM_0:X:XXXXXX" value="">
               <label for="Nickname">Nickname</label>
-              <input class="input" type="text" id="nickname" name="nickname" placeholder="Ingame nickname" value="">
+              <input class="input" type="text" id="nickname" name="user" placeholder="Ingame nickname" value="">
               <label for="E-Mail">E-Mail</label>
-              <input class="input" type="email" id="e-mail" name="e-mail" placeholder="forum e-mail verplicht" value="">
+              <input class="input" type="email" id="e-mail" name="email" placeholder="forum e-mail verplicht" value="">
             </div>
             <div class="desktop-1 equal seperator">
               
             </div>
             <div class="desktop-7 equal">
               <label for="payProvider">Betaal methode</label>
-              <select name="payProvider" id="payProvider" class="select">
+              <select name="provider_id" id="provider_id" class="select">
                 <option value="">Kies een betaal methode</option>
                 @foreach($payment_providers as $payment_provider)
                  <option value="{{$payment_provider->id}}">{{$payment_provider->name_long}}</option>
@@ -125,7 +125,7 @@
                 <input id="buy-submit" type="submit" class="buy-submit align-center" value="Ga naar de betaling">
               </div>
             </div>
-            <input name="package_id" id="buy-value" type="input" value="p50" hidden>
+            <input name="item_id" id="buy-value" type="input" value="5" hidden>
           </form>
         </div>
       </div>

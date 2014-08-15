@@ -25,11 +25,22 @@ class PaymentController extends BaseController
 
 
 
-        //query the itemsviewer-plans/items db to get the price of the plan
-
+        //query the items db to get the price of the plan
+        $item = Item::find($data->item_id);
+        
+        
         //create a transaction with a transaction code
-
+        $transaction_id = ""; //variable for the transaction code
+        $transaction_id += time(); //add the current timestamp
+        $transaction_id += rand(1, 9); //add 5 random numbers
+        $transaction_id += rand(1, 9);
+        $transaction_id += rand(1, 9);
+        $transaction_id += rand(1, 9);
+        $transaction_id += rand(1, 9);
+        
+        
         //save the steamid, the username, the email, the provider, the amount and the items to the trasaction DB
+        $DB::table('sd_payment_transactions')->
 
         //Get the module name of the selected provider
 
