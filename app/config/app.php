@@ -95,7 +95,7 @@ return array(
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
-        //'Cartalyst\Sentinel\Laravel\SentinelServiceProvider',
+        'Cartalyst\Sentinel\Laravel\SentinelServiceProvider',
         'Arrow768\Sdv2ppPaypal\Sdv2ppPaypalServiceProvider'
     ),
     /*
@@ -157,8 +157,8 @@ return array(
         'URL' => 'Illuminate\Support\Facades\URL',
         'Validator' => 'Illuminate\Support\Facades\Validator',
         'View' => 'Illuminate\Support\Facades\View',
-    //'Activation' => 'Cartalyst\Sentinel\Laravel\Facades\Activation',
-    //'Reminder' => 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
-    //'Sentinel' => 'Cartalyst\Sentinel\Laravel\Facades\Sentinel'
+        'Activation' => 'Cartalyst\Sentinel\Laravel\Facades\Activation',
+        'Reminder' => 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
+        'Sentinel' => 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
     ),
 );
