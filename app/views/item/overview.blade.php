@@ -114,11 +114,6 @@
                 @foreach($payment_providers as $payment_provider)
                  <option value="{{$payment_provider->id}}">{{$payment_provider->name_long}}</option>
                 @endforeach
-                <option value="test">Test</option>
-                <option value="test2">Test2</option>
-                <option value="test3">Test3</option>
-                <option value="test4">Test4</option>
-                <option value="test5">Test5</option>
               </select>
               <div class="buy-overview">
                 <div class="buy-overview-info">

@@ -12,17 +12,21 @@
  */
 class PaymentController extends BaseController
 {
+    /**
+     * Processes the post request.
+     * 
+     * Request needs to contain: 
+     * 
+     */
     public function process_payment()
     {
-    	$ItemFunctions = new itemsviewer\core_itemfunctions;
         $data = Input::all();
     	var_dump($data);
 
 
 
         //query the itemsviewer-plans/items db to get the price of the plan
-        $item = $ItemFunctions->get_item_by_name("p10");
-        print_r($item);
+
         //create a transaction with a transaction code
 
         //save the steamid, the username, the email, the provider, the amount and the items to the trasaction DB
