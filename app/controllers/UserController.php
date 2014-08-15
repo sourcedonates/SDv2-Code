@@ -152,13 +152,18 @@ class UserController extends BaseController
             return $this->show_login($data);
             exit(0);
         }
-        
+
         //Check if User has setup his profile
-        $setup = SDUserinfo::where('user_id',$user->id)->where('type','setup')->first();
-        
-        var_dump($setup);
-        
-        //return Redirect::to('/user/dashboard');
+        $setup = SDUserinfo::where('user_id', $user->id)->where('type', 'setup')->first();
+
+        if ($setup != NULL)
+        {
+            return Redirect::to('/user/dashboard');
+        }
+        else
+        {
+            return Redirect::to('/user/profile');
+        }
     }
 
     /**
