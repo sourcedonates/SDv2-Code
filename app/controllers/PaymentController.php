@@ -47,7 +47,7 @@ class PaymentController extends BaseController
         
         //get the price of the item in the selected currency
         $price_array = json_decode($item->price);
-        $price = $price_array["currency"];
+        $price = $price_array->currency;
         
         
         //create a transaction with a transaction code
