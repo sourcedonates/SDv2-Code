@@ -22,11 +22,14 @@ class PaymentController extends BaseController
     {
         $data = Input::all();
     	var_dump($data);
+        echo "</br>";
 
 
 
         //query the items db to get the price of the plan
-        $item = Item::find($data->item_id);
+        $item = Item::find($data['item_id']);
+        var_dump($data);
+        
         
         
         //create a transaction with a transaction code
