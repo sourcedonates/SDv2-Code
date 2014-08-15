@@ -2,9 +2,6 @@
 
 class ItemsController extends BaseController
 {
-
-    protected $layout = 'layouts.master';
-
     public function getIndex()
     {
         //Get the items from the StoreDB
@@ -22,7 +19,7 @@ class ItemsController extends BaseController
         
         
         //Build the view
-        $this->layout->content = View::make('item.overview', array(
+        return View::make('item.overview', array(
             'items' => $items, //Items data
             'payment_providers' => $paymentprovider //Provider data
         ));
