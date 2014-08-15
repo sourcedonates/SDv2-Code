@@ -85,9 +85,19 @@ class UserController extends BaseController
      * 
      * Shows the user the info that is stored in the db about him (groups he is assigned to, details in the user_info table, ...)
      */
-    public function show_profile()
+    public function show_profile($data_in = array())
     {
-        
+        $login = $this->check_login();
+
+        if ($login != false)
+        {
+            $template = Config::get('sdv2.system_usertemplate');
+            return View::make($template . ".dashboard.userprofile");
+        }
+        else
+        {
+            return Redirect::to('/user/login');
+        }
     }
 
     /**
