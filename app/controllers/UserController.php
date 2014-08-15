@@ -230,7 +230,7 @@ class UserController extends BaseController
      */
     public function do_logout()
     {
-        Sentinel::logout(true);
+        Sentinel::logout(null, true);
         return Redirect::to('/user/login');
     }
 
