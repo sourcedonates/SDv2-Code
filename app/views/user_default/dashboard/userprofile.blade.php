@@ -59,7 +59,7 @@
                                     <h3 class="box-title">Callouts</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    @if(isset($setup))
+                                    @if($setup != NULL)
                                     <div class="callout callout-danger">
                                         <h4>Your Profile is not setup</h4>
                                         <p>Please setup your profile before continuing</p>
