@@ -106,11 +106,13 @@
                             <div class="desktop-4 equal">
                                 @if($user)
                                     <label for="login">Logged In</label>
+                                    </br>
                                     <label for="EMail">E-Mail:</label>
                                     <input class="input" type="text" id="EMail" value="{{$user->email}}" disabled>
                                 @else
                                     <label for="login">Not Logged in</label>
-                                    <label for="login2">Please <a href="{{ url('user/login') }}">Login</a>/<a href="{{ url('user/register') }}">Register</a>before continuing</label>
+                                    </br>
+                                    <label for="login2">Please <a href="{{ url('user/login') }}">Login</a> / <a href="{{ url('user/register') }}">Register</a> before continuing</label>
                                 @endif
                                 <!--
                                 <label for="steamID">SteamID</label>
