@@ -17,12 +17,14 @@ class ItemsController extends BaseController
         });
 
 
-        //TODO: Get the available payment providers
+        $paymentprovider = DB::table('sd_payment_providers')->orderBy('pos','desc')->get();
         
-
+        
+        
         //Build the view
         $this->layout->content = View::make('item.overview', array(
             'items' => $items, //Items data
+            'payment_providers' => $paymentprovider //Provider data
         ));
     }
 

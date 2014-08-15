@@ -111,6 +111,9 @@
               <label for="payProvider">Betaal methode</label>
               <select name="payProvider" id="payProvider" class="select">
                 <option value="">Kies een betaal methode</option>
+                @foreach($payment_providers as $payment_provider)
+                 <option value="{{$payment_provider->id}}">{{$payment_provider->name_long}}</option>
+                @endforeach
                 <option value="test">Test</option>
                 <option value="test2">Test2</option>
                 <option value="test3">Test3</option>
