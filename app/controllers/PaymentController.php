@@ -40,7 +40,6 @@ class PaymentController extends BaseController
         
         
         //save the steamid, the username, the email, the provider, the amount and the items to the trasaction DB
-        $DB::table('sd_payment_transactions')->
 
         //Get the module name of the selected provider
 
