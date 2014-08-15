@@ -70,16 +70,11 @@ class PaymentController extends BaseController
         $transaction->status = "sent";
         $transaction->save();
         
-        //Get the module name of the selected provider
-
+        
         //Create the payment with the provider, the transaction code and the price
+        $payment = new $provider->provider_class;
 
-
-
-
-
-
-
+        $payment->initiate_payment($price, $transaction_id, $data["currency"]);
 
         /**Temporary
         $price = 1.00; //get the price from the posted plan   
