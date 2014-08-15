@@ -72,7 +72,8 @@ class PaymentController extends BaseController
         
         
         //Create the payment with the provider, the transaction code and the price
-        $payment = new $provider->provider_class;
+        $payment_provider = $provider->provider_class;
+        $payment = new $payment_provider;
 
         $payment->initiate_payment($price, $transaction_id, $data["currency"]);
 
