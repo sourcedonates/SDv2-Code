@@ -92,15 +92,19 @@ class UserController extends BaseController
         if ($user != false)
         {
             $data = array();
-            
+
             //Check if User has setup his profile
-            $setup = SDUserinfo::where('user_id', $user->id)->where('type', 'setup')->first();
+            $user_infos = SDUserinfo::where('user_id', $user->id)->get();
             
-            if($setup == NULL) $data['profile_setup'] = false;
+            foreach($user_infos as $user_info)
+            {
+                $data[$user_info->type] = $user_info->value;
+            }
             
+
             $data = array_merge($data, $data_in);
             $template = Config::get('sdv2.system_usertemplate');
-            return View::make($template . ".dashboard.userprofile",$data);
+            return View::make($template . ".dashboard.userprofile", $data);
         }
         else
         {
@@ -235,7 +239,34 @@ class UserController extends BaseController
      */
     public function do_change_profile()
     {
-        
+        $user = $this->check_login();
+
+        if ($user != false)
+        {
+            //Get the posted values and write them into the database
+            $username = new SDUserinfo();
+            $username->type = "username";
+            $username->value = Input::get('usernameInput');
+            $username->save();
+
+            $steam_id = new SDUserinfo();
+            $steam_id->type = "steamid";
+            $steam_id->value = Input::get('steamidInput');
+            $steam_id->save();
+            
+            //Check if the userprofile is setup;
+            $setup = SDUserinfo::where('user_id', $user->id)->where('type', 'setup')->first();
+            if ($setup == NULL)
+            {
+                $is_setup = new SDUserinfo();
+                $is_setup->type = "setup";
+                $is_setup->value = "true";
+            }
+        }
+        else
+        {
+            return Redirect::to('/user/login');
+        }
     }
 
     /**

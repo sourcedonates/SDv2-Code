@@ -75,3 +75,4 @@ Route::get('/user/dashboard', 'UserController@show_dashboard');
 
 #Profile
 Route::get('/user/profile', 'UserController@show_profile');
+Route::post('/user/profile', 'UserController@do_change_profile');

@@ -33,11 +33,15 @@
                                     <h3 class="box-title">User Profile</h3>
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
-                                <form role="form">
+                                <form role="form" method="post" action="{{url('/user/profile')}}">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="usernameInput">Username</label>
                                             <input type="text" class="form-control" id="usernameInput" placeholder="Enter your Username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="steamidInput">Username</label>
+                                            <input type="text" class="form-control" id="steamidInput" placeholder="STEAM_0:0:0000000">
                                         </div>
                                     </div><!-- /.box-body -->
 
@@ -55,7 +59,7 @@
                                     <h3 class="box-title">Callouts</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    @if($profile_setup == false)
+                                    @if(isset($setup))
                                     <div class="callout callout-danger">
                                         <h4>Your Profile is not setup</h4>
                                         <p>Please setup your profile before continuing</p>
