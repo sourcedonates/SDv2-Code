@@ -59,6 +59,9 @@ Route::get('/user', function()
 Route::get('/user/login', 'UserController@show_login');
 Route::post('/user/login', 'UserController@do_login');
 
+#Logout
+Route::any('/user/logout', 'UserCrontroller@do_logout');
+
 #Register
 Route::get('/user/register', 'UserController@show_register');
 Route::post('/user/register', 'UserController@do_register');
