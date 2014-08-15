@@ -74,4 +74,4 @@ Route::post('/user/forgot_password', 'UserController@do_password_reset');
 Route::get('/user/dashboard', 'UserController@show_dashboard');
 
 #Profile
-Route::get('/user/profile', 'UserCrontroller@show_profile');
+Route::get('/user/profile', 'UserController@show_profile');
