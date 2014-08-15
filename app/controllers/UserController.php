@@ -35,6 +35,14 @@ class UserController extends BaseController
     }
 
     /**
+     * 
+     */
+    public function show_require_login()
+    {
+        $this->show_login(array("message" => "You have to login / register to continue"));
+    }
+    
+    /**
      * Displays the register page and the password reset button
      */
     public function show_register($data_in = array())
