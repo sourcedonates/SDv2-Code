@@ -48,7 +48,7 @@ class PaymentController extends BaseController
         //get the price of the item in the selected currency
         $price_array = json_decode($item->price);
         $price = $price_array->$data["currency"];
-        
+        Log::debug("price: ".$price);
         
         //create a transaction with a transaction code
         $transaction_id = ""; //variable for the transaction code
@@ -58,7 +58,7 @@ class PaymentController extends BaseController
         $transaction_id += rand(1, 9);
         $transaction_id += rand(1, 9);
         $transaction_id += rand(1, 9);
-        
+        Log::debug("transaction_id: ".$transaction_id);
         
         //save the steamid, the username, the email, the provider, the amount and the items to the trasaction DB
         $transaction = new SDPaymentTransaction;
@@ -73,10 +73,11 @@ class PaymentController extends BaseController
         
         //Create the payment with the provider, the transaction code and the price
         $payment_provider = $provider->provider_class;
+        Log::debug("payment_provider_class:". $payment_provider);
         $payment = new $payment_provider;
 
         $payment->initiate_payment($price, $transaction_id, $data["currency"]);
-
+        
         /**Temporary
         $price = 1.00; //get the price from the posted plan   
         $item_name = "testitem"; //get the item name from the items controller with the posted item_id
