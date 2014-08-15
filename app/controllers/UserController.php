@@ -243,6 +243,9 @@ class UserController extends BaseController
 
         if ($user != false)
         {
+            
+            echo var_dump(Input::all());
+            /*
             //Get the posted values and write them into the database
             $username = new SDUserinfo();
             $username->type = "username";
@@ -262,6 +265,8 @@ class UserController extends BaseController
                 $is_setup->type = "setup";
                 $is_setup->value = "true";
             }
+             * 
+             */
         }
         else
         {
