@@ -63,7 +63,7 @@ class PaymentController extends BaseController
         Log::debug("price: " . $price);
 
         //Generate a transaction id and check if it exists
-        $got_transaction_id == false;
+        $got_transaction_id = false;
         while ($got_transaction_id == false)
         {
             $transaction_id = $this->generate_transaction_id();
