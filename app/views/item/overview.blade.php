@@ -6,8 +6,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Dimension Store</title>
-        <meta name="description" content="Een overzicht van al onze store items voor NL/BE Jail server">
+        <title>@lang('itmctrlmessages.title')</title>
+        <meta name="description" content="@lang('itmctrlmessages.description')">
 
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -28,10 +28,10 @@
         <header>
             <div class="row">
                 <div class="float-left">
-                    <a href="#top" id="logo" class="logo smooth"><img src="assets/images/logo.svg" width="46" height="46" alt="Dimension Gaming logo"><h2>Store</h2></a>
+                    <a href="#top" id="logo" class="logo smooth"><img src="@lang('itmctrlmessages.logo_path')" width="46" height="46" alt="Dimension Gaming logo"><h2>Store</h2></a>
                 </div>
                 <div class="float-right">
-                    <a class="menulink" href="http://forum.dimension-gaming.com/">Forum</a>
+                    <a class="menulink" href="@lang('itmctrlmessages.menu_link')">@lang('itmctrlmessages.menu_link_title')</a>
                     <span id="buybutton" class="button ">@lang('itmctrlmessages.buy_credits')</span>
                 </div>
             </div>

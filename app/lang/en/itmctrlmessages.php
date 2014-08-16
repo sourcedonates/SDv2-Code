@@ -1,6 +1,11 @@
 <?php
 
 return array(
+    "title"=>"dimension store",
+    "description"=>"A overview over all items in the dimension store",
+    "logo_path"=>"assets/images/logo.svg",
+    "menu_link"=>"http://forum.dimension-gaming.com/",
+    "menu_link_title"=>"Forum",
     "buy_credits" => "Buy Credits",
     "select_credit_pack" => "Select a credit pack",
     "item_summary_1" => "There are",
