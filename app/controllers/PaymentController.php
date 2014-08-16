@@ -62,20 +62,26 @@ class PaymentController extends BaseController
         $price = $price_array->$data["currency"];
         Log::debug("price: " . $price);
 
-        //create a transaction with a transaction code
-        $transaction_id = ""; //variable for the transaction code
-        $transaction_id += time(); //add the current timestamp
-        $transaction_id += rand(1, 9); //add 5 random numbers
-        $transaction_id += rand(1, 9);
-        $transaction_id += rand(1, 9);
-        $transaction_id += rand(1, 9);
-        $transaction_id += rand(1, 9);
-        Log::debug("transaction_id: " . $transaction_id);
+        //Generate a transaction id and check if it exists
+        $got_transaction_id == false;
+        while ($got_transaction_id == false)
+        {
+            $transaction_id = $this->generate_transaction_id();
+            if (!$check_id = SDPaymentTransaction::find($transaction_id))
+            {
+                $got_transaction_id = true;
+            }
+            else
+            {
+                Log::info("transaction id " . $transaction_id . " already exists - genearating a new one");
+            }
+        }
+        Log::debug("transaction id: " . $transaction_id);
 
         //Check if a user with this mail adress exists or a user is logged in
         if ($user = Sentinel::check())
         {
-            Log::debug("User logged in - UserID: ".$user->id);
+            Log::debug("User logged in - UserID: " . $user->id);
         }
         else
         {
@@ -83,6 +89,12 @@ class PaymentController extends BaseController
             redirect::to('/user/require_login');
         }
 
+        //Generate the item json
+        $items = array();
+        $items[] = array("id" => $item->id, "count" => "1");
+
+        $items = json_encode($items);
+        
         //Check if a steamid is added to the users account
         //save the transaction to the transaction db
         $transaction = new SDPaymentTransaction;
@@ -91,7 +103,7 @@ class PaymentController extends BaseController
         $transaction->payment_provider = $provider->id;
         $transaction->currency = $data["currency"];
         $transaction->price = $price;
-        $transaction->items = $item->id;
+        $transaction->items = $items;
         $transaction->status = "sent";
         $transaction->save();
 
@@ -104,16 +116,17 @@ class PaymentController extends BaseController
         $payment->initiate_payment($price, $transaction_id, $data["currency"]);
     }
 
-    
-    /**
-     * Handle Process Queue
-     */
-    public function post_process($job, $data)
+    private function generate_transaction_id()
     {
-        Log::Warning("Processed Queue Job");
-        Log::Debug("Queue Data: ". var_dump($data));
-        
-        //Delete the Job from the Queue
-        $job->delete();
+        $transaction_id = ""; //variable for the transaction code
+        $transaction_id += time(); //add the current timestamp
+        $transaction_id += rand(1, 9); //add 5 random numbers
+        $transaction_id += rand(1, 9);
+        $transaction_id += rand(1, 9);
+        $transaction_id += rand(1, 9);
+        $transaction_id += rand(1, 9);
+
+        return $transaction_id;
     }
+
 }
