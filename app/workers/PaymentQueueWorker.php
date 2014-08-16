@@ -84,8 +84,8 @@ class PaymentQueueWorker
             }
 
             //Call the item multiple times according to the item count
-            for ($i = 1; $i = $trans_item->count; $i++)
-            {
+            //for ($i = 1; $i = $trans_item->count; $i++)
+            //{
                 foreach ($handlers as $handler)
                 {
                     Log::info("Got Handler Class: " . $handler->class);
@@ -95,7 +95,7 @@ class PaymentQueueWorker
 
                     $item_handler->add_item($user, $user_infos, $item_handler);
                 }
-            }
+            //}
         }
 
 
