@@ -2,15 +2,18 @@
     "name": "arrow768/sdv2",
     "description": "SourceDonatesv2",
     "require": {
-        "laravel/framework": "4.1.*",
-        "arrow768/sdv2pp-paypal": "@dev",
-        "cartalyst/sentry": "3.0.*"
+        "laravel/framework": "4.2.*",
+        "cartalyst/sentinel": "1.0.*",
+        "iron-io/iron_mq": "*",
+        "arrow768/sdv2pp-paypal": "dev-develop",
+        "arrow768/sdv2ip-storeag": "dev-develop"
     },
     "autoload": {
         "classmap": [
             "app/commands",
             "app/controllers",
             "app/models",
+            "app/workers",
             "app/database/migrations",
             "app/database/seeds",
             "app/tests/TestCase.php"
@@ -18,13 +21,13 @@
     },
     "scripts": {
         "pre-install-cmd": [
-            
         ],
         "post-install-cmd": [
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan migrate",
+            "php artisan migrate --package=cartalyst/sentry"
         ],
         "pre-update-cmd": [
-            
         ],
         "post-update-cmd": [
             "php artisan optimize"
@@ -37,7 +40,15 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@bitbucket.org:Arrow768/sdv2pp-paypal.git"
+            "url": "https://github.com/sourcedonates/SDv2PP-PayPal.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/sourcedonates/SDv2Ip-StoreAg.git"
+        },
+        {
+            "type": "composer",
+            "url": "http://packages.cartalyst.com"
         }
     ]
 }

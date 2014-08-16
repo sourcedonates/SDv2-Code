@@ -19,7 +19,7 @@ class CreateSdPaymentProvidersTable extends Migration
             $table->string('name_short');
             $table->string('name_long');
             $table->string('provider_class');
-            $table->enum('type', array('ipn'));
+            $table->enum('type', array('ipn', 'instant'));
             $table->longText('currencies');
             $table->longText('settings')->nullable();
             $table->longText('price')->nullable();

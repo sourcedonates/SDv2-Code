@@ -10,7 +10,7 @@ return array(
     | default => 'default'
     |
     */
-    'sdv2_system_usertemplate'  => 'default',
+    'system_usertemplate'  => 'user_default',
     
     /*
     |------------------------------
@@ -21,6 +21,18 @@ return array(
     | default => 'default'
     |
     */
-    'sdv2_system_admintemplate'  => 'default',
+    'system_admintemplate'  => 'admin_default',
+    
+        /*
+    |------------------------------
+    | Admin Template
+    |------------------------------
+    |
+    | The name of the template that should be used at the backend
+    | default => true
+    | disabled => false
+    |
+    */
+    'system_debug'  => true,
 
 );

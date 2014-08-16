@@ -46,6 +46,7 @@ return array(
             'project' => 'your-project-id',
             'token' => 'your-token',
             'queue' => 'your-queue-name',
+            'encrypt' => true
         ),
     ),
     /*

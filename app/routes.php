@@ -17,8 +17,28 @@
   });
  */
 
-Route::any('/payment/process', 'PaymentController@process_payment'); //Route for accepting the posted form
+Route::get('/', 'ItemsController@getIndex');
 
+
+// Handle the Push Queue
+Route::post('/queue/handle', function()
+{
+    return Queue::marshal();
+});
+
+Route::get('/queue/test', function()
+{
+    Queue::push('PaymentQueueWorker',array("transaction"=>"1408202900"));
+    return "Pushed to Queue";
+});
+
+
+#
+# Payment Routes
+#
+
+Route::any('/payment/process', 'PaymentController@process_payment'); //Route for accepting the posted form
+# Success / Cancel Return URL
 Route::any('/payment/success', function()
 {
     echo "<pre>";
@@ -26,7 +46,6 @@ Route::any('/payment/success', function()
     echo "</pre>";
     return "Success Page";
 });
-
 Route::any('/payment/cancel', function()
 {
     echo "<pre>";
@@ -35,7 +54,40 @@ Route::any('/payment/cancel', function()
     return "Cancel Page";
 });
 
-//Route::any('/ipn/{provider}', 'PaymentController@process_ipn'); //Route for processing the IPN
+#
+# User Routes
+#
+Route::get('/user', function()
+{
+    if ($user = Sentinel::check())
+    {
+        return Redirect::to('user/dashboard');
+    }
+    else
+    {
+        return Redirect::to('user/login');
+    }
+});
 
-Route::controller('/', 'ItemsController');
+#Login
+Route::get('/user/login', 'UserController@show_login');
+Route::post('/user/login', 'UserController@do_login');
+Route::get('/user/require_login', 'UserController@show_require_login');
 
+#Logout
+Route::any('/user/logout', 'UserController@do_logout');
+
+#Register
+Route::get('/user/register', 'UserController@show_register');
+Route::post('/user/register', 'UserController@do_register');
+
+#Forgot Password
+Route::get('/user/forgot_password', 'UserController@show_password_reset');
+Route::post('/user/forgot_password', 'UserController@do_password_reset');
+
+#Dashboard
+Route::get('/user/dashboard', 'UserController@show_dashboard');
+
+#Profile
+Route::get('/user/profile', 'UserController@show_profile');
+Route::post('/user/profile', 'UserController@do_change_profile');

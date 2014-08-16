@@ -2,8 +2,8 @@
 
 class Item extends Eloquent
 {
+    protected $connection = 'ag_store';
     protected $table = 'store_items';
-    protected $softDelete = false;
     public $timestamps = false;
 }
 

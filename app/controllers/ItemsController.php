@@ -3,8 +3,6 @@
 class ItemsController extends BaseController
 {
 
-    protected $layout = 'layouts.master';
-
     public function getIndex()
     {
         //Get the items from the StoreDB
@@ -16,24 +14,25 @@ class ItemsController extends BaseController
             return $item->loadout_slot; //sort them by loadout slot
         });
 
-
-        //TODO: Get the available payment providers
-        
+        $paymentprovider = DB::table('sd_payment_providers')->orderBy('pos', 'desc')->get();
+        $user = Sentinel::check();
 
         //Build the view
-        $this->layout->content = View::make('item.overview', array(
+        return View::make('item.overview', array(
                     'items' => $items, //Items data
+                    'payment_providers' => $paymentprovider, //Provider data
+                    'user' => $user
         ));
     }
 
-
-    public function getDetails($id)
+    public function getDetails($item_id)
     {
-        
-        $item = Item::find($id);
+
+        $item = Item::find($item_id);
 //      var_dump($item);
         $this->layout->content = View::make('item.details', array(
                     'item' => $item,
         ));
     }
+
 }

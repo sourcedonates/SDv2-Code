@@ -17,8 +17,8 @@ class CreateSdUserInfosTable extends Migration
         {
             $table->bigIncrements('id'); //id
             $table->bigInteger('user_id');
-            $table->longText('info');
-            $table->longText('notes')->nullable();
+            $table->string('type');
+            $table->string('value');
             $table->timestamps();
             $table->softDeletes();
         });
