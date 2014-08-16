@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Handling the Payment Postprocessing
+ * 
+ * This Crontroller handles the Postprocessing of the transactions after they have been confirmed by the provider
+ * 
+ * TODO: Add a warning message to the DB instead of existing directly
+ * 
+ * @author Werner Maisl
+ * @copyright (c) 2014, Werner Maisl
+ */
 class PaymentQueueWorker
 {
 
@@ -17,11 +27,11 @@ class PaymentQueueWorker
             Log::warning("Could not load Transaction from Database");
             exit();
         }
-        if($transaction->status != "confirmed")
+        if ($transaction->status != "confirmed")
         {
-            Log::error("Transaction".$transaction->id."not confirmed - aborting");
+            Log::error("Transaction" . $transaction->id . "not confirmed - aborting");
         }
-        
+
         Log::info("Transaction loaded from DB");
         Log::info("Transaction user_id: " . $transaction->user_id);
         Log::info("Transaction payment provider: " . $transaction->payment_provider);
@@ -31,15 +41,15 @@ class PaymentQueueWorker
         $user = Sentinel::findById($transaction->user_id);
         if (!$user)
         {
-            Log::error("Could not find the user ".$transaction->user_id." in the DB");
+            Log::error("Could not find the user " . $transaction->user_id . " in the DB");
             exit();
         }
 
-        //Get the items from the DB
-        $items = json_decode($transaction->items);
-        if ($items == false)
+        //Get the transaction items
+        $trans_items = json_decode($transaction->items);
+        if ($trans_items == false)
         {
-            Log::error("Invalid Item JSON at the Transaction ".$transaction->id);
+            Log::error("Invalid Item JSON at the Transaction " . $transaction->id);
             exit();
         }
 
@@ -47,15 +57,36 @@ class PaymentQueueWorker
         $user_info = SDUserinfo::where("user_id", $transaction->user_id);
         if (!$user_info)
         {
-            Log::error("Could not get the User from the DB for transaction ". $transaction->id);
+            Log::error("Could not get the User from the DB for transaction " . $transaction->id);
             exit();
         }
 
         //Go through the items and assign them to the user
-        foreach ($items as $item)
+        foreach ($trans_items as $trans_item)
         {
-            Log::info("Got Item id:".$item->id);
-            Log::info("Got Item count:".$item->count);
+            Log::info("Got Trans Item id:" . $trans_item->id);
+            Log::info("Got Trans Item count:" . $trans_item->count);
+
+            //Get the item info from the db
+            $item = SDItem::find($trans_item->id);
+            if (!$item)
+            {
+                Log::error("Could not get SD Item with id " . $trans_item->id . " from the DB");
+                exit();
+            }
+            Log::info("Got SDItem: " . $item->id . " - " . $item->name_short);
+
+            //Get the handlers for the item and call them
+            $handlers = json_decode($item->handlers);
+            if ($handlers == false)
+            {
+                Log::error("Invalid Handler JSON at Item: ".$item->id);
+            }
+            foreach ($handlers as $handler)
+            {
+                Log::info("Got Handler Class: " . $handler->class);
+                Log::params("Got Handler Params ".var_dump($handler->params));
+            }
         }
 
 
