@@ -15,23 +15,6 @@
     </head>
     <body class="gridlock" id="top">
       <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-        <script>
-            (function(i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function() {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                        m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-            ga('create', 'UA-44216392-1', 'dimension-gaming.com');
-            ga('send', 'pageview');
-
-        </script>
         <div class="loading-container">
             <div class="loading"></div>
             <div class="loadingb"></div>
@@ -49,17 +32,17 @@
                 </div>
                 <div class="float-right">
                     <a class="menulink" href="http://forum.dimension-gaming.com/">Forum</a>
-                    <span id="buybutton" class="button ">Koop credits</span>
+                    <span id="buybutton" class="button ">@lang('itmctrlmessages.buy_credits')</span>
                 </div>
             </div>
         </header>
 
         <section id="buyoverlay" class="buyoverlay hidden remove">
             <div id="buy-header" class="buy-header align-center">
-                <h3 class="buy-titel">Selecteer een credit pack <img src="assets/images/arrow-down.svg" alt=""></h3>
+                <h3 class="buy-titel">@lang('itmctrlmessages.select_credit_pack') <img src="assets/images/arrow-down.svg" alt=""></h3>
             </div>
             <div class="buy-extrainfo align-center">
-                Momenteel zijn er <strong>121</strong> items die samen <strong>70.000</strong> credits waard zijn. In totaal hebben we al <strong>72 packs</strong> verkocht
+                @lang('itmctrlmessages.item_summary_1') <strong>121</strong> @lang('itmctrlmessages.item_summary_2') <strong>70.000</strong> @lang('itmctrlmessages.item_summary_3').
             </div>
             <div class="buy-contentcontainer">
                 <div class="buy-content row">
@@ -98,21 +81,21 @@
                     <div id="buy-indication" class="buy-indication desktop-12 align-center">
                         <hr>
                         <div class="tophr"></div>
-                        <div>Kies een package</div>
+                        <div>@lang('itmctrlmessages.choose_package')</div>
                     </div>
                     <div id="buy-innercontent" class="buy-innercontent desktop-12 contained hidden remove">
                         <form id="buy-form" action="{{ url('payment/process') }}" method="post" class="buy-form">
 
                             <div class="desktop-4 equal">
                                 @if($user)
-                                    <label for="login">Logged In</label>
+                                    <label for="login">@lang('itmctrlmessages.logged_in')</label>
                                     </br>
                                     <label for="EMail">E-Mail:</label>
                                     <input class="input" type="text" id="EMail" value="{{$user->email}}" disabled>
                                 @else
-                                    <label for="login">Not Logged in</label>
+                                    <label for="login">@lang('itmctrlmessages.not_logged_in')</label>
                                     </br>
-                                    <label for="login2">Please <a href="{{ url('user/login') }}">Login</a> / <a href="{{ url('user/register') }}">Register</a> before continuing</label>
+                                    <label for="login2">@lang('itmctrlmessages.please') <a href="{{ url('user/login') }}">@lang('itmctrlmessages.login')</a> / <a href="{{ url('user/register') }}">@lang('itmctrlmessages.register')</a> @lang('itmctrlmessages.before_continuing')</label>
                                 @endif
                                 <!--
                                 <label for="steamID">SteamID</label>
@@ -127,9 +110,9 @@
 
                             </div>
                             <div class="desktop-7 equal">
-                                <label for="payProvider">Betaal methode</label>
+                                <label for="payProvider">@lang('itmctrlmessages.payment_method')</label>
                                 <select name="provider_id" id="provider_id" class="select">
-                                    <option value="">Kies een betaal methode</option>
+                                    <option value="">@lang('itmctrlmessages.choose_payment_method')</option>
                                     @foreach($payment_providers as $payment_provider)
                                     <option value="{{$payment_provider->id}}">{{$payment_provider->name_long}}</option>
                                     @endforeach
