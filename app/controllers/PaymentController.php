@@ -104,4 +104,16 @@ class PaymentController extends BaseController
         $payment->initiate_payment($price, $transaction_id, $data["currency"]);
     }
 
+    
+    /**
+     * Handle Process Queue
+     */
+    public function post_process($job, $data)
+    {
+        Log::Info("Processed Queue Job");
+        Log::Debug("Queue Data: ". var_dump($data));
+        
+        //Delete the Job from the Queue
+        $job->delete();
+    }
 }
