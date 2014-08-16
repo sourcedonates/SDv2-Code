@@ -13,4 +13,10 @@ return array(
     "login" => "Login",
     "register" => "Register",
     "before_continuing" => "before continuing",
+    "payment_method" => "Payment method",
+    "choose_payment_method" => "Choose a payment method",
+    "you_have" => "You have",
+    "selected_for" => "selected. For",
+    "item_overview"=>"Een handig overzicht van al onze store items",
+        "continue_payment"=>"Ga naar de betaling",
 );

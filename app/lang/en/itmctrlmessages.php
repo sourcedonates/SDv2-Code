@@ -15,4 +15,8 @@ return array(
     "before_continuing" => "before continuing",
     "payment_method" => "Payment method",
     "choose_payment_method" => "Choose a payment method",
+    "you_have"=>"You have",
+    "selected_for"=>"selected. For",
+    "item_overview"=>"A overview of most items in the store",
+    "continue_payment"=>"Continue with the payment",
 );

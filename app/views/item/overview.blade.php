@@ -120,11 +120,11 @@
                                 <div class="buy-overview">
                                     <div class="buy-overview-info">
                                         <div class="header">
-                                            U heeft <strong><span id="packageName">alles kopen</span></strong> geselecteerd t.w.v. <strong><span id="packagePrice">€50</span></strong>
+                                            @lang('itmctrlmessages.you_have') <strong><span id="packageName">alles kopen</span></strong> @lang('itmctrlmessages.selected_for') <strong><span id="packagePrice">€50</span></strong>
                                         </div>
                                         <span class="check">(kijk alles nog eens na)</span>
                                     </div>
-                                    <input id="buy-submit" type="submit" class="buy-submit align-center" value="Ga naar de betaling">
+                                    <input id="buy-submit" type="submit" class="buy-submit align-center" value="@lang('itmctrlmessages.continue_payment')">
                                 </div>
                             </div>
                             <input name="item_id" id="buy-value" type="input" value="5" hidden>
@@ -155,7 +155,7 @@
 
         <div id="itemviewer">
             <div class="slogan">
-                <h1>Een handig overzicht van al onze store items</h1>
+                <h1>@lang('itmctrlmessages.item_overview')</h1>
             </div>
 
 
