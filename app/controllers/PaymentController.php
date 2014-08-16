@@ -110,7 +110,7 @@ class PaymentController extends BaseController
      */
     public function post_process($job, $data)
     {
-        Log::Info("Processed Queue Job");
+        Log::Warning("Processed Queue Job");
         Log::Debug("Queue Data: ". var_dump($data));
         
         //Delete the Job from the Queue

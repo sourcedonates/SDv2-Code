@@ -27,6 +27,12 @@ Route::post('/queue/handle', function()
 });
 
 
+Route::get('/queue/test', function()
+{
+    \Queue::push('\PaymentController@post_process',array("transaction"=>$transaction->id));
+    return "Pushed to Queue";
+});
+
 #
 # Payment Routes
 #
