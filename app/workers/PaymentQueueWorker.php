@@ -89,11 +89,11 @@ class PaymentQueueWorker
                 foreach ($handlers as $handler)
                 {
                     Log::info("Got Handler Class: " . $handler->class);
-                    Log::info("Got Handler Params " . var_dump($handler->params));
+                    Log::info("Got Handler Params " . print_r($handler->params,true));
 
                     $item_handler = new $handler->class;
 
-                    //$item_handler->add_item($user, $user_infos, $handler->params);
+                    $item_handler->add_item($user, $user_infos, $handler->params);
                 }
             }
         }
