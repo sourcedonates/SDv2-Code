@@ -54,7 +54,7 @@ class PaymentQueueWorker
         }
 
         //Get the User info from the DB
-        $user_infos = SDUserinfo::where("user_id", $transaction->user_id);
+        $user_infos = DB::table('sd_user_infos')->where('user_id',$user->id)->get();
         if (!$user_infos)
         {
             Log::error("Could not get the User Infos from the db for transaction: " . $transaction->id);
