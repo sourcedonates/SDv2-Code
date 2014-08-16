@@ -54,10 +54,10 @@ class PaymentQueueWorker
         }
 
         //Get the User info from the DB
-        $user_info = SDUserinfo::where("user_id", $transaction->user_id);
-        if (!$user_info)
+        $user_infos = SDUserinfo::where("user_id", $transaction->user_id);
+        if (!$user_infos)
         {
-            Log::error("Could not get the User from the DB for transaction " . $transaction->id);
+            Log::error("Could not get the User Infos from the db for transaction: " . $transaction->id);
             exit();
         }
 
@@ -80,12 +80,21 @@ class PaymentQueueWorker
             $handlers = json_decode($item->handlers);
             if ($handlers == false)
             {
-                Log::error("Invalid Handler JSON at Item: ".$item->id);
+                Log::error("Invalid Handler JSON at Item: " . $item->id);
             }
-            foreach ($handlers as $handler)
+
+            //Call the item multiple times according to the item count
+            for ($i = 1; $i = $trans_item->count; $i++)
             {
-                Log::info("Got Handler Class: " . $handler->class);
-                Log::params("Got Handler Params ".var_dump($handler->params));
+                foreach ($handlers as $handler)
+                {
+                    Log::info("Got Handler Class: " . $handler->class);
+                    Log::info("Got Handler Params " . var_dump($handler->params));
+
+                    $item_handler = new $handler->class;
+
+                    $item_handler->add_item($user, $user_infos, $item_handler);
+                }
             }
         }
 
