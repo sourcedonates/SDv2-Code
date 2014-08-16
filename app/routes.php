@@ -29,18 +29,9 @@ Route::post('/queue/handle', function()
 
 Route::get('/queue/test', function()
 {
-    \Queue::push('PaymentQueueWorker',array("transaction"=>"1408151301"));
+    Queue::push('PaymentQueueWorker',array("transaction"=>"1408151301"));
     return "Pushed to Queue";
 });
-
-
-class PaymentQueueWorker
-{
-    public function fire($job, $data)
-    {
-        File::append(app_path().'/test.txt',$data['transaction']."-".time());
-    }
-}
 
 
 #
