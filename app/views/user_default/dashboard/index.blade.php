@@ -26,7 +26,7 @@
 
                 <!-- Main content -->
                 <section class="content">
-
+                    Welcome to the SDv2 Backend
 
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
