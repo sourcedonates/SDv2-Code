@@ -75,7 +75,7 @@ class PaymentController extends BaseController
         //Check if a user with this mail adress exists or a user is logged in
         if ($user = Sentinel::check())
         {
-            Log::debug("User logged in - UserID: ".$user_id);
+            Log::debug("User logged in - UserID: ".$user->id);
         }
         else
         {
