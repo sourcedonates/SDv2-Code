@@ -92,13 +92,27 @@ class PaymentQueueWorker
 
                     $item_handler = new $handler->class;
 
-                    $item_handler->add_item($user, $user_infos, $handler->params);
+                    $result = $item_handler->add_item($user, $user_infos, $handler->params);
+                    
+                    if($result == true)
+                    {
+                        Log::info('Successfully executed '.$handler->class.' for '.$transaction->id);
+                        $sd_user_item = new SDUseritem;
+                        $sd_user_item->user_id = $user->id;
+                        $sd_user_item->item_id = $item->id;
+                        $sd_user_item->save();
+                    }
+                    else
+                    {
+                        Log::error('Exection of '.$handler->class.' for '.$transaction->id. ' failed');
+                    }
                 }
             }
         }
-
-
-        //Update the User in the DB
+        //Update the transaciton
+        $transaction->status = "completed";
+        $transaction->save();
+        
         //Check for errors
     }
 
