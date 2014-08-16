@@ -89,7 +89,6 @@ class PaymentQueueWorker
                 foreach ($handlers as $handler)
                 {
                     Log::info("Got Handler Class: " . $handler->class);
-                    Log::info("Got Handler Params " . print_r($handler->params,true));
 
                     $item_handler = new $handler->class;
 
