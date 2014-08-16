@@ -19,6 +19,14 @@
 
 Route::get('/', 'ItemsController@getIndex');
 
+
+// Handle the Push Queue
+Route::post('/queue/handle', function()
+{
+    return Queue::marshal();
+});
+
+
 #
 # Payment Routes
 #
