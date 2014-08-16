@@ -5,7 +5,7 @@ class PaymentQueueWorker
 
     public function fire($job, $data)
     {
-        $transaction_id = mysql_escape_string($data["transaction"]);
+        $transaction_id = mysql_real_escape_string($data["transaction"]);
 
         Log::Debug("Queue Worker Fired");
         Log::Debug("Transaction-ID: " . $transaction_id);
