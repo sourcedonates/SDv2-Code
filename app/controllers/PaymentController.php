@@ -60,7 +60,7 @@ class PaymentController extends BaseController
         //get the price of the item in the selected currency
         $price_array = json_decode($item->price);
         $price = $price_array->$data["currency"];
-        Log::debug("price: " . $price);
+        Log::info("price: " . $price);
 
         //Generate a transaction id and check if it exists
         $got_transaction_id = false;
@@ -76,16 +76,16 @@ class PaymentController extends BaseController
                 Log::info("transaction id " . $transaction_id . " already exists - genearating a new one");
             }
         }
-        Log::debug("transaction id: " . $transaction_id);
+        Log::info("transaction id: " . $transaction_id);
 
         //Check if a user with this mail adress exists or a user is logged in
         if ($user = Sentinel::check())
         {
-            Log::debug("User logged in - UserID: " . $user->id);
+            Log::info("User logged in - UserID: " . $user->id);
         }
         else
         {
-            Log::debug("User not logged in - Redirected to the login page");
+            Log::info("User not logged in - Redirected to the login page");
             redirect::to('/user/require_login');
         }
 
@@ -110,7 +110,7 @@ class PaymentController extends BaseController
 
         //Create the payment with the provider, the transaction code and the price
         $payment_provider = $provider->provider_class;
-        Log::debug("payment_provider_class:" . $payment_provider);
+        Log::info("payment_provider_class:" . $payment_provider);
         $payment = new $payment_provider;
 
         $payment->initiate_payment($price, $transaction_id, $data["currency"]);
