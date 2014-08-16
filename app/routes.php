@@ -19,6 +19,7 @@
 
 Route::get('/', 'ItemsController@getIndex');
 
+Route::get('/test', 'TestController@test_class');
 
 // Handle the Push Queue
 Route::post('/queue/handle', function()
