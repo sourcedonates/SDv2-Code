@@ -12,3 +12,4 @@ sftp-config.json
 /nbproject/private/
 /nbproject/
 /workbench
+/app/config/packages/
