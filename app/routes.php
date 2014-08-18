@@ -28,10 +28,19 @@ Route::post('/queue/handle', function()
 
 Route::get('/queue/test', function()
 {
-    Queue::push('PaymentQueueWorker',array("transaction"=>"1408202900"));
+    Queue::push('PaymentQueueWorker', array("transaction" => "1408202900"));
     return "Pushed to Queue";
 });
 
+Route::get('/queue/test2', function()
+{
+    Queue::push(function($job)
+    {
+        Log::info('Do something');
+        $job->delete();
+    });
+    return "Pushed to Queue";
+});
 
 #
 # Payment Routes
