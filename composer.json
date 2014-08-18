@@ -4,7 +4,8 @@
     "require": {
         "laravel/framework": "4.2.*",
         "cartalyst/sentinel": "1.0.*",
-        "iron-io/iron_mq": "*",
+        "iron-io/iron_mq": "1.5.*",
+        "pda/pheanstalk": "2.1.*",
         "arrow768/sdv2pp-paypal": "dev-develop",
         "arrow768/sdv2ip-storeag": "dev-develop"
     },
