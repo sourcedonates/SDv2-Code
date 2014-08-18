@@ -114,6 +114,9 @@ class PaymentQueueWorker
         $transaction->save();
         
         //Check for errors
+        
+        
+        $job->delete();
     }
 
 }
