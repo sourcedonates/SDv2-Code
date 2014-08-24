@@ -27,7 +27,7 @@
                     <ul class="sidebar-menu">
                         <li class="active">
                             <a href="{{url('user/dashboard')}}">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                <i class="fa fa-globe"></i> <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="treeview">
