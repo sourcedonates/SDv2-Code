@@ -22,7 +22,7 @@ class ItemsController extends BaseController
         //Build the view
         return View::make('item.overview', array(
                     'items' => $store_items, //Items data
-                    'sd_items' => $sd_items, //SD Item data
+                    'sditems' => $sd_items, //SD Item data
                     'payment_providers' => $paymentprovider, //Provider data
                     'user' => $user //User data
         ));
