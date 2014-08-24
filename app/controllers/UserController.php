@@ -115,7 +115,6 @@ class UserController extends BaseController
                 $data['setup'] = true;
             }
 
-
             $data = array_merge($data, $data_in);
             $template = Config::get('sdv2.system_usertemplate');
             return View::make($template . ".dashboard.userprofile", $data);

@@ -60,14 +60,14 @@
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
                                     @if($setup == true)
-                                    <div class="callout callout-danger">
-                                        <h4>Your Profile is not setup</h4>
-                                        <p>Please setup your profile before continuing</p>
-                                    </div>
-                                    @else
                                     <div class="callout callout-info">
                                         <h4>Your user profile is setup</h4>
                                         <p>Your Profile is setup - You can start using the application</p>
+                                    </div>
+                                    @else
+                                    <div class="callout callout-danger">
+                                        <h4>Your Profile is not setup</h4>
+                                        <p>Please setup your profile before continuing</p>
                                     </div>
                                     @endif
                                 </div><!-- /.box-body -->
