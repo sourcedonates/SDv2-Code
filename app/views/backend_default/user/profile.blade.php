@@ -54,6 +54,25 @@
                                     </div>
                                 </form>
                             </div><!-- /.box -->
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">User Image</h3>
+                                </div><!-- /.box-header -->
+                                <!-- form start -->
+                                <form role="form" action="{{url('/user/upload_image')}}" method="post" enctype="multipart/form-data">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="uploadImage">Select a Image</label>
+                                            <input name="userimage" type="file" id="uploadImage">
+                                            <p class="help-block">Select a .png image and click on upload</p>
+                                        </div>
+                                    </div><!-- /.box-body -->
+
+                                    <div class="box-footer">
+                                        <button type="submit" class="btn btn-primary">Upload</button>
+                                    </div>
+                                </form>
+                            </div><!-- /.box -->
                         </div>
 
                         <div class="col-md-6">
@@ -72,6 +91,18 @@
                                     <div class="callout callout-danger">
                                         <h4>Your Profile is not setup</h4>
                                         <p>Please setup your profile before continuing</p>
+                                    </div>
+                                    @endif
+                                    @if(isset($message))
+                                    <div class="callout callout-info">
+                                        <h4>Info:</h4>
+                                        <p>{{{$message}}}</p>
+                                    </div>
+                                    @endif
+                                    @if(isset($warning))
+                                    <div class="callout callout-danger">
+                                        <h4>Warning:</h4>
+                                        <p>{{{$warning}}}</p>
                                     </div>
                                     @endif
                                 </div><!-- /.box-body -->

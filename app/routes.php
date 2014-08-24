@@ -106,6 +106,8 @@ Route::get('/user/dashboard', 'UserController@show_dashboard');
 Route::get('/user/profile', 'UserController@show_profile');
 Route::post('/user/profile', 'UserController@do_change_profile');
 
+#Upload image
+Route::post('/user/upload_image', 'UserController@do_upload_image');
 
 #
 # Items Pages

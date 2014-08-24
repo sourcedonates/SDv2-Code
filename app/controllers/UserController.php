@@ -263,30 +263,30 @@ class UserController extends BaseController
         if ($user != false)
         {
             //Check if the username and the steamid already exists
-            $check_username = SDUserinfo::where('type','username')->where('value',Input::get('username'))->first();
-            if($check_username != NULL)
+            $check_username = SDUserinfo::where('type', 'username')->where('value', Input::get('username'))->first();
+            if ($check_username != NULL)
             {
                 //The username already exists
-                if($check_username->user_id != $user->id)
+                if ($check_username->user_id != $user->id)
                 {
                     //The username has been taken by someone else
-                    $this->show_profile(array("error"=>"Update Failed. Username is already taken by someone else"));
+                    $this->show_profile(array("error" => "Update Failed. Username is already taken by someone else"));
                     exit(0);
                 }
             }
-                        //Check if the username and the steamid already exists
-            $check_steamid = SDUserinfo::where('type','steamid')->where('value',Input::get('steamid'))->first();
-            if($check_steamid != NULL)
+            //Check if the username and the steamid already exists
+            $check_steamid = SDUserinfo::where('type', 'steamid')->where('value', Input::get('steamid'))->first();
+            if ($check_steamid != NULL)
             {
                 //The username already exists
-                if($check_steamid->user_id != $user->id)
+                if ($check_steamid->user_id != $user->id)
                 {
                     //The steamid has been taken by someone else
-                    $this->show_profile(array("error"=>"Update Failed. Steamid is already taken by someone else"));
+                    $this->show_profile(array("error" => "Update Failed. Steamid is already taken by someone else"));
                     exit(0);
                 }
             }
-            
+
             //Update the username has setup a username before
             $username = SDUserinfo::where('user_id', $user->id)->where('type', 'username')->first();
             if ($username == NULL)
@@ -309,7 +309,40 @@ class UserController extends BaseController
             $steam_id->value = Input::get('steamid');
             $steam_id->save();
 
-            $this->show_profile(array("message"=>"Update Successful"));
+            $this->show_profile(array("message" => "Update Successful"));
+        }
+        else
+        {
+            return Redirect::to('/user/login');
+        }
+    }
+
+    /**
+     * Handles the image upload
+     */
+    public function do_upload_image()
+    {
+        $user = $this->check_login();
+
+        if ($user != false)
+        {
+            if (Input::hasFile('useriamge'))
+            {
+                $file = Input::file('userimage');
+
+                if ($file->getClientOriginalExtension() == "png")
+                {
+                    $file->move(public_path() . '/uploads/userimages/', $user->id . "-avatar.png");
+                }
+                else
+                {
+                    $this->show_profile(array("error" => "Wrong file extension"));
+                }
+            }
+            else
+            {
+                $this->show_profile(array("error" => "Uploaded file not found"));
+            }
         }
         else
         {
