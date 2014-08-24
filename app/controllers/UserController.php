@@ -14,7 +14,7 @@ class UserController extends BaseController
     /**
      * Displays the login page and the password reset button
      */
-    public function show_login($data_in = array())
+    public function show_login()
     {
         $login = $this->check_login();
 
@@ -25,9 +25,12 @@ class UserController extends BaseController
         else
         {
             $data = array(
-                "page_name" => "SDv2 | Login",
+                "page_name" => "SDv2 | Login"
             );
-            $data = array_merge($data, $data_in);
+            if (Session::has('message'))
+            {
+                $data['message'] = Session::get('message');
+            }
 
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".login.login", $data);
@@ -39,13 +42,13 @@ class UserController extends BaseController
      */
     public function show_require_login()
     {
-        $this->show_login(array("message" => "You have to login / register to continue"));
+        redirect::to('/user/login')->with('message', 'You have to login / register to continue');
     }
 
     /**
      * Displays the register page and the password reset button
      */
-    public function show_register($data_in = array())
+    public function show_register()
     {
         $login = $this->check_login();
 
@@ -56,9 +59,12 @@ class UserController extends BaseController
         else
         {
             $data = array(
-                "page_name" => "SDv2 | Registration",
+                "page_name" => "SDv2 | Registration"
             );
-            $data = array_merge($data, $data_in);
+            if (Session::has('message'))
+            {
+                $data['message'] = Session::get('message');
+            }
 
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".login.register", $data);
@@ -101,17 +107,17 @@ class UserController extends BaseController
         {
             $data = array();
             //Check if there is a warning / error / message
-            if (isset(Sesstion::get('message')))
+            if (Session::has('message'))
             {
-                $data['message'] = Sesstion::get('message');
+                $data['message'] = Session::get('message');
             }
-            if (isset(Sesstion::get('warning')))
+            if (Session::has('warning'))
             {
-                $data['warning'] = Sesstion::get('warning');
+                $data['warning'] = Session::get('warning');
             }
-            if (isset(Sesstion::get('error')))
+            if (Session::has('error'))
             {
-                $data['error'] = Sesstion::get('error');
+                $data['error'] = Session::get('error');
             }
 
             //Get the user details from the db
@@ -184,15 +190,13 @@ class UserController extends BaseController
         }
         catch (Exception $e)
         {
-            $data["message"] = "There has been a problem with your login: " . $e->getMessage();
-            return $this->show_login($data);
+            redirect::to('/user/login')->with('message', 'There has been a problem with your login: ' . $e->getMessage());
             exit(0);
         }
 
         if (!isset($user) | $user == "")
         {
-            $data["message"] = "There has been a problem with your login";
-            return $this->show_login($data);
+            redirect::to('/user/login')->with('message', 'There has been a problem with your login');
             exit(0);
         }
 
@@ -219,16 +223,14 @@ class UserController extends BaseController
         //Check if the passwords match
         if (Input::get('password') != Input::get('password2'))
         {
-            $data["message"] = "PWs dont match";
-            return $this->show_register($data);
+            redirect::to('/user/register')->with('message', 'PWs dont match');
             exit(0);
         }
 
         //Check if E-Mail is valid
         if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", Input::get('email')))
         {
-            $data["message"] = "Invalid E-Mail";
-            return $this->show_register($data);
+            redirect::to('/user/register')->with('message', 'Invalid email');
             exit(0);
         }
 
@@ -245,14 +247,12 @@ class UserController extends BaseController
             //$adminGroup = Sentry::findGroupById(1);
             // Assign the group to the user
             //$user->addGroup($adminGroup);
-            $data["message"] = "Registration Successful -> Please log in below";
-            return $this->show_login($data);
+            redirect::to('/user/login')->with('message', 'Registration successful -> Login below');
             exit(0);
         }
         catch (Exception $e)
         {
-            $data["message"] = "There has been a problem: " . $e->getMessage();
-            return $this->show_register($data);
+            redirect::to('/user/register')->with('message', 'There has been a problem: ' . $e->getMessage());
             exit(0);
         }
     }
