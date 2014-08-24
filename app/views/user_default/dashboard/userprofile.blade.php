@@ -40,7 +40,7 @@
                                             <input name="username" type="text" class="form-control" id="usernameInput" placeholder="Enter your Username" value="{{{isset($username) ? $username : ''}}}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="steamidInput">Username</label>
+                                            <label for="steamidInput">SteamID</label>
                                             <input name="steamid" type="text" class="form-control" id="steamidInput" placeholder="STEAM_0:0:0000000" value="{{{isset($steamid) ? $steamid : ''}}}">
                                         </div>
                                     </div><!-- /.box-body -->
@@ -59,7 +59,7 @@
                                     <h3 class="box-title">Callouts</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    @if(!isset($setup))
+                                    @if($setup == true)
                                     <div class="callout callout-danger">
                                         <h4>Your Profile is not setup</h4>
                                         <p>Please setup your profile before continuing</p>

@@ -41,7 +41,7 @@ class UserController extends BaseController
     {
         $this->show_login(array("message" => "You have to login / register to continue"));
     }
-    
+
     /**
      * Displays the register page and the password reset button
      */
@@ -101,14 +101,20 @@ class UserController extends BaseController
         {
             $data = array();
 
-            //Check if User has setup his profile
+            //Get the user details from the db
             $user_infos = SDUserinfo::where('user_id', $user->id)->get();
-            
-            foreach($user_infos as $user_info)
+
+            foreach ($user_infos as $user_info)
             {
                 $data[$user_info->type] = $user_info->value;
             }
-            
+
+            //Check if the profile is setupS
+            if (isset($data['username']) && isset($data['steamid']))
+            {
+                $data['setup'] = true;
+            }
+
 
             $data = array_merge($data, $data_in);
             $template = Config::get('sdv2.system_usertemplate');
@@ -263,15 +269,7 @@ class UserController extends BaseController
             $steam_id->type = "steamid";
             $steam_id->value = Input::get('steamid');
             $steam_id->save();
-            
-            //Check if the userprofile is setup;
-            $setup = SDUserinfo::where('user_id', $user->id)->where('type', 'setup')->first();
-            if ($setup == NULL)
-            {
-                $is_setup = new SDUserinfo();
-                $is_setup->type = "setup";
-                $is_setup->value = "true";
-            }
+
             return Redirect::to('/user/profile');
         }
         else
