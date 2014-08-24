@@ -36,6 +36,10 @@
                                 <form role="form" action="{{url('/user/profile')}}" method="post">
                                     <div class="box-body">
                                         <div class="form-group">
+                                            <label for="useridDisplay">User ID</label>
+                                            <input name="userid" type="text" class="form-control" id="useridDisplay" value="{{{$user->id}}}" disabled>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="usernameInput">Username</label>
                                             <input name="username" type="text" class="form-control" id="usernameInput" placeholder="Enter your Username" value="{{{isset($username) ? $username : ''}}}">
                                         </div>

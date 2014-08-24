@@ -109,7 +109,7 @@ class UserController extends BaseController
                 $data[$user_info->type] = $user_info->value;
             }
 
-            //Check if the profile is setupS
+            //Check if the profile is setup
             if (isset($data['username']) && isset($data['steamid']))
             {
                 $data['setup'] = true;
