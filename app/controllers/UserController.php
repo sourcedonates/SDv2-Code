@@ -327,6 +327,7 @@ class UserController extends BaseController
         if ($user != false)
         {
             dd(Input::File('userimage'));
+            
             if (Input::hasFile('userimage'))
             {
                 $file = Input::file('userimage');
