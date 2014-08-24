@@ -124,7 +124,38 @@ Route::get('/items/create', 'ItemsController@show_create');
 Route::get('/items/assign', 'ItemsController@show_assign');
 
 #Show show_provider page
-Route::get('/items/show_provider', 'ItemsController@show_provider');
+Route::get('/items/show_provider', 'ItemsController@show_providers');
 
 #Show create provider page
-Route::get('/items/bought', 'ItemsController@show_create_provider');
+Route::get('/items/create_bought', 'ItemsController@show_create_provider');
+
+
+#
+# Payment Pages
+#
+
+# Show available payment provider
+Route::get('/payment/show_provider', 'PaymentController@show_providers');
+
+# Create new payment provider
+Route::get('/payment/create_provider', 'PaymentController@show_create_provider');
+
+# Show payment transactions
+Route::get('/payment/show_transaction', 'PaymentController@show_transactions');
+
+# Add manual transaction
+Route::get('/payment/add_transaction', 'PaymentController@add_transaction');
+
+
+#
+# Stats / Info Pages
+#
+
+# Show item stats
+Route::get('/stats/item', 'StatsController@show_itemstats');
+
+# Show payment stats
+Route::get('/stats/payment', 'StatsController@show_paymentstats');
+
+# Show user stats
+Route::get('/stats/user', 'StatsController@show_userstats');
