@@ -30,6 +30,59 @@
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>Items</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{url('items/bought')}}"><i class="fa fa-angle-double-right"></i> Bought Items</a></li>
+                                <li><a href="{{url('items/available')}}"><i class="fa fa-angle-double-right"></i> Available Items</a></li>
+                                <li><a href="{{url('items/create')}}"><i class="fa fa-angle-double-right"></i> Create new Item</a></li>
+                                <li><a href="{{url('items/assign')}}"><i class="fa fa-angle-double-right"></i> Assign Item to User</a></li>
+                                <li><a href="{{url('items/show_provider')}}"><i class="fa fa-angle-double-right"></i> Available Item Providers</a></li>
+                                <li><a href="{{url('items/create_provider')}}"><i class="fa fa-angle-double-right"></i> Create new Item Provider</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>Payment</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{url('payment/show_provider')}}"><i class="fa fa-angle-double-right"></i> Available Payment Provider</a></li>
+                                <li><a href="{{url('payment/create_provider')}}"><i class="fa fa-angle-double-right"></i> Create new Payment Provider</a></li>
+                                <li><a href="{{url('payment/show_transaction')}}"><i class="fa fa-angle-double-right"></i> Show Transactions</a></li>
+                                <li><a href="{{url('payment/add_transaction')}}"><i class="fa fa-angle-double-right"></i> Add a manual transaction</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>User</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{url('user/profile')}}"><i class="fa fa-angle-double-right"></i> User Profile</a></li>
+                                <li><a href="{{url('user/create')}}"><i class="fa fa-angle-double-right"></i> Create new User</a></li>
+                                <li><a href="{{url('user/details')}}"><i class="fa fa-angle-double-right"></i> User Details</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>Stats / Info</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{url('stats/item')}}"><i class="fa fa-angle-double-right"></i> Item Stats</a></li>
+                                <li><a href="{{url('stats/payment')}}"><i class="fa fa-angle-double-right"></i> Payment Stats</a></li>
+                                <li><a href="{{url('stats/user')}}"><i class="fa fa-angle-double-right"></i> User Stats</a></li>
+                                <li><a href="{{url('stats/failed_jobs')}}"><i class="fa fa-angle-double-right"></i> Failed Jobs</a></li>
+                            </ul>
+                        </li>
                         @if($user->hasAccess(['default.view'])))
                         <li>
                             <a href="pages/widgets.html">
