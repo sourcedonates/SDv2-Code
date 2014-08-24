@@ -325,25 +325,23 @@ class UserController extends BaseController
         $user = $this->check_login();
 
         if ($user != false)
-        {
-            dd(Input::File('userimage'));
-            
+        {            
             if (Input::hasFile('userimage'))
             {
                 $file = Input::file('userimage');
 
-                if ($file->getClientOriginalExtension() == "png")
+                if ($file->getClientOriginalExtension() == 'png' && $file->getMimeType() == 'image/png')
                 {
-                    $file->move(public_path() . '/uploads/userimages/', $user->id . "-avatar.png");
+                    $file->move(public_path() . '/uploads/userimages/', $user->id . '-avatar.png');
                 }
                 else
                 {
-                    $this->show_profile(array("error" => "Wrong file extension"));
+                    $this->show_profile(array('error' => 'Wrong file extension'));
                 }
             }
             else
             {
-                $this->show_profile(array("error" => "Uploaded file not found"));
+                $this->show_profile(array('error' => 'Uploaded file not found'));
             }
         }
         else
