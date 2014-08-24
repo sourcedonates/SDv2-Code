@@ -137,7 +137,7 @@ class UserController extends BaseController
         {
             $data['user'] = $user;
             $template = Config::get('sdv2.system_backendtemplate');
-            return View::make($template . ".dashboard.index",$data);
+            return View::make($template . ".dashboard.index", $data);
         }
         else
         {
@@ -258,16 +258,24 @@ class UserController extends BaseController
 
         if ($user != false)
         {
-            //Get the posted values and write them into the database
-            $username = new SDUserinfo();
-            $username->user_id = $user->id;
-            $username->type = "username";
+            //Check if the values already exist
+            $username = SDUserinfo::where('user_id', $user->id)->where('type', 'username')->first();
+            if ($username == NULL)
+            {
+                $username = new SDUserinfo();
+                $username->user_id = $user->id;
+                $username->type = "username";
+            }
             $username->value = Input::get('username');
             $username->save();
 
-            $steam_id = new SDUserinfo();
-            $steam_id->user_id = $user->id;
-            $steam_id->type = "steamid";
+            $steam_id = SDUserinfo::where('user_id', $user->id)->where('type', 'steamid')->first();
+            if ($steam_id == NULL)
+            {
+                $steam_id = new SDUserinfo();
+                $steam_id->user_id = $user->id;
+                $steam_id->type = "steamid";
+            }
             $steam_id->value = Input::get('steamid');
             $steam_id->save();
 
