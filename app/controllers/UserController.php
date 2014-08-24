@@ -114,6 +114,10 @@ class UserController extends BaseController
             {
                 $data['setup'] = true;
             }
+            else
+            {
+                $data['setup'] = false;
+            }
 
             $data = array_merge($data, $data_in);
             $data['user'] = $user;
