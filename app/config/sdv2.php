@@ -10,25 +10,15 @@ return array(
     | default => 'default'
     |
     */
-    'system_usertemplate'  => 'user_default',
+    'system_backendtemplate'  => 'backend_default',
+    
     
     /*
     |------------------------------
-    | Admin Template
+    | Enable Debug
     |------------------------------
     |
-    | The name of the template that should be used at the backend
-    | default => 'default'
-    |
-    */
-    'system_admintemplate'  => 'admin_default',
-    
-        /*
-    |------------------------------
-    | Admin Template
-    |------------------------------
-    |
-    | The name of the template that should be used at the backend
+    | If Debugging should be enabled
     | default => true
     | disabled => false
     |
