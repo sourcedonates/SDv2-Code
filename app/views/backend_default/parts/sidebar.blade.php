@@ -41,8 +41,8 @@
                                 <li><a href="{{url('items/available')}}"><i class="fa fa-angle-double-right"></i> Available Items</a></li>
                                 <li><a href="{{url('items/create')}}"><i class="fa fa-angle-double-right"></i> Create new Item</a></li>
                                 <li><a href="{{url('items/assign')}}"><i class="fa fa-angle-double-right"></i> Assign Item to User</a></li>
-                                <li><a href="{{url('items/show_provider')}}"><i class="fa fa-angle-double-right"></i> Available Item Providers</a></li>
-                                <li><a href="{{url('items/create_provider')}}"><i class="fa fa-angle-double-right"></i> Create new Item Provider</a></li>
+                                <li><a href="{{url('items/show_provider')}}"><i class="fa fa-angle-double-right"></i> Available IPs</a></li>
+                                <li><a href="{{url('items/create_provider')}}"><i class="fa fa-angle-double-right"></i> Create new IP</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -52,8 +52,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="{{url('payment/show_provider')}}"><i class="fa fa-angle-double-right"></i> Available Payment Provider</a></li>
-                                <li><a href="{{url('payment/create_provider')}}"><i class="fa fa-angle-double-right"></i> Create new Payment Provider</a></li>
+                                <li><a href="{{url('payment/show_provider')}}"><i class="fa fa-angle-double-right"></i> Available PPs</a></li>
+                                <li><a href="{{url('payment/create_provider')}}"><i class="fa fa-angle-double-right"></i> Create new PP</a></li>
                                 <li><a href="{{url('payment/show_transaction')}}"><i class="fa fa-angle-double-right"></i> Show Transactions</a></li>
                                 <li><a href="{{url('payment/add_transaction')}}"><i class="fa fa-angle-double-right"></i> Add a manual transaction</a></li>
                             </ul>
