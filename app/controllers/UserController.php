@@ -93,13 +93,26 @@ class UserController extends BaseController
      * 
      * Shows the user the info that is stored in the db about him (groups he is assigned to, details in the user_info table, ...)
      */
-    public function show_profile($data_in = array())
+    public function show_profile()
     {
         $user = $this->check_login();
 
         if ($user != false)
         {
             $data = array();
+            //Check if there is a warning / error / message
+            if (isset(Sesstion::get('message')))
+            {
+                $data['message'] = Sesstion::get('message');
+            }
+            if (isset(Sesstion::get('warning')))
+            {
+                $data['warning'] = Sesstion::get('warning');
+            }
+            if (isset(Sesstion::get('error')))
+            {
+                $data['error'] = Sesstion::get('error');
+            }
 
             //Get the user details from the db
             $user_infos = SDUserinfo::where('user_id', $user->id)->get();
@@ -119,7 +132,6 @@ class UserController extends BaseController
                 $data['setup'] = false;
             }
 
-            $data = array_merge($data, $data_in);
             $data['user'] = $user;
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".user.profile", $data);
@@ -270,7 +282,7 @@ class UserController extends BaseController
                 if ($check_username->user_id != $user->id)
                 {
                     //The username has been taken by someone else
-                    $this->show_profile(array("error" => "Update Failed. Username is already taken by someone else"));
+                    redirect::to('/user/profile')->with('error', 'Update Failed. Username is already taken by someone else');
                     exit(0);
                 }
             }
@@ -282,7 +294,7 @@ class UserController extends BaseController
                 if ($check_steamid->user_id != $user->id)
                 {
                     //The steamid has been taken by someone else
-                    $this->show_profile(array("error" => "Update Failed. Steamid is already taken by someone else"));
+                    redirect::to('/user/profile')->with('error', 'Update Failed. Steamid is already taken by someone else');
                     exit(0);
                 }
             }
@@ -309,7 +321,7 @@ class UserController extends BaseController
             $steam_id->value = Input::get('steamid');
             $steam_id->save();
 
-            $this->show_profile(array("message" => "Update Successful"));
+            redirect::to('/user/profile')->with('error', 'Update Successful');
         }
         else
         {
@@ -325,7 +337,7 @@ class UserController extends BaseController
         $user = $this->check_login();
 
         if ($user != false)
-        {            
+        {
             if (Input::hasFile('userimage'))
             {
                 $file = Input::file('userimage');
@@ -336,12 +348,12 @@ class UserController extends BaseController
                 }
                 else
                 {
-                    $this->show_profile(array('error' => 'Wrong file extension'));
+                    redirect::to('/user/profile')->with('error', 'Wrong Extension / Mime Type');
                 }
             }
             else
             {
-                $this->show_profile(array('error' => 'Uploaded file not found'));
+                redirect::to('/user/profile')->with('error', 'Uploaded File not found');
             }
         }
         else
