@@ -17,7 +17,7 @@
   });
  */
 
-Route::get('/', 'ItemsController@getIndex');
+Route::get('/', 'PresentationController@getIndex');
 
 
 // Handle the Push Queue
@@ -78,6 +78,11 @@ Route::get('/user', function()
     }
 });
 
+
+#
+# User Pages
+#
+
 #Login
 Route::get('/user/login', 'UserController@show_login');
 Route::post('/user/login', 'UserController@do_login');
@@ -100,3 +105,10 @@ Route::get('/user/dashboard', 'UserController@show_dashboard');
 #Profile
 Route::get('/user/profile', 'UserController@show_profile');
 Route::post('/user/profile', 'UserController@do_change_profile');
+
+
+#
+# Items Pages
+#
+
+Route::get();
