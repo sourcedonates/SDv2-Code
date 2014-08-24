@@ -25,10 +25,13 @@ class UserController extends BaseController
         else
         {
             $data = array(
-                "page_name" => "SDv2 | Login",
-                "message" => $Session::get('message')
+                "page_name" => "SDv2 | Login"
             );
-
+            if (Sesstion::has('message'))
+            {
+                $data['message'] = Sesstion::get('message');
+            }
+            
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".login.login", $data);
         }
@@ -56,9 +59,12 @@ class UserController extends BaseController
         else
         {
             $data = array(
-                "page_name" => "SDv2 | Registration",
-                "message" => $Session::get('message')
+                "page_name" => "SDv2 | Registration"
             );
+            if (Sesstion::has('message'))
+            {
+                $data['message'] = Sesstion::get('message');
+            }
 
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".login.register", $data);
@@ -101,15 +107,15 @@ class UserController extends BaseController
         {
             $data = array();
             //Check if there is a warning / error / message
-            if (isset(Sesstion::get('message')))
+            if (Sesstion::has('message'))
             {
                 $data['message'] = Sesstion::get('message');
             }
-            if (isset(Sesstion::get('warning')))
+            if (Sesstion::has('warning'))
             {
                 $data['warning'] = Sesstion::get('warning');
             }
-            if (isset(Sesstion::get('error')))
+            if (Sesstion::has('error'))
             {
                 $data['error'] = Sesstion::get('error');
             }
@@ -241,12 +247,12 @@ class UserController extends BaseController
             //$adminGroup = Sentry::findGroupById(1);
             // Assign the group to the user
             //$user->addGroup($adminGroup);
-            redirect::to('/user/login')->with('message','Registration successful -> Login below');
+            redirect::to('/user/login')->with('message', 'Registration successful -> Login below');
             exit(0);
         }
         catch (Exception $e)
         {
-            redirect::to('/user/register')->with('message','There has been a problem: ' . $e->getMessage());
+            redirect::to('/user/register')->with('message', 'There has been a problem: ' . $e->getMessage());
             exit(0);
         }
     }
