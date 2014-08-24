@@ -6,22 +6,25 @@ class ItemsController extends BaseController
     public function getIndex()
     {
         //Get the items from the StoreDB
-        $items = Item::whereRaw("loadout_slot IN ( 'brillen','hats','pets','skin','snorren','piemol','vogel','jetpack' )")->get();
+        $store_items = Item::whereRaw("loadout_slot IN ( 'brillen','hats','pets','skin','snorren','piemol','vogel','jetpack' )")->get();
 
         //Sort them
-        $items = $items->sortBy(function($item)
+        $store_items = $store_items->sortBy(function($item)
         {
-            return $item->loadout_slot; //sort them by loadout slot
+            return $store_items->loadout_slot; //sort them by loadout slot
         });
 
         $paymentprovider = DB::table('sd_payment_providers')->orderBy('pos', 'desc')->get();
         $user = Sentinel::check();
 
+        $sd_items = SDItem::where('visible', '1')->get();
+
         //Build the view
         return View::make('item.overview', array(
-                    'items' => $items, //Items data
+                    'items' => $store_items, //Items data
+                    'sd_items' => $sd_items, //SD Item data
                     'payment_providers' => $paymentprovider, //Provider data
-                    'user' => $user
+                    'user' => $user //User data
         ));
     }
 
