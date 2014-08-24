@@ -32,7 +32,7 @@
                         </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-laptop"></i>
+                                <i class="fa fa-sitemap"></i>
                                 <span>Items</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -47,7 +47,7 @@
                         </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-laptop"></i>
+                                <i class="fa fa-eur"></i>
                                 <span>Payment</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -60,7 +60,7 @@
                         </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-laptop"></i>
+                                <i class="fa fa-user"></i>
                                 <span>User</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -72,7 +72,7 @@
                         </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-laptop"></i>
+                                <i class="fa fa-tachometer"></i>
                                 <span>Stats / Info</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
