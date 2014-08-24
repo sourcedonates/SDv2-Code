@@ -262,7 +262,32 @@ class UserController extends BaseController
 
         if ($user != false)
         {
-            //Check if the values already exist
+            //Check if the username and the steamid already exists
+            $check_username = SDUserinfo::where('type','username')->where('value',Input::get('username'))->first();
+            if($check_username != NULL)
+            {
+                //The username already exists
+                if($check_username->user_id != $user->id)
+                {
+                    //The username has been taken by someone else
+                    $this->show_profile(array("error"=>"Update Failed. Username is already taken by someone else"));
+                    exit(0);
+                }
+            }
+                        //Check if the username and the steamid already exists
+            $check_steamid = SDUserinfo::where('type','steamid')->where('value',Input::get('steamid'))->first();
+            if($check_steamid != NULL)
+            {
+                //The username already exists
+                if($check_steamid->user_id != $user->id)
+                {
+                    //The steamid has been taken by someone else
+                    $this->show_profile(array("error"=>"Update Failed. Steamid is already taken by someone else"));
+                    exit(0);
+                }
+            }
+            
+            //Update the username has setup a username before
             $username = SDUserinfo::where('user_id', $user->id)->where('type', 'username')->first();
             if ($username == NULL)
             {
@@ -273,6 +298,7 @@ class UserController extends BaseController
             $username->value = Input::get('username');
             $username->save();
 
+            //Update the steamid if the user has setup a steamid before
             $steam_id = SDUserinfo::where('user_id', $user->id)->where('type', 'steamid')->first();
             if ($steam_id == NULL)
             {
@@ -283,7 +309,7 @@ class UserController extends BaseController
             $steam_id->value = Input::get('steamid');
             $steam_id->save();
 
-            return Redirect::to('/user/profile');
+            $this->show_profile(array("message"=>"Update Successful"));
         }
         else
         {
