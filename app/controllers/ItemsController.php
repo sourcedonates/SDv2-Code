@@ -9,9 +9,9 @@ class ItemsController extends BaseController
         $store_items = Item::whereRaw("loadout_slot IN ( 'brillen','hats','pets','skin','snorren','piemol','vogel','jetpack' )")->get();
 
         //Sort them
-        $store_items = $store_items->sortBy(function($item)
+        $store_items = $store_items->sortBy(function($store_item)
         {
-            return $store_items->loadout_slot; //sort them by loadout slot
+            return $store_item->loadout_slot; //sort them by loadout slot
         });
 
         $paymentprovider = DB::table('sd_payment_providers')->orderBy('pos', 'desc')->get();
