@@ -213,7 +213,7 @@ class UserController extends BaseController
         try
         {
             // Create the user
-            Sentinel::register(array(
+            Sentinel::registerAndActivate(array(
                 'email' => Input::get('email'),
                 'password' => Input::get('password')
             ));
