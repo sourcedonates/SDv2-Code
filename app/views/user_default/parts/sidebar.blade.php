@@ -30,6 +30,7 @@
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
+                        @if($user->hasAccess(['default.view'])))
                         <li>
                             <a href="pages/widgets.html">
                                 <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
@@ -109,6 +110,7 @@
                                 <li><a href="pages/examples/blank.html"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
                             </ul>
                         </li>
+                        @endif
                     </ul>
                 </section>
                 <!-- /.sidebar -->

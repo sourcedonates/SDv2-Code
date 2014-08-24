@@ -116,6 +116,7 @@ class UserController extends BaseController
             }
 
             $data = array_merge($data, $data_in);
+            $data['user'] = $user;
             $template = Config::get('sdv2.system_usertemplate');
             return View::make($template . ".dashboard.userprofile", $data);
         }
@@ -134,8 +135,9 @@ class UserController extends BaseController
 
         if ($login != false)
         {
+            $data['user'] = $user;
             $template = Config::get('sdv2.system_usertemplate');
-            return View::make($template . ".dashboard.index");
+            return View::make($template . ".dashboard.index",$data);
         }
         else
         {
