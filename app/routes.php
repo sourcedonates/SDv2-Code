@@ -111,4 +111,20 @@ Route::post('/user/profile', 'UserController@do_change_profile');
 # Items Pages
 #
 
-Route::get();
+#Show bought items
+Route::get('/items/bought', 'ItemsController@show_bought');
+
+#Show available items
+Route::get('/items/available', 'ItemsController@show_available');
+
+#Show create items page
+Route::get('/items/create', 'ItemsController@show_create');
+
+#Show assign items page
+Route::get('/items/assign', 'ItemsController@show_assign');
+
+#Show show_provider page
+Route::get('/items/show_provider', 'ItemsController@show_provider');
+
+#Show create provider page
+Route::get('/items/bought', 'ItemsController@show_create_provider');
