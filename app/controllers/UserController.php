@@ -253,11 +253,13 @@ class UserController extends BaseController
         {
             //Get the posted values and write them into the database
             $username = new SDUserinfo();
+            $username->user_id = $user->id;
             $username->type = "username";
             $username->value = Input::get('username');
             $username->save();
 
             $steam_id = new SDUserinfo();
+            $steam_id->user_id = $user->id;
             $steam_id->type = "steamid";
             $steam_id->value = Input::get('steamid');
             $steam_id->save();
