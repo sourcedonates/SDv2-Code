@@ -270,6 +270,7 @@ class UserController extends BaseController
                 $is_setup->type = "setup";
                 $is_setup->value = "true";
             }
+            return Redirect::to('/user/profile');
         }
         else
         {

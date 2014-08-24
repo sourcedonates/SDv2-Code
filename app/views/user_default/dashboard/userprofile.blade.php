@@ -37,11 +37,11 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="usernameInput">Username</label>
-                                            <input name="username" type="text" class="form-control" id="usernameInput" placeholder="Enter your Username">
+                                            <input name="username" type="text" class="form-control" id="usernameInput" placeholder="Enter your Username" value="{{$username}}">
                                         </div>
                                         <div class="form-group">
                                             <label for="steamidInput">Username</label>
-                                            <input name="steamid" type="text" class="form-control" id="steamidInput" placeholder="STEAM_0:0:0000000">
+                                            <input name="steamid" type="text" class="form-control" id="steamidInput" placeholder="STEAM_0:0:0000000" value="{{$steamid}}">
                                         </div>
                                     </div><!-- /.box-body -->
 
