@@ -131,9 +131,9 @@ class UserController extends BaseController
      */
     public function show_dashboard()
     {
-        $login = $this->check_login();
+        $user = $this->check_login();
 
-        if ($login != false)
+        if ($user != false)
         {
             $data['user'] = $user;
             $template = Config::get('sdv2.system_backendtemplate');
