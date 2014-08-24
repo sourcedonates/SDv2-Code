@@ -37,11 +37,11 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="usernameInput">Username</label>
-                                            <input name="username" type="text" class="form-control" id="usernameInput" placeholder="Enter your Username" value="{{$username}}">
+                                            <input name="username" type="text" class="form-control" id="usernameInput" placeholder="Enter your Username" value="{{{isset($username) ? $username : ''}}}">
                                         </div>
                                         <div class="form-group">
                                             <label for="steamidInput">Username</label>
-                                            <input name="steamid" type="text" class="form-control" id="steamidInput" placeholder="STEAM_0:0:0000000" value="{{$steamid}}">
+                                            <input name="steamid" type="text" class="form-control" id="steamidInput" placeholder="STEAM_0:0:0000000" value="{{{isset($steamid= ? $steamid : ''}}}">
                                         </div>
                                     </div><!-- /.box-body -->
 
@@ -67,7 +67,7 @@
                                     @else
                                     <div class="callout callout-info">
                                         <h4>Your user profile is setup</h4>
-                                        <p>Your Profile is setup - You can continue using the application</p>
+                                        <p>Your Profile is setup - You can start using the application</p>
                                     </div>
                                     @endif
                                 </div><!-- /.box-body -->
