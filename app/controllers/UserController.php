@@ -27,11 +27,11 @@ class UserController extends BaseController
             $data = array(
                 "page_name" => "SDv2 | Login"
             );
-            if (Sesstion::has('message'))
+            if (Session::has('message'))
             {
-                $data['message'] = Sesstion::get('message');
+                $data['message'] = Session::get('message');
             }
-            
+
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".login.login", $data);
         }
@@ -61,9 +61,9 @@ class UserController extends BaseController
             $data = array(
                 "page_name" => "SDv2 | Registration"
             );
-            if (Sesstion::has('message'))
+            if (Session::has('message'))
             {
-                $data['message'] = Sesstion::get('message');
+                $data['message'] = Session::get('message');
             }
 
             $template = Config::get('sdv2.system_backendtemplate');
@@ -107,17 +107,17 @@ class UserController extends BaseController
         {
             $data = array();
             //Check if there is a warning / error / message
-            if (Sesstion::has('message'))
+            if (Session::has('message'))
             {
-                $data['message'] = Sesstion::get('message');
+                $data['message'] = Session::get('message');
             }
-            if (Sesstion::has('warning'))
+            if (Session::has('warning'))
             {
-                $data['warning'] = Sesstion::get('warning');
+                $data['warning'] = Session::get('warning');
             }
-            if (Sesstion::has('error'))
+            if (Session::has('error'))
             {
-                $data['error'] = Sesstion::get('error');
+                $data['error'] = Session::get('error');
             }
 
             //Get the user details from the db
