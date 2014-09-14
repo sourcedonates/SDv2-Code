@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 
-    @include('user_default.parts.head')
+    @include('backend_default.parts.head')
 
     <body class="skin-blue">
 
-        @include('user_default.parts.header')
+        @include('backend_default.parts.header')
 
         <div class="wrapper row-offcanvas row-offcanvas-left">
-            @include('user_default.parts.sidebar')
+            @include('backend_default.parts.sidebar')
 
             <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side">                
@@ -36,17 +36,40 @@
                                 <form role="form" action="{{url('/user/profile')}}" method="post">
                                     <div class="box-body">
                                         <div class="form-group">
-                                            <label for="usernameInput">Username</label>
-                                            <input name="username" type="text" class="form-control" id="usernameInput" placeholder="Enter your Username">
+                                            <label for="useridDisplay">User ID</label>
+                                            <input name="userid" type="text" class="form-control" id="useridDisplay" value="{{{$user->id}}}" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="steamidInput">Username</label>
-                                            <input name="steamid" type="text" class="form-control" id="steamidInput" placeholder="STEAM_0:0:0000000">
+                                            <label for="usernameInput">Username</label>
+                                            <input name="username" type="text" class="form-control" id="usernameInput" placeholder="Enter your Username" value="{{{isset($username) ? $username : ''}}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="steamidInput">SteamID</label>
+                                            <input name="steamid" type="text" class="form-control" id="steamidInput" placeholder="STEAM_0:0:0000000" value="{{{isset($steamid) ? $steamid : ''}}}">
                                         </div>
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div><!-- /.box -->
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">User Image</h3>
+                                </div><!-- /.box-header -->
+                                <!-- form start -->
+                                <form role="form" action="{{url('/user/upload_image')}}" method="post" enctype="multipart/form-data">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="uploadImage">Select a Image</label>
+                                            <input name="userimage" type="file" id="uploadImage">
+                                            <p class="help-block">Select a .png image and click on upload</p>
+                                        </div>
+                                    </div><!-- /.box-body -->
+
+                                    <div class="box-footer">
+                                        <button type="submit" class="btn btn-primary">Upload</button>
                                     </div>
                                 </form>
                             </div><!-- /.box -->
@@ -59,15 +82,28 @@
                                     <h3 class="box-title">Callouts</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    @if(!isset($setup))
+                                    @if($setup == true && !isset($message) && !isset($warning))
+                                    <div class="callout callout-info">
+                                        <h4>Everything is fine</h4>
+                                        <p>There are no warnings or errors and your profile is setup</p>
+                                    </div>
+                                    @endif
+                                    @if($setup != true)
                                     <div class="callout callout-danger">
                                         <h4>Your Profile is not setup</h4>
                                         <p>Please setup your profile before continuing</p>
                                     </div>
-                                    @else
+                                    @endif
+                                    @if(isset($message))
                                     <div class="callout callout-info">
-                                        <h4>Your user profile is setup</h4>
-                                        <p>Your Profile is setup - You can continue using the application</p>
+                                        <h4>Info:</h4>
+                                        <p>{{{$message}}}</p>
+                                    </div>
+                                    @endif
+                                    @if(isset($warning))
+                                    <div class="callout callout-danger">
+                                        <h4>Warning:</h4>
+                                        <p>{{{$warning}}}</p>
                                     </div>
                                     @endif
                                 </div><!-- /.box-body -->

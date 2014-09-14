@@ -47,12 +47,16 @@
             <div class="buy-contentcontainer">
                 <div class="buy-content row">
                     <div id="packages" class="desktop-12 buy-packages contained table">
-                        <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="Koop alles" data-price="€50" data-id="5">
-                            <span>Koop alles</span>
+                        @foreach($sditems as $sditem)
+                        <?php $price_object = json_decode($sditem->price); $EUR = $price_object->EUR; ?>
+                        <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="{{$sditem->name_long}}" data-price="€{{$EUR}}" data-id="{{$sditem->pos}}">
+                            <span>{{$sditem->name_long}}</span>
                             <div class="price">
-                                €50
+                                €{{$EUR}}
                             </div>
                         </a>
+                        @endforeach
+                        <!--
                         <a href="#buyoverlay" class="align-center buy-item smooth" data-packagename="45.000 credits" data-price="€25" data-id="4">
                             <span>45.000 credits</span>
                             <div class="price">
@@ -77,6 +81,7 @@
                                 €5
                             </div>
                         </a>
+                        -->
                     </div>
                     <div id="buy-indication" class="buy-indication desktop-12 align-center">
                         <hr>

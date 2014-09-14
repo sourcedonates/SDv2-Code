@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
     
-    @include('user_default.parts.head')
+    @include('backend_default.parts.head')
     
     <body class="skin-blue">
         
-        @include('user_default.parts.header')
+        @include('backend_default.parts.header')
         
         <div class="wrapper row-offcanvas row-offcanvas-left">
-            @include('user_default.parts.sidebar')
+            @include('backend_default.parts.sidebar')
 
             <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side">                
@@ -36,9 +36,9 @@
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- Bootstrap -->
-        <script src="{{asset("assets/js/bootstrap.min.js")}}" type="text/javascript"></script>
+        <script src="{{asset("js/plugins/bootstrap.min.js")}}" type="text/javascript"></script>
         <!-- AdminLTE App -->
-        <script src="{{asset("assets/js/AdminLTE/app.js")}}" type="text/javascript"></script>
+        <script src="{{asset("js/plugins/AdminLTE/app.js")}}" type="text/javascript"></script>
 
     </body>
 </html>

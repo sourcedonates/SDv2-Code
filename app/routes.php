@@ -17,7 +17,7 @@
   });
  */
 
-Route::get('/', 'ItemsController@getIndex');
+Route::get('/', 'PresentationController@getIndex');
 
 
 // Handle the Push Queue
@@ -28,10 +28,19 @@ Route::post('/queue/handle', function()
 
 Route::get('/queue/test', function()
 {
-    Queue::push('PaymentQueueWorker',array("transaction"=>"1408202900"));
+    Queue::push('PaymentQueueWorker', array("transaction" => "1408202900"));
     return "Pushed to Queue";
 });
 
+Route::get('/queue/test2', function()
+{
+    Queue::push(function($job)
+    {
+        Log::info('Do something');
+        $job->delete();
+    });
+    return "Pushed to Queue";
+});
 
 #
 # Payment Routes
@@ -69,6 +78,11 @@ Route::get('/user', function()
     }
 });
 
+
+#
+# User Pages
+#
+
 #Login
 Route::get('/user/login', 'UserController@show_login');
 Route::post('/user/login', 'UserController@do_login');
@@ -91,3 +105,59 @@ Route::get('/user/dashboard', 'UserController@show_dashboard');
 #Profile
 Route::get('/user/profile', 'UserController@show_profile');
 Route::post('/user/profile', 'UserController@do_change_profile');
+
+#Upload image
+Route::post('/user/upload_image', 'UserController@do_upload_image');
+
+#
+# Items Pages
+#
+
+#Show bought items
+Route::get('/items/bought', 'ItemsController@show_bought');
+
+#Show available items
+Route::get('/items/available', 'ItemsController@show_available');
+
+#Show create items page
+Route::get('/items/create', 'ItemsController@show_create');
+
+#Show assign items page
+Route::get('/items/assign', 'ItemsController@show_assign');
+
+#Show show_provider page
+Route::get('/items/show_provider', 'ItemsController@show_providers');
+
+#Show create provider page
+Route::get('/items/create_bought', 'ItemsController@show_create_provider');
+
+
+#
+# Payment Pages
+#
+
+# Show available payment provider
+Route::get('/payment/show_provider', 'PaymentController@show_providers');
+
+# Create new payment provider
+Route::get('/payment/create_provider', 'PaymentController@show_create_provider');
+
+# Show payment transactions
+Route::get('/payment/show_transaction', 'PaymentController@show_transactions');
+
+# Add manual transaction
+Route::get('/payment/add_transaction', 'PaymentController@add_transaction');
+
+
+#
+# Stats / Info Pages
+#
+
+# Show item stats
+Route::get('/stats/item', 'StatsController@show_itemstats');
+
+# Show payment stats
+Route::get('/stats/payment', 'StatsController@show_paymentstats');
+
+# Show user stats
+Route::get('/stats/user', 'StatsController@show_userstats');

@@ -14,7 +14,7 @@ return array(
       |
      */
 
-    'default' => 'sync',
+    'default' => 'beanstalkd',
     /*
       |--------------------------------------------------------------------------
       | Queue Connections

@@ -25,17 +25,10 @@ $app = new Illuminate\Foundation\Application;
  */
 
 
-$env = $app->detectEnvironment(function()
-{
-    $hosts = array(
-        'localhost' => 'local',
-        'dev.sourcedonates.com' => 'development',
-    );
-    if (isset($hosts[$_SERVER['SERVER_NAME']]))
-    {
-        return $hosts[$_SERVER['SERVER_NAME']];
-    }
-});
+$env = $app->detectEnvironment(array(
+    'development' => array('server.sourcedonates.com'),
+    'local' => array('homestead', '.local')
+));
 
 /*
   |--------------------------------------------------------------------------
