@@ -1,14 +1,27 @@
 <?php
-
 /**
- * Handling the Payment Postprocessing
+ * SDv2 Payment Queue Worker
  * 
- * This Crontroller handles the Postprocessing of the transactions after they have been confirmed by the provider
+ * This Controller handles the Postprocessing of the transactions after they have been confirmed by the provider
  * 
- * TODO: Add a warning message to the DB instead of existing directly
+ * This file is Part of SousrceDonatesv2
+ * SousrceDonatesv2 is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version. 
  * 
- * @author Werner Maisl
- * @copyright (c) 2014, Werner Maisl
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * @package    SousrceDonatesv2
+ * @author     Werner Maisl
+ * @copyright  (c) 2013-2014 - Werner Maisl
+ * @license    GNU AGPLv3 http://www.gnu.org/licenses/agpl-3.0.txt
  */
 class PaymentQueueWorker
 {
