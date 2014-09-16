@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 
 $env = $app->detectEnvironment(array(
-    'development' => array('server.sourcedonates.com'),
+    'development' => array('server.sourcedonates.com','colorful-mist'),
     'local' => array('homestead', '.local')
 ));
 
