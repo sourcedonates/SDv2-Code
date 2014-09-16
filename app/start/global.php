@@ -69,6 +69,21 @@ App::down(function()
 	return Response::make("Be right back!", 503);
 });
 
+
+/*
+|--------------------------------------------------------------------------
+| 404 Error Handler
+|--------------------------------------------------------------------------
+|
+| Catches the 404 Error
+|
+*/
+
+App::missing(function($exception)
+{
+    return Response::make('Nothing there', 404);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Require The Filters File
