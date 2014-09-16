@@ -238,14 +238,14 @@ class UserController extends BaseController
         //Check if the passwords match
         if (Input::get('password') != Input::get('password2'))
         {
-            redirect::to('/user/register')->with('message', 'PWs dont match');
+            return Redirect::to('/user/register')->with('message', 'PWs dont match');
             exit(0);
         }
 
         //Check if E-Mail is valid
         if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", Input::get('email')))
         {
-            redirect::to('/user/register')->with('message', 'Invalid email');
+            return Redirect::to('/user/register')->with('message', 'Invalid email');
             exit(0);
         }
 
@@ -267,7 +267,7 @@ class UserController extends BaseController
         }
         catch (Exception $e)
         {
-            redirect::to('/user/register')->with('message', 'There has been a problem: ' . $e->getMessage());
+            return Redirect::to('/user/register')->with('message', 'There has been a problem: ' . $e->getMessage());
             exit(0);
         }
     }
