@@ -57,7 +57,7 @@ class UserController extends BaseController
      */
     public function show_require_login()
     {
-        redirect::to('/user/login')->with('message', 'You have to login / register to continue');
+        return Redirect::to('/user/login')->with('message', 'You have to login / register to continue');
     }
 
     /**
@@ -205,13 +205,13 @@ class UserController extends BaseController
         }
         catch (Exception $e)
         {
-            redirect::to('/user/login')->with('message', 'There has been a problem with your login: ' . $e->getMessage());
+            return Redirect::to('/user/login')->with('message', 'There has been a problem with your login: ' . $e->getMessage());
             exit(0);
         }
 
         if (!isset($user) | $user == "")
         {
-            redirect::to('/user/login')->with('message', 'There has been a problem with your login');
+            return Redirect::to('/user/login')->with('message', 'There has been a problem with your login');
             exit(0);
         }
 
@@ -262,7 +262,7 @@ class UserController extends BaseController
             //$adminGroup = Sentry::findGroupById(1);
             // Assign the group to the user
             //$user->addGroup($adminGroup);
-            redirect::to('/user/login')->with('message', 'Registration successful -> Login below');
+            return Redirect::to('/user/login')->with('message', 'Registration successful -> Login below');
             exit(0);
         }
         catch (Exception $e)
@@ -297,7 +297,7 @@ class UserController extends BaseController
                 if ($check_username->user_id != $user->id)
                 {
                     //The username has been taken by someone else
-                    redirect::to('/user/profile')->with('error', 'Update Failed. Username is already taken by someone else');
+                    return Redirect::to('/user/profile')->with('error', 'Update Failed. Username is already taken by someone else');
                     exit(0);
                 }
             }
@@ -309,7 +309,7 @@ class UserController extends BaseController
                 if ($check_steamid->user_id != $user->id)
                 {
                     //The steamid has been taken by someone else
-                    redirect::to('/user/profile')->with('error', 'Update Failed. Steamid is already taken by someone else');
+                    return Redirect::to('/user/profile')->with('error', 'Update Failed. Steamid is already taken by someone else');
                     exit(0);
                 }
             }
@@ -336,7 +336,7 @@ class UserController extends BaseController
             $steam_id->value = Input::get('steamid');
             $steam_id->save();
 
-            redirect::to('/user/profile')->with('error', 'Update Successful');
+            return Redirect::to('/user/profile')->with('error', 'Update Successful');
         }
         else
         {
@@ -363,12 +363,12 @@ class UserController extends BaseController
                 }
                 else
                 {
-                    redirect::to('/user/profile')->with('error', 'Wrong Extension / Mime Type');
+                    return Redirect::to('/user/profile')->with('error', 'Wrong Extension / Mime Type');
                 }
             }
             else
             {
-                redirect::to('/user/profile')->with('error', 'Uploaded File not found');
+                return Redirect::to('/user/profile')->with('error', 'Uploaded File not found');
             }
         }
         else
