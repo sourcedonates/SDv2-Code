@@ -530,13 +530,13 @@
 
 
         <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- jQuery UI 1.10.3 -->
         <script src="{{asset('assets/js/jquery-ui-1.10.3.min.js')}}" type="text/javascript"></script>
         <!-- Bootstrap -->
         <script src="{{asset('assets/js/bootstrap.min.js')}}" type="text/javascript"></script>
         <!-- Morris.js charts -->
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="{{asset('assets/js/plugins/morris/morris.min.js')}}" type="text/javascript"></script>
         <!-- Sparkline -->
         <script src="{{asset('assets/js/plugins/sparkline/jquery.sparkline.min.js')}}" type="text/javascript"></script>
