@@ -27,7 +27,7 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="{{{File::exists(public_path() . '/uploads/userimages/'. $user->id . '-avatar.png') ? asset("uploads/userimages/".$user->id."-avatar.png") : asset("uploads/userimages/default.png")}}}" class="img-circle" alt="User Image" />
+                                    <img src="{{{File::exists(public_path() . '/uploads/userimages/'. $user->id . '-avatar.png') ? asset('uploads/userimages/'.$user->id.'-avatar.png') : asset('uploads/userimages/default.png')}}}" class="img-circle" alt="User Image" />
                                     <p>
                                         {{{isset($username) ? $username : ''}}}
                                         <small>Member since quite some time</small>
