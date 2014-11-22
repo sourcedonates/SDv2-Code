@@ -171,7 +171,7 @@ class PaymentController extends BaseController
             }
             else
             {
-                return Redirect::to('/user/dashboard')->with('error', 'Wrong Extension / Mime Type');
+                return Redirect::to('/user/dashboard')->with('error', 'You do not have the required permissions');
             }
         }
         else

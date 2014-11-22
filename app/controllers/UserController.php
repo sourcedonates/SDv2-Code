@@ -173,6 +173,21 @@ class UserController extends BaseController
 
         if ($user != false)
         {
+            $data = array();
+            //Check if there is a warning / error / message
+            if (Session::has('message'))
+            {
+                $data['message'] = Session::get('message');
+            }
+            if (Session::has('warning'))
+            {
+                $data['warning'] = Session::get('warning');
+            }
+            if (Session::has('error'))
+            {
+                $data['error'] = Session::get('error');
+            }
+            
             //Get the user details from the db
             $user_infos = SDUserinfo::where('user_id', $user->id)->get();
 
@@ -180,7 +195,7 @@ class UserController extends BaseController
             {
                 $data[$user_info->type] = $user_info->value;
             }
-            
+
             $data['user'] = $user;
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".dashboard.index", $data);
@@ -372,7 +387,7 @@ class UserController extends BaseController
 
                 if ($file->getClientOriginalExtension() == 'png' && $file->getMimeType() == 'image/png')
                 {
-                    $file->move(public_path() . '/uploads/userimages/' , $user->id . '-avatar.png');
+                    $file->move(public_path() . '/uploads/userimages/', $user->id . '-avatar.png');
                     Log::info("Pciture Upload - Moved and Renamed");
                     return Redirect::to('/user/profile')->with('message', 'Image upload successfull');
                 }
