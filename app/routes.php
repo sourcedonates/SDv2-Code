@@ -17,6 +17,35 @@
   });
  */
 
+//Test Routes
+Route::get('/perm/promote', function()
+{
+    Log::info("Promote Route has been called");
+
+    $user = Sentinel::findById(1);
+    $user->permissions = [
+        'items.show_bought'     => 'true',
+        'items.show_available'  => 'true',
+        'items.create_item'     => 'true',
+        'items.assign_item'     => 'true',
+        'items.show_ip'         => 'true',
+        'items.create_ip'       => 'true',
+        'payment.show_pp'       => 'true',
+        'payment.create_pp'     => 'true',
+        'payment.show_transactions' => 'true',
+        'payment.create_transaction' => 'true',
+        'user.show_profile'     => 'true',
+        'user.create_user'      => 'true',
+        'user.show_users'       => 'true',
+        'stats.show_itemstats'  => 'true',
+        'stats.show_paymentstats' => 'true',
+        'stats.show_userstats'  => 'true',
+        'stats.show_failedjobs' => 'true'
+    ];
+});
+
+
+//Default Route
 Route::get('/', 'PresentationController@getIndex');
 
 
@@ -82,7 +111,6 @@ Route::get('/user', function()
 #
 # User Pages
 #
-
 #Login
 Route::get('/user/login', 'UserController@show_login');
 Route::post('/user/login', 'UserController@do_login');
@@ -112,7 +140,6 @@ Route::post('/user/upload_image', 'UserController@do_upload_image');
 #
 # Items Pages
 #
-
 #Show bought items
 Route::get('/items/bought', 'ItemsController@show_bought');
 
@@ -135,7 +162,6 @@ Route::get('/items/create_bought', 'ItemsController@show_create_provider');
 #
 # Payment Pages
 #
-
 # Show available payment provider
 Route::get('/payment/show_provider', 'PaymentController@show_providers');
 
@@ -152,7 +178,6 @@ Route::get('/payment/add_transaction', 'PaymentController@add_transaction');
 #
 # Stats / Info Pages
 #
-
 # Show item stats
 Route::get('/stats/item', 'StatsController@show_itemstats');
 
