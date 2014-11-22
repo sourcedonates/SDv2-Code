@@ -22,14 +22,14 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>{{{isset($username) ? $username : ''}} <i class="caret"></i></span>
+                                <span>{{{isset($username) ? $username : ''}}} <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
                                     <img src="{{{File::exists(public_path() . '/uploads/userimages/'. $user->id . '-avatar.png') ? asset("uploads/userimages/".$user->id."-avatar.png") : asset("uploads/userimages/default.png")}}}" class="img-circle" alt="User Image" />
                                     <p>
-                                        {{{isset($username) ? $username : ''}}
+                                        {{{isset($username) ? $username : ''}}}
                                         <small>Member since quite some time</small>
                                     </p>
                                 </li>
