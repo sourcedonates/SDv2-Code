@@ -181,6 +181,12 @@ Route::get('/payment/show_provider', 'PaymentController@show_providers');
 # Create new payment provider
 Route::get('/payment/create_provider', 'PaymentController@show_create_provider');
 
+# Create new payment provider
+Route::get('/payment/edit_provider', 'PaymentController@show_edit_provider');
+
+# Create new payment provider
+Route::get('/payment/delete_provider', 'PaymentController@show_delete_provider');
+
 # Show payment transactions
 Route::get('/payment/show_transaction', 'PaymentController@show_transactions');
 
