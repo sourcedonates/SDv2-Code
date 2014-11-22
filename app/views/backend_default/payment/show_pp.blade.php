@@ -29,7 +29,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Responsive Hover Table</h3>
+                                    <h3 class="box-title">Activated Payment Providers</h3>
                                     <div class="box-tools">
                                     </div>
                                 </div><!-- /.box-header -->
@@ -44,15 +44,18 @@
                                             <th>Type</th>
                                             <th>Actions</th>
                                         </tr>
+                                        @foreach($paymentproviders as $ppr)
                                         <tr>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>paypal-test</td>
-                                            <td>Pay Pal Test</td>
-                                            <td>Test\Class</td>
-                                            <td><span class="label label-success">IPN</span></td>
+                                            <td>{{$ppr->id}}</td>
+                                            <td>{{$ppr->pos}}</td>
+                                            <td>{{$ppr->name_short}}</td>
+                                            <td>{{$ppr->name_long}}</td>
+                                            <td>{{{$ppr->provider_class}}}</td>
+                                            <!--<td><span class="label label-success">IPN</span></td>-->
+                                            <td>{{$ppr->type}}</td>
                                             <td>Edit Delete</td>
                                         </tr>
+                                        @endforeach
                                     </table>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->

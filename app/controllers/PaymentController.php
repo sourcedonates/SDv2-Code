@@ -157,15 +157,20 @@ class PaymentController extends BaseController
         {
             if ($user->hasAccess(['payment.show_pp']))
             {
-                //Get the user details from the db
+                //Load the User Infos
+                $data['user'] = $user;
                 $user_infos = SDUserinfo::where('user_id', $user->id)->get();
-
                 foreach ($user_infos as $user_info)
                 {
                     $data[$user_info->type] = $user_info->value;
                 }
 
-                $data['user'] = $user;
+                //Get the PPs from the DB
+                
+                $paymentproviders = SDPaymentProvider::get();
+                
+                $data["paymentproviders"] = $paymentproviders;
+                // Return the page
                 $template = Config::get('sdv2.system_backendtemplate');
                 return View::make($template . ".payment.show_pp", $data);
             }
