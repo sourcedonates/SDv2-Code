@@ -363,9 +363,9 @@ class UserController extends BaseController
                 
                 if ($file->getClientOriginalExtension() == 'png' && $file->getMimeType() == 'image/png')
                 {
-                    $file->move(public_path() . '/uploads/userimages/', $user->id . '-avatar.png');
+                    $file->move(public_path() . '/uploads/userimages/'. $user->id . '-avatar.png');
                     Log::info("Pciture Upload - Moved and Renamed");
-                    return Redirect::to('/user/profile')->with('message', 'Image uploaded');
+                    return Redirect::to('/user/profile')->with('message', 'Image upload successfull');
                 }
                 else
                 {

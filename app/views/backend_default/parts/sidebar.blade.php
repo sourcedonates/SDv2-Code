@@ -5,12 +5,12 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                            <img src="{{{File::exists(public_path() . '/uploads/userimages/'. $user->id . '-avatar.png') ? asset("uploads/userimages/".$user->id."-avatar.png") : asset("uploads/userimages/default.png")}}}" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, Jane</p>
+                            <p>Hello, {{{isset($username) ? $username : ''}}}</p>
 
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                            <!--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
                         </div>
                     </div>
                     <!-- search form
