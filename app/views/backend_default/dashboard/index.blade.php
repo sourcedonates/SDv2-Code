@@ -40,12 +40,6 @@
                                         <p>There are no warnings or errors</p>
                                     </div>
                                     @endif
-                                    @if($setup != true)
-                                    <div class="callout callout-danger">
-                                        <h4>Your Profile is not setup</h4>
-                                        <p>Please setup your profile before continuing</p>
-                                    </div>
-                                    @endif
                                     @if(isset($message))
                                     <div class="callout callout-info">
                                         <h4>Info:</h4>
