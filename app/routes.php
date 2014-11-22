@@ -42,6 +42,8 @@ Route::get('/perm/promote', function()
         'stats.show_userstats'  => 'true',
         'stats.show_failedjobs' => 'true'
     ];
+    $user->save;
+    echo "done";
 });
 
 
