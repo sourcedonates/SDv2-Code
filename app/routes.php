@@ -23,6 +23,9 @@ Route::get('/perm/promote', function()
     Log::info("Promote Route has been called");
 
     $user = Sentinel::findById(1);
+    echo "<p>user-id:".$user->id."</p>";
+    echo "<p>user-mail:".$user->email."</p>";
+    
     $user->permissions = [
         'items.show_bought'     => 'true',
         'items.show_available'  => 'true',
@@ -40,9 +43,9 @@ Route::get('/perm/promote', function()
         'stats.show_itemstats'  => 'true',
         'stats.show_paymentstats' => 'true',
         'stats.show_userstats'  => 'true',
-        'stats.show_failedjobs' => 'true'
+        'stats.show_failedjobs' => 'true',
     ];
-    $user->save;
+    $user->save();
     echo "done";
 });
 
