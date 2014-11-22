@@ -155,7 +155,7 @@ class PaymentController extends BaseController
 
         if ($user != false)
         {
-            if ($user->hasAccess("payment.show_pp"))
+            if ($user->hasAccess(['payment.show_pp']))
             {
                 //Get the user details from the db
                 $user_infos = SDUserinfo::where('user_id', $user->id)->get();
@@ -171,7 +171,7 @@ class PaymentController extends BaseController
             }
             else
             {
-                return Redirect::to('/user/dashboard')->with('error', 'You do not have the required permissions');
+                return Redirect::to('/user/dashboard')->with('error', 'You do not have the required permissions to access the selected page');
             }
         }
         else
