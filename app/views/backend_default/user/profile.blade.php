@@ -82,7 +82,7 @@
                                     <h3 class="box-title">Callouts</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    @if($setup == true && !isset($message) && !isset($warning))
+                                    @if($setup == true && !isset($message) && !isset($warning)&& !isset($error))
                                     <div class="callout callout-info">
                                         <h4>Everything is fine</h4>
                                         <p>There are no warnings or errors and your profile is setup</p>
@@ -104,6 +104,12 @@
                                     <div class="callout callout-danger">
                                         <h4>Warning:</h4>
                                         <p>{{{$warning}}}</p>
+                                    </div>
+                                    @endif
+                                    @if(isset($error))
+                                    <div class="callout callout-danger">
+                                        <h4>Error:</h4>
+                                        <p>{{{$error}}}</p>
                                     </div>
                                     @endif
                                 </div><!-- /.box-body -->

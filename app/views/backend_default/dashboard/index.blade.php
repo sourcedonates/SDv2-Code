@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-    
+
     @include('backend_default.parts.head')
-    
+
     <body class="skin-blue">
-        
+
         @include('backend_default.parts.header')
-        
+
         <div class="wrapper row-offcanvas row-offcanvas-left">
             @include('backend_default.parts.sidebar')
 
@@ -26,7 +26,48 @@
 
                 <!-- Main content -->
                 <section class="content">
-                    Welcome to the SDv2 Backend
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box box-info">
+                                <div class="box-header">
+                                    <i class="fa fa-bullhorn"></i>
+                                    <h3 class="box-title">Callouts</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
+                                    @if(!isset($message) && !isset($warning) && !isset($error))
+                                    <div class="callout callout-info">
+                                        <h4>Everything is fine</h4>
+                                        <p>There are no warnings or errors</p>
+                                    </div>
+                                    @endif
+                                    @if($setup != true)
+                                    <div class="callout callout-danger">
+                                        <h4>Your Profile is not setup</h4>
+                                        <p>Please setup your profile before continuing</p>
+                                    </div>
+                                    @endif
+                                    @if(isset($message))
+                                    <div class="callout callout-info">
+                                        <h4>Info:</h4>
+                                        <p>{{{$message}}}</p>
+                                    </div>
+                                    @endif
+                                    @if(isset($warning))
+                                    <div class="callout callout-danger">
+                                        <h4>Warning:</h4>
+                                        <p>{{{$warning}}}</p>
+                                    </div>
+                                    @endif
+                                    @if(isset($error))
+                                    <div class="callout callout-danger">
+                                        <h4>Error:</h4>
+                                        <p>{{{$error}}}</p>
+                                    </div>
+                                    @endif
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+                        </div>
+                    </div>
 
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->

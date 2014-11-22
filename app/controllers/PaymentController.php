@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SDv2 Payment Controller
  * 
@@ -109,7 +110,7 @@ class PaymentController extends BaseController
         $items[] = array("id" => $item->id, "count" => "1");
 
         $items = json_encode($items);
-        
+
         //Check if a steamid is added to the users account
         //save the transaction to the transaction db
         $transaction = new SDPaymentTransaction;
@@ -142,6 +143,58 @@ class PaymentController extends BaseController
         $transaction_id += rand(1, 9);
 
         return $transaction_id;
+    }
+
+    /**
+     * Show the configured payment provider
+     * 
+     */
+    public function show_providers()
+    {
+        $user = $this->check_login();
+
+        if ($user != false)
+        {
+            if ($user->hasAccess())
+            {
+                //Get the user details from the db
+                $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+
+                foreach ($user_infos as $user_info)
+                {
+                    $data[$user_info->type] = $user_info->value;
+                }
+
+                $data['user'] = $user;
+                $template = Config::get('sdv2.system_backendtemplate');
+                return View::make($template . ".payment.show_pp", $data);
+            }
+            else
+            {
+                return Redirect::to('/user/dashboard')->with('error', 'Wrong Extension / Mime Type');
+            }
+        }
+        else
+        {
+            return Redirect::to('/user/login');
+        }
+    }
+
+    /**
+     * Login Check
+     * 
+     * Checks if a User is logged in and redirects him to the login page if he is not
+     */
+    private function check_login()
+    {
+        if ($user = Sentinel::check())
+        {
+            return $user;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

@@ -23,26 +23,30 @@ Route::get('/perm/promote', function()
     Log::info("Promote Route has been called");
 
     $user = Sentinel::findById(1);
-    echo "<p>user-id:".$user->id."</p>";
-    echo "<p>user-mail:".$user->email."</p>";
-    
+    echo "<p>user-id:" . $user->id . "</p>";
+    echo "<p>user-mail:" . $user->email . "</p>";
+
     $user->permissions = [
-        'items.show_bought'     => 'true',
-        'items.show_available'  => 'true',
-        'items.create_item'     => 'true',
-        'items.assign_item'     => 'true',
-        'items.show_ip'         => 'true',
-        'items.create_ip'       => 'true',
-        'payment.show_pp'       => 'true',
-        'payment.create_pp'     => 'true',
+        'items.show_bought' => 'true',
+        'items.show_available' => 'true',
+        'items.show_ip' => 'true',
+        'items.create_item' => 'true',
+        'items.create_ip' => 'true',
+        'items.assign_item' => 'true',
+        'payment.show_pp' => 'true',
         'payment.show_transactions' => 'true',
+        'payment.create_pp' => 'true',
         'payment.create_transaction' => 'true',
-        'user.show_profile'     => 'true',
-        'user.create_user'      => 'true',
-        'user.show_users'       => 'true',
-        'stats.show_itemstats'  => 'true',
+        'user.show_profile' => 'true',
+        'user.show_users' => 'true',
+        'user.edit_usersprofile' => 'true',
+        'user.edit_useritems' => 'true',
+        'user.delete_useritems' => 'true',
+        'user.create_user' => 'true',
+        'user.delete_user' => 'true',
+        'stats.show_itemstats' => 'true',
         'stats.show_paymentstats' => 'true',
-        'stats.show_userstats'  => 'true',
+        'stats.show_userstats' => 'true',
         'stats.show_failedjobs' => 'true',
     ];
     $user->save();
