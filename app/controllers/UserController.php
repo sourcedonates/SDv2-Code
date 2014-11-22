@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SDv2 User Controller
  * 
@@ -172,6 +173,14 @@ class UserController extends BaseController
 
         if ($user != false)
         {
+            //Get the user details from the db
+            $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+
+            foreach ($user_infos as $user_info)
+            {
+                $data[$user_info->type] = $user_info->value;
+            }
+            
             $data['user'] = $user;
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".dashboard.index", $data);
@@ -349,21 +358,21 @@ class UserController extends BaseController
      */
     public function do_upload_image()
     {
-        $user = $this->check_login();         
-                
+        $user = $this->check_login();
+
         if ($user != false)
         {
-            Log::info("Picture Upload - Startet by User:".$user->id);
-            
+            Log::info("Picture Upload - Startet by User:" . $user->id);
+
             if (Input::hasFile('userimage'))
             {
                 $file = Input::file('userimage');
-                
+
                 Log::info("Picture Upload - File uploaded");
-                
+
                 if ($file->getClientOriginalExtension() == 'png' && $file->getMimeType() == 'image/png')
                 {
-                    $file->move(public_path() . '/uploads/userimages/'. $user->id . '-avatar.png');
+                    $file->move(public_path() . '/uploads/userimages/' . $user->id . '-avatar.png');
                     Log::info("Pciture Upload - Moved and Renamed");
                     return Redirect::to('/user/profile')->with('message', 'Image upload successfull');
                 }

@@ -88,7 +88,7 @@ class PaymentController extends BaseController
             }
             else
             {
-                Log::info("transaction id " . $transaction_id . " already exists - genearating a new one");
+                Log::error("transaction id " . $transaction_id . " already exists");
             }
         }
         Log::info("transaction id: " . $transaction_id);
