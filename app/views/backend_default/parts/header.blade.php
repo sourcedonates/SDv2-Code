@@ -22,18 +22,19 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>Jane Doe <i class="caret"></i></span>
+                                <span>{{{isset($username) ? $username : ''}} <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <img src="{{{File::exists(public_path() . '/uploads/userimages/'. $user->id . '-avatar.png') ? asset("uploads/userimages/".$user->id."-avatar.png") : asset("uploads/userimages/default.png")}}}" class="img-circle" alt="User Image" />
                                     <p>
-                                        Jane Doe - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        {{{isset($username) ? $username : ''}}
+                                        <small>Member since quite some time</small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
+                                <!--
                                 <li class="user-body">
                                     <div class="col-xs-4 text-center">
                                         <a href="#">Followers</a>
@@ -45,6 +46,7 @@
                                         <a href="#">Friends</a>
                                     </div>
                                 </li>
+                                -->
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
