@@ -49,14 +49,14 @@
                                     @if($edit_pp==true)
                                     <div class="form-group">
                                         <label>ID</label>
-                                        <input name=id" type="text" class="form-control" placeholder="{{{$provider->id}}}" disabled/>
+                                        <input name=id" type="text" class="form-control" value="{{{$provider->id}}}" disabled/>
                                     </div>
                                     @endif
 
                                     <div class="form-group">
                                         <label>Position</label>
                                         @if($edit_pp==true)
-                                        <input name="pos" type="text" class="form-control" placeholder="{{{$provider->pos}}}"/>
+                                        <input name="pos" type="text" class="form-control" value="{{{$provider->pos}}}"/>
                                         @else
                                         <input name="pos" type="text" class="form-control"/>
                                         @endif
@@ -65,7 +65,7 @@
                                     <div class="form-group">
                                         <label>Short Name</label>
                                         @if($edit_pp==true)
-                                        <input name="name_short" type="text" class="form-control" placeholder="{{{$provider->name_short}}}"/>
+                                        <input name="name_short" type="text" class="form-control" value="{{{$provider->name_short}}}"/>
                                         @else
                                         <input name="name_short" type="text" class="form-control"/>
                                         @endif
@@ -74,7 +74,7 @@
                                     <div class="form-group">
                                         <label>Long Name</label>
                                         @if($edit_pp==true)
-                                        <input name="name_long" type="text" class="form-control" placeholder="{{{$provider->name_long}}}"/>
+                                        <input name="name_long" type="text" class="form-control" value="{{{$provider->name_long}}}"/>
                                         @else
                                         <input name="name_long" type="text" class="form-control"/>
                                         @endif
@@ -83,7 +83,7 @@
                                     <div class="form-group">
                                         <label>Provider Class</label>
                                         @if($edit_pp==true)
-                                        <input name="provider_class" type="text" class="form-control" placeholder="{{{$provider->provider_class}}}"/>
+                                        <input name="provider_class" type="text" class="form-control" value="{{{$provider->provider_class}}}"/>
                                         @else
                                         <input name="provider_class" type="text" class="form-control"/>
                                         @endif
@@ -110,7 +110,7 @@
                                     <div class="form-group">
                                         <label>Currencies</label>
                                         @if($edit_pp==true)
-                                        <textarea name="currencies" class="form-control" rows="3" placeholder="{{{nl2br($provider->currencies)}}}"></textarea>
+                                        <textarea name="currencies" class="form-control" rows="3" value="{{{nl2br($provider->currencies)}}}"></textarea>
                                         @else
                                         <textarea name="currencies" class="form-control" rows="3"></textarea>
                                         @endif
@@ -119,7 +119,7 @@
                                     <div class="form-group">
                                         <label>Settings</label>
                                         @if($edit_pp==true)
-                                        <textarea name="settings" class="form-control" rows="3" placeholder="{{{nl2br($provider->settings)}}}"></textarea>
+                                        <textarea name="settings" class="form-control" rows="3" value="{{{nl2br($provider->settings)}}}"></textarea>
                                         @else
                                         <textarea name="settings" class="form-control" rows="3"></textarea>
                                         @endif
@@ -128,13 +128,13 @@
                                     <div class="form-group">
                                         <label>Price</label>
                                         @if($edit_pp==true)
-                                        <textarea name="price" class="form-control" rows="3" placeholder="{{{nl2br($provider->price)}}}"></textarea>
+                                        <textarea name="price" class="form-control" rows="3" value="{{{nl2br($provider->price)}}}"></textarea>
                                         @else
                                         <textarea name="price" class="form-control" rows="3"></textarea>
                                         @endif
                                     </div>
                                     
-                                    <button type=submit form="provider" class="btn btn-success">Edit</button>
+                                    <button type=submit form="provider" class="btn btn-success">Save</button>
                                 </form>
                             </div>
 
