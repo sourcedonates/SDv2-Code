@@ -235,7 +235,7 @@ class PaymentController extends BaseController
             
             //Load the Provider Data
             $data['edit_pp'] = true;
-            $provider = SDPaymentProvider::find($data["provider_id"]);
+            $provider = SDPaymentProvider::find($ppid);
             $data['provider'] = $provider;
            
             // Return the page
