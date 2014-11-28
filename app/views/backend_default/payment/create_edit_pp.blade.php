@@ -109,17 +109,17 @@
 
                                     <div class="form-group">
                                         <label>Currencies</label>
-                                        <textarea name="currencies" class="form-control" rows="3" >@if($edit_pp==true){{{nl2br($provider->currencies)}}}@endif</textarea>
+                                        <textarea name="currencies" class="form-control" rows="3" >@if($edit_pp==true){{{($provider->currencies)}}}@endif</textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Settings</label>
-                                        <textarea name="settings" class="form-control" rows="3" >@if($edit_pp==true){{{nl2br($provider->settings)}}}@endif</textarea>
+                                        <textarea name="settings" class="form-control" rows="3" >@if($edit_pp==true){{{($provider->settings)}}}@endif</textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Price</label>
-                                        <textarea name="price" class="form-control" rows="3" >@if($edit_pp==true){{{nl2br($provider->price)}}}@endif</textarea>
+                                        <textarea name="price" class="form-control" rows="3" >@if($edit_pp==true){{{($provider->price)}}}@endif</textarea>
                                     </div>
                                     
                                     <button type=submit form="provider" class="btn btn-success">Save</button>
