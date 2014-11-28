@@ -30,7 +30,117 @@
 
                 <!-- Main content -->
                 <section class="content">
-                    {{{$ppid}}}
+                    <div class="col-md-12">
+                        <div class="box box-warning">
+                            <div class="box-header">
+                                @if($edit_pp==true)
+                                <h3 class="box-title">Edit the Payment Provider</h3>
+                                @else
+                                <h3 class="box-title">Create a new Payment Provider</h3>
+                                @endif
+                            </div>
+                            <div class="box-body">
+                                @if($edit_pp==true)
+                                <form method="post" action="{{url('/payment/edit_provider/'.$provider->id)}}" id="provider">
+                                    @else 
+                                    <!--<form method="post" action="{{url('/payment/create_provider/')}}">-->
+                                    @endif
+
+                                    @if($edit_pp==true)
+                                    <div class="form-group">
+                                        <label>ID</label>
+                                        <input name=id" type="text" class="form-control" placeholder="{{{$provider->id}}}" disabled/>
+                                    </div>
+                                    @endif
+
+                                    <div class="form-group">
+                                        <label>Position</label>
+                                        @if($edit_pp==true)
+                                        <input name="pos" type="text" class="form-control" placeholder="{{{$provider->pos}}}"/>
+                                        @else
+                                        <input name="pos" type="text" class="form-control"/>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Short Name</label>
+                                        @if($edit_pp==true)
+                                        <input name="name_short" type="text" class="form-control" placeholder="{{{$provider->name_short}}"/>
+                                        @else
+                                        <input name="name_short" type="text" class="form-control"/>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Long Name</label>
+                                        @if($edit_pp==true)
+                                        <input name="name_long" type="text" class="form-control" placeholder="{{{$provider->name_long}}}"/>
+                                        @else
+                                        <input name="name_long" type="text" class="form-control"/>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Provider Class</label>
+                                        @if($edit_pp==true)
+                                        <input name="provider_class" type="text" class="form-control" placeholder="{{{$provider->provider_class}}}"/>
+                                        @else
+                                        <input name="provider_class" type="text" class="form-control"/>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Select</label>
+                                        <select name="type" class="form-control">
+                                            @if($edit_pp==true)
+                                            @if($provider->type==ipn)
+                                            <option selected value="ipn">ipn</option>
+                                            <option value="instant">instant</option>
+                                            @elseif($provider->type==instant)
+                                            <option value="ipn">ipn</option>
+                                            <option selected value="instant">instant</option>
+                                            @endif
+                                            @else
+                                            <option value="ipn">ipn</option>
+                                            <option value="instant">instant</option>
+                                            @endif
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Currencies</label>
+                                        @if($edit_pp==true)
+                                        <textarea name="currencies" class="form-control" rows="3" placeholder="{{$provider->currencies}}"></textarea>
+                                        @else
+                                        <textarea name="currencies" class="form-control" rows="3"></textarea>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Settings</label>
+                                        @if($edit_pp==true)
+                                        <textarea name="settings" class="form-control" rows="3" placeholder="{{$provider->settings}}"></textarea>
+                                        @else
+                                        <textarea name="settings" class="form-control" rows="3"></textarea>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        @if($edit_pp==true)
+                                        <textarea name="price" class="form-control" rows="3" placeholder="{{$provider->price}}"></textarea>
+                                        @else
+                                        <textarea name="price" class="form-control" rows="3"></textarea>
+                                        @endif
+                                    </div>
+                                    
+                                    <button type=submit form="provider" class="btn btn-success">Edit</button>
+                                </form>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->

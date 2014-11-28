@@ -179,32 +179,37 @@ class PaymentController extends BaseController
      */
     public function show_create_provider()
     {
-        $user = $this->check_login();
+        $has_access = $this->check_access(['payment.create_pp']);
 
-        if ($user != false)
+        if ($has_access['access'] == true)
         {
-            if ($user->hasAccess(['payment.create_pp']))
+            //Load the User Infos
+            $user = $has_access['user'];
+            $data['user'] = $user;
+            $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+            foreach ($user_infos as $user_info)
             {
-                //Load the User Infos
-                $data['user'] = $user;
-                $user_infos = SDUserinfo::where('user_id', $user->id)->get();
-                foreach ($user_infos as $user_info)
-                {
-                    $data[$user_info->type] = $user_info->value;
-                }
-
-                // Return the page
-                $template = Config::get('sdv2.system_backendtemplate');
-                return View::make($template . ".payment.create_edit_pp", $data);
+                $data[$user_info->type] = $user_info->value;
             }
-            else
-            {
-                return Redirect::to('/user/dashboard')->with('error', 'You do not have the required permissions to access the selected page');
-            }
+            
+            //Load the Provider Data
+            $data['edit_pp'] = false;
+            
+            
+            // Return the page
+            $template = Config::get('sdv2.system_backendtemplate');
+            return View::make($template . ".payment.create_edit_pp", $data);
         }
         else
         {
-            return Redirect::to('/user/login');
+            if ($has_access['redirect'] != false)
+            {
+                return $has_access['redirect'];
+            }
+            else
+            {
+                Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
+            }
         }
     }
 
@@ -228,11 +233,11 @@ class PaymentController extends BaseController
                 $data[$user_info->type] = $user_info->value;
             }
             
-            //Load the Page Data
+            //Load the Provider Data
             $data['edit_pp'] = true;
-            $data['ppid'] = $ppid;
-            
-            
+            $provider = SDPaymentProvider::find($data["provider_id"]);
+            $data['provider'] = $provider;
+           
             // Return the page
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".payment.create_edit_pp", $data);
