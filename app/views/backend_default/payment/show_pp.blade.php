@@ -26,44 +26,43 @@
 
                 <!-- Main content -->
                 <section class="content">
-                        <div class="col-xs-12">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Activated Payment Providers</h3>
-                                    <div class="box-tools">
-                                    </div>
-                                </div><!-- /.box-header -->
-                                <div class="box-body table-responsive no-padding">
-                                    <table class="table table-hover">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Pos</th>
-                                            <th>Short Name</th>
-                                            <th>Long Name</th>
-                                            <th>Provider Class</th>
-                                            <th>Type</th>
-                                            <th> </th>
-                                            <th> </th>
-                                        </tr>
-                                        @foreach($paymentproviders as $ppr)
-                                        <tr>
-                                            <td>{{$ppr->id}}</td>
-                                            <td>{{$ppr->pos}}</td>
-                                            <td>{{$ppr->name_short}}</td>
-                                            <td>{{$ppr->name_long}}</td>
-                                            <td>{{{$ppr->provider_class}}}</td>
-                                            <!--<td><span class="label label-success">IPN</span></td>-->
-                                            <td>{{$ppr->type}}</td>
-                                            <td><td><button type=submit form="ppe{{$ppr->id}}" class="btn btn-warning btn-sm">Edit</button></td></td>
-                                            <td><td><button type=submit form="ppd{{$ppr->id}}" class="btn btn-danger btn-sm">Delete</button></td></td>
-                                            <form action="{{url('/payment/edit_provider')}}" method="post" id="ppe{{$ppr->id}}"><input type="hidden" name="pprid" value="{{$ppr->id}}"></form>
-                                            <form action="{{url('/payment/delete_provider')}}" method="post" id="ppd{{$ppr->id}}"><input type="hidden" name="pprid" value="{{$ppr->id}}"></form>
-                                        </tr>
-                                        @endforeach
-                                    </table>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div>
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Activated Payment Providers</h3>
+                                <div class="box-tools">
+                                </div>
+                            </div><!-- /.box-header -->
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Pos</th>
+                                        <th>Short Name</th>
+                                        <th>Long Name</th>
+                                        <th>Provider Class</th>
+                                        <th>Type</th>
+                                        <th> </th>
+                                        <th> </th>
+                                    </tr>
+                                    @foreach($paymentproviders as $ppr)
+                                    <tr>
+                                        <td>{{$ppr->id}}</td>
+                                        <td>{{$ppr->pos}}</td>
+                                        <td>{{$ppr->name_short}}</td>
+                                        <td>{{$ppr->name_long}}</td>
+                                        <td>{{{$ppr->provider_class}}}</td>
+                                        <!--<td><span class="label label-success">IPN</span></td>-->
+                                        <td>{{$ppr->type}}</td>
+                                        <td><td><button type=submit form="ppe{{$ppr->id}}" class="btn btn-warning btn-sm">Edit</button></td></td>
+                                        <td><td><button type=submit form="ppd{{$ppr->id}}" class="btn btn-danger btn-sm">Delete</button></td></td>
+                                    <form action="{{url('/payment/edit_provider')}}" method="post" id="ppe{{$ppr->id}}"><input type="hidden" name="pprid" value="{{$ppr->id}}"></form>
+                                    <form action="{{url('/payment/delete_provider')}}" method="post" id="ppd{{$ppr->id}}"><input type="hidden" name="pprid" value="{{$ppr->id}}"></form>
+                                    </tr>
+                                    @endforeach
+                                </table>
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
                     </div>
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->

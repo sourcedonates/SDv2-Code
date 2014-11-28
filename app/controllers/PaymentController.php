@@ -32,8 +32,6 @@ class PaymentController extends BaseController
     /**
      * Processes the post request.
      * 
-     * Request needs to contain: 
-     * 
      */
     public function process_payment()
     {
@@ -89,7 +87,7 @@ class PaymentController extends BaseController
             }
             else
             {
-                Log::error("transaction id " . $transaction_id . " already exists");
+                Log::warning("transaction id " . $transaction_id . " already exists");
             }
         }
         Log::info("transaction id: " . $transaction_id);
@@ -103,6 +101,7 @@ class PaymentController extends BaseController
         {
             Log::info("User not logged in - Redirected to the login page");
             redirect::to('/user/require_login');
+            exit();
         }
 
         //Generate the item json
@@ -132,22 +131,10 @@ class PaymentController extends BaseController
         $payment->initiate_payment($price, $transaction_id, $data["currency"]);
     }
 
-    private function generate_transaction_id()
-    {
-        $transaction_id = ""; //variable for the transaction code
-        $transaction_id += time(); //add the current timestamp
-        $transaction_id += rand(1, 9); //add 5 random numbers
-        $transaction_id += rand(1, 9);
-        $transaction_id += rand(1, 9);
-        $transaction_id += rand(1, 9);
-        $transaction_id += rand(1, 9);
-
-        return $transaction_id;
-    }
-
     /**
-     * Show the configured payment provider
+     * Show Providers
      * 
+     * Show the configured payment providers
      */
     public function show_providers()
     {
@@ -166,9 +153,9 @@ class PaymentController extends BaseController
                 }
 
                 //Get the PPs from the DB
-                
+
                 $paymentproviders = SDPaymentProvider::get();
-                
+
                 $data["paymentproviders"] = $paymentproviders;
                 // Return the page
                 $template = Config::get('sdv2.system_backendtemplate');
@@ -182,6 +169,83 @@ class PaymentController extends BaseController
         else
         {
             return Redirect::to('/user/login');
+        }
+    }
+
+    /**
+     * Show Create Providers
+     * 
+     * Show the create provider page
+     */
+    public function show_create_provider()
+    {
+        $user = $this->check_login();
+
+        if ($user != false)
+        {
+            if ($user->hasAccess(['payment.create_pp']))
+            {
+                //Load the User Infos
+                $data['user'] = $user;
+                $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+                foreach ($user_infos as $user_info)
+                {
+                    $data[$user_info->type] = $user_info->value;
+                }
+
+                // Return the page
+                $template = Config::get('sdv2.system_backendtemplate');
+                return View::make($template . ".payment.create_edit_pp", $data);
+            }
+            else
+            {
+                return Redirect::to('/user/dashboard')->with('error', 'You do not have the required permissions to access the selected page');
+            }
+        }
+        else
+        {
+            return Redirect::to('/user/login');
+        }
+    }
+
+    /**
+     * Show Edit Provider
+     * 
+     * Shows the edit provider page
+     */
+    public function show_edit_provider()
+    {
+        $has_access = $this->check_access(['payment.edit_pp']);
+
+        if ($has_access['access'] == true)
+        {
+            //Load the User Infos
+            $user = $has_access['user'];
+            $data['user'] = $user;
+            $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+            foreach ($user_infos as $user_info)
+            {
+                $data[$user_info->type] = $user_info->value;
+            }
+            
+            //Load the Page Data
+            $data['edit_pp'] = true;
+            
+            
+            // Return the page
+            $template = Config::get('sdv2.system_backendtemplate');
+            return View::make($template . ".payment.create_edit_pp", $data);
+        }
+        else
+        {
+            if ($has_access['redirect'] != false)
+            {
+                return $has_access['redirect'];
+            }
+            else
+            {
+                Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
+            }
         }
     }
 
@@ -200,6 +264,61 @@ class PaymentController extends BaseController
         {
             return false;
         }
+    }
+
+    /**
+     * Access Check
+     * 
+     * Checks if the User has the required access
+     */
+    private function check_access($access)
+    {
+        $has_access = array();
+        if ($user = Sentinel::check())
+        {
+            if ($user->hasAccess($access))
+            {
+                $has_access['access'] = true;
+                $has_access['redirect'] = false;
+                $has_access['user'] = $user;
+                return $has_access;
+            }
+            else
+            {
+                $has_access['access'] = false;
+                $has_access['redirect'] = Redirect::to('/user/dashboard')->with('error', 'You do not have the required permissions to access the selected page');
+                $has_access['user'] = $user;
+                return $has_access;
+            }
+        }
+        else
+        {
+
+            $has_access['access'] = false;
+            $has_access['redirect'] = Redirect::to('/user/login');
+            $has_access['user'] = false;
+            return $has_access;
+        }
+    }
+
+    /**
+     * Generate a Tranaction ID
+     * 
+     * Generates a Transaction id for a SD Transaction
+     * 
+     * @return int transaction_id
+     */
+    private function generate_transaction_id()
+    {
+        $transaction_id = ""; //variable for the transaction code
+        $transaction_id += time(); //add the current timestamp
+        $transaction_id += rand(1, 9); //add 5 random numbers
+        $transaction_id += rand(1, 9);
+        $transaction_id += rand(1, 9);
+        $transaction_id += rand(1, 9);
+        $transaction_id += rand(1, 9);
+
+        return $transaction_id;
     }
 
 }
