@@ -84,10 +84,10 @@ Route::get('/queue/test2', function()
     return "Pushed to Queue";
 });
 
+
 #
 # Payment Routes
 #
-
 Route::any('/payment/process', 'PaymentController@process_payment'); //Route for accepting the posted form
 # Success / Cancel Return URL
 Route::any('/payment/success', function()
@@ -105,6 +105,7 @@ Route::any('/payment/cancel', function()
     return "Cancel Page";
 });
 
+
 #
 # User Routes
 #
@@ -120,10 +121,6 @@ Route::get('/user', function()
     }
 });
 
-
-#
-# User Pages
-#
 #Login
 Route::get('/user/login', 'UserController@show_login');
 Route::post('/user/login', 'UserController@do_login');
@@ -149,6 +146,17 @@ Route::post('/user/profile', 'UserController@do_change_profile');
 
 #Upload image
 Route::post('/user/upload_image', 'UserController@do_upload_image');
+
+
+#
+#Users Routes
+#
+#Show SD Users
+Route::get('/users/show_user', 'UsersController@show_users');
+
+#Create SD User
+Route::get('/users/create_user', 'UsersController@show_create_user');
+Route::post('/users/create_user', 'UsersController@do_create_user');
 
 #
 # Items Pages

@@ -61,13 +61,12 @@
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-user"></i>
-                                <span>User</span>
+                                <span>Users</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="{{url('user/profile')}}"><i class="fa fa-angle-double-right"></i> User Profile</a></li>
-                                <li><a href="{{url('user/create')}}"><i class="fa fa-angle-double-right"></i> Create new User</a></li>
-                                <li><a href="{{url('user/details')}}"><i class="fa fa-angle-double-right"></i> User Details</a></li>
+                                <li><a href="{{url('users/show_user')}}"><i class="fa fa-angle-double-right"></i> Show Users</a></li>
+                                <li><a href="{{url('users/create_user')}}"><i class="fa fa-angle-double-right"></i> Create new User</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
