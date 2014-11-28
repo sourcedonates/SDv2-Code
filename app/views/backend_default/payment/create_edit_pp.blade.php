@@ -93,10 +93,10 @@
                                         <label>Select</label>
                                         <select name="type" class="form-control">
                                             @if($edit_pp==true)
-                                            @if($provider->type==ipn)
+                                            @if($provider->type=="ipn")
                                             <option selected value="ipn">ipn</option>
                                             <option value="instant">instant</option>
-                                            @elseif($provider->type==instant)
+                                            @elseif($provider->type=="instant")
                                             <option value="ipn">ipn</option>
                                             <option selected value="instant">instant</option>
                                             @endif
