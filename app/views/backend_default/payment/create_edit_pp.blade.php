@@ -65,7 +65,7 @@
                                     <div class="form-group">
                                         <label>Short Name</label>
                                         @if($edit_pp==true)
-                                        <input name="name_short" type="text" class="form-control" placeholder="{{{$provider->name_short}}"/>
+                                        <input name="name_short" type="text" class="form-control" placeholder="{{{$provider->name_short}}}"/>
                                         @else
                                         <input name="name_short" type="text" class="form-control"/>
                                         @endif
@@ -110,7 +110,7 @@
                                     <div class="form-group">
                                         <label>Currencies</label>
                                         @if($edit_pp==true)
-                                        <textarea name="currencies" class="form-control" rows="3" placeholder="{{$provider->currencies}}"></textarea>
+                                        <textarea name="currencies" class="form-control" rows="3" placeholder="{{{$provider->currencies}}}"></textarea>
                                         @else
                                         <textarea name="currencies" class="form-control" rows="3"></textarea>
                                         @endif
@@ -119,7 +119,7 @@
                                     <div class="form-group">
                                         <label>Settings</label>
                                         @if($edit_pp==true)
-                                        <textarea name="settings" class="form-control" rows="3" placeholder="{{$provider->settings}}"></textarea>
+                                        <textarea name="settings" class="form-control" rows="3" placeholder="{{{$provider->settings}}}"></textarea>
                                         @else
                                         <textarea name="settings" class="form-control" rows="3"></textarea>
                                         @endif
@@ -128,7 +128,7 @@
                                     <div class="form-group">
                                         <label>Price</label>
                                         @if($edit_pp==true)
-                                        <textarea name="price" class="form-control" rows="3" placeholder="{{$provider->price}}"></textarea>
+                                        <textarea name="price" class="form-control" rows="3" placeholder="{{{$provider->price}}}"></textarea>
                                         @else
                                         <textarea name="price" class="form-control" rows="3"></textarea>
                                         @endif
