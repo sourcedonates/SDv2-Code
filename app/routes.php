@@ -161,6 +161,7 @@ Route::get('/items/available', 'ItemsController@show_available');
 
 #Show create items page
 Route::get('/items/create', 'ItemsController@show_create');
+Route::post('/items/create', 'ItemsController@do_create');
 
 #Show assign items page
 Route::get('/items/assign', 'ItemsController@show_assign');
@@ -180,12 +181,15 @@ Route::get('/payment/show_provider', 'PaymentController@show_providers');
 
 # Create new payment provider
 Route::get('/payment/create_provider', 'PaymentController@show_create_provider');
+Route::post('/payment/create_provider', 'PaymentController@do_create_provider');
 
-# Create new payment provider
-Route::get('/payment/edit_provider', 'PaymentController@show_edit_provider');
+# Edit a existing payment provider
+Route::get('/payment/edit_provider/{ppid}', 'PaymentController@show_edit_provider');
+Route::post('/payment/edit_provider/{ppid}', 'PaymentController@do_edit_provider');
 
-# Create new payment provider
-Route::get('/payment/delete_provider', 'PaymentController@show_delete_provider');
+# Delete a existing payment provider
+Route::get('/payment/delete_provider/{ppid}', 'PaymentController@show_delete_provider');
+Route::post('/payment/delete_provider/{ppid}', 'PaymentController@do_delete_provider');
 
 # Show payment transactions
 Route::get('/payment/show_transaction', 'PaymentController@show_transactions');

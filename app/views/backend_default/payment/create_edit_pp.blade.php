@@ -18,17 +18,19 @@
                         Payment
                         @if($edit_pp==true)<small>Edit a PP</small>
                         @else <small>Create a new PP</small>
+                        @endif
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                         @if($edit_pp==true)<li class="active">PP Edit</li>
                         @else <li class="active">PP Create</li>
+                        @endif
                     </ol>
                 </section>
 
                 <!-- Main content -->
                 <section class="content">
-
+                    {{{$ppid}}}
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->

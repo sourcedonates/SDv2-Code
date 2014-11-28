@@ -213,7 +213,7 @@ class PaymentController extends BaseController
      * 
      * Shows the edit provider page
      */
-    public function show_edit_provider()
+    public function show_edit_provider($ppid)
     {
         $has_access = $this->check_access(['payment.edit_pp']);
 
@@ -230,6 +230,7 @@ class PaymentController extends BaseController
             
             //Load the Page Data
             $data['edit_pp'] = true;
+            $data['ppid'] = $ppid;
             
             
             // Return the page
