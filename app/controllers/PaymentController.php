@@ -191,11 +191,11 @@ class PaymentController extends BaseController
             {
                 $data[$user_info->type] = $user_info->value;
             }
-            
+
             //Load the Provider Data
             $data['edit_pp'] = false;
-            
-            
+
+
             // Return the page
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".payment.create_edit_pp", $data);
@@ -208,7 +208,7 @@ class PaymentController extends BaseController
             }
             else
             {
-                Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
+                return Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
             }
         }
     }
@@ -232,12 +232,12 @@ class PaymentController extends BaseController
             {
                 $data[$user_info->type] = $user_info->value;
             }
-            
+
             //Load the Provider Data
             $data['edit_pp'] = true;
             $provider = SDPaymentProvider::find($ppid);
             $data['provider'] = $provider;
-           
+
             // Return the page
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".payment.create_edit_pp", $data);
@@ -250,7 +250,81 @@ class PaymentController extends BaseController
             }
             else
             {
-                Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
+                return Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
+            }
+        }
+    }
+
+    /**
+     * Do Create Provider
+     * 
+     * Creates a Payment Provider
+     */
+    public function do_create_provider()
+    {
+        $has_access = $this->check_access(['payment.create_pp']);
+
+        if ($has_access['access'] == true)
+        {
+            $provider = new SDPaymentProvider;
+            $provider->pos = Input::get('pos');
+            $provider->name_short = Input::get('name_short');
+            $provider->name_long = Input::get('name_long');
+            $provider->provider_class = Input::get('provider_class');
+            $provider->type = Input::get('type');
+            $provider->currencies = Input::get('currencies');
+            $provider->settings = Input::get('settings');
+            $provider->price = Input::get('price');
+            $provider->save();
+            
+            return Redirect::to('/user/dashboard')->with('message', 'Payment Provider has been created');
+        }
+        else
+        {
+            if ($has_access['redirect'] != false)
+            {
+                return $has_access['redirect'];
+            }
+            else
+            {
+                return Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
+            }
+        }
+    }
+
+    /**
+     * Do Edit Provider
+     * 
+     * Edits a Payment Provider
+     */
+    public function do_edit_provider($ppid)
+    {
+        $has_access = $this->check_access(['payment.edit_pp']);
+
+        if ($has_access['access'] == true)
+        {
+            $provider = SDPaymentProvider::find($ppid);
+            $provider->pos = Input::get('pos');
+            $provider->name_short = Input::get('name_short');
+            $provider->name_long = Input::get('name_long');
+            $provider->provider_class = Input::get('provider_class');
+            $provider->type = Input::get('type');
+            $provider->currencies = Input::get('currencies');
+            $provider->settings = Input::get('settings');
+            $provider->price = Input::get('price');
+            $provider->save();
+            
+            return Redirect::to('/user/dashboard')->with('message', 'Payment Provider has been edited');
+        }
+        else
+        {
+            if ($has_access['redirect'] != false)
+            {
+                return $has_access['redirect'];
+            }
+            else
+            {
+                return Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
             }
         }
     }
