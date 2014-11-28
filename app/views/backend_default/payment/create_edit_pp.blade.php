@@ -109,29 +109,17 @@
 
                                     <div class="form-group">
                                         <label>Currencies</label>
-                                        @if($edit_pp==true)
-                                        <textarea name="currencies" class="form-control" rows="3" value="{{{$provider->currencies}}}"></textarea>
-                                        @else
-                                        <textarea name="currencies" class="form-control" rows="3"></textarea>
-                                        @endif
+                                        <textarea name="currencies" class="form-control" rows="3" >@if($edit_pp==true){{{nl2br($provider->currencies)}}}@endif</textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Settings</label>
-                                        @if($edit_pp==true)
-                                        <textarea name="settings" class="form-control" rows="3" value="{{{$provider->setting}}}"></textarea>
-                                        @else
-                                        <textarea name="settings" class="form-control" rows="3"></textarea>
-                                        @endif
+                                        <textarea name="settings" class="form-control" rows="3" >@if($edit_pp==true){{{nl2br($provider->settings)}}}@endif</textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Price</label>
-                                        @if($edit_pp==true)
-                                        <textarea name="price" class="form-control" rows="3" value="{{{$provider->price}}}"></textarea>
-                                        @else
-                                        <textarea name="price" class="form-control" rows="3"></textarea>
-                                        @endif
+                                        <textarea name="price" class="form-control" rows="3" >@if($edit_pp==true){{{nl2br($provider->price)}}}@endif</textarea>
                                     </div>
                                     
                                     <button type=submit form="provider" class="btn btn-success">Save</button>
