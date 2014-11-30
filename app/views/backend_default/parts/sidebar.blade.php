@@ -65,7 +65,7 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="{{url('users/show_user')}}"><i class="fa fa-angle-double-right"></i> Show Users</a></li>
+                                <li><a href="{{url('users/show_users')}}"><i class="fa fa-angle-double-right"></i> Show Users</a></li>
                                 <li><a href="{{url('users/create_user')}}"><i class="fa fa-angle-double-right"></i> Create new User</a></li>
                             </ul>
                         </li>

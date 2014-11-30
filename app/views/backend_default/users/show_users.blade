@@ -15,12 +15,13 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Payment
-                        <small>Available PPs</small>
+                        Users
+                        <small>Show Users</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Available PPs</li>
+                        <li class="active">Users</li>
+                        <li class="active">Show Users</li>
                     </ol>
                 </section>
 
@@ -29,7 +30,7 @@
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header">
-                                <h3 class="box-title">Activated Payment Providers</h3>
+                                <h3 class="box-title">SD Users</h3>
                                 <div class="box-tools">
                                 </div>
                             </div><!-- /.box-header -->
@@ -37,27 +38,21 @@
                                 <table class="table table-hover">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Pos</th>
-                                        <th>Short Name</th>
-                                        <th>Long Name</th>
-                                        <th>Provider Class</th>
-                                        <th>Type</th>
+                                        <th>Email</th>
+                                        <th>Permissions</th>
+                                        <th>Last Login</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
-                                    @foreach($paymentproviders as $ppr)
+                                    @foreach($users as $user)
                                     <tr>
-                                        <td>{{$ppr->id}}</td>
-                                        <td>{{$ppr->pos}}</td>
-                                        <td>{{$ppr->name_short}}</td>
-                                        <td>{{$ppr->name_long}}</td>
-                                        <td>{{{$ppr->provider_class}}}</td>
-                                        <!--<td><span class="label label-success">IPN</span></td>-->
-                                        <td>{{$ppr->type}}</td>
-                                        <td><td><button type=submit form="ppe{{$ppr->id}}" class="btn btn-warning btn-sm">Edit</button></td></td>
-                                        <td><td><button type=submit form="ppd{{$ppr->id}}" class="btn btn-danger btn-sm">Delete</button></td></td>
-                                    <form action="{{url('/payment/edit_provider/'.$ppr->id)}}" method="get" id="ppe{{$ppr->id}}"></form>
-                                    <form action="{{url('/payment/delete_provider/'.$ppr->id)}}" method="get" id="ppd{{$ppr->id}}"></form>
+                                        <td>{{$user->id}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->last_login}}</td>
+                                        <td><td><button type=submit form="ue{{$user->id}}" class="btn btn-warning btn-sm">Edit</button></td></td>
+                                        <td><td><button type=submit form="ud{{$user->id}}" class="btn btn-danger btn-sm">Delete</button></td></td>
+                                    <form action="{{url('/users/edit_user/'.$user->id)}}" method="get" id="ue{{$user->id}}"></form>
+                                    <form action="{{url('/users/delete_user/'.$user->id)}}" method="get" id="ud{{$user->id}}"></form>
                                     </tr>
                                     @endforeach
                                 </table>

@@ -152,11 +152,16 @@ Route::post('/user/upload_image', 'UserController@do_upload_image');
 #Users Routes
 #
 #Show SD Users
-Route::get('/users/show_user', 'UsersController@show_users');
+Route::get('/users/show_users', 'UsersController@show_users');
 
 #Create SD User
 Route::get('/users/create_user', 'UsersController@show_create_user');
 Route::post('/users/create_user', 'UsersController@do_create_user');
+
+#Edit SD User
+Route::get('/users/edit_user','UsersController@show_edit_user');
+Route::post('/user/edit_user','UsersController@do_edit_user');
+
 
 #
 # Items Pages
