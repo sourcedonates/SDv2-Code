@@ -159,8 +159,12 @@ Route::get('/users/create_user', 'UsersController@show_create_user');
 Route::post('/users/create_user', 'UsersController@do_create_user');
 
 #Edit SD User
-Route::get('/users/edit_user','UsersController@show_edit_user');
-Route::post('/user/edit_user','UsersController@do_edit_user');
+Route::get('/users/edit_user/{uid}','UsersController@show_edit_user');
+Route::post('/users/edit_user/{uid}','UsersController@do_edit_user');
+
+#Delete SD User
+Route::get('/users/delete_user/{uid}','UsersController@show_delete_user');
+Route::post('/users/delete_user/{uid}','UsersController@do_delete_user');
 
 
 #

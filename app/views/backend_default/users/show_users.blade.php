@@ -39,7 +39,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Email</th>
-                                        <th>Permissions</th>
+                                        <th>Last Login</th>
                                         <th>Last Login</th>
                                         <th>Edit</th>
                                         <th>Delete</th>

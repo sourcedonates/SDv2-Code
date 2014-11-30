@@ -68,11 +68,31 @@ class UsersController extends BaseController
     }
 
     /**
-     * Create User
+     * Show Create User
      * 
-     * Create a new User
+     * Shows the Create User Page
      */
-    public function create_user()
+    public function show_create_user()
+    {
+        
+    }
+
+    /**
+     * Show Edit User
+     * 
+     * Shows the Edit User Page
+     */
+    public function show_edit_user()
+    {
+        
+    }
+
+    /**
+     * Show Delete User
+     * 
+     * Shows the Delete User Page
+     */
+    public function show_delete_user()
     {
         
     }
