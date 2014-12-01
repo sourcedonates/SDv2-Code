@@ -40,6 +40,7 @@ Route::get('/perm/promote', function()
         'payment.edit_pp' => true,
         'payment.create_pp' => true,
         'payment.create_transaction' => true,
+        'payment.delete_pp' => true,
         'user.show_profile' => true,
         'users.show_users' => true,
         'users.edit_user' => true,
@@ -170,58 +171,60 @@ Route::post('/users/delete_user/{uid}',['before' => 'access:users.delete_user','
 # Items Pages
 #
 #Show bought items
-Route::get('/items/bought', 'ItemsController@show_bought');
+Route::get('/items/bought',['before' => 'access:items.show_bought','uses' => 'ItemsController@show_bought']);
 
 #Show available items
-Route::get('/items/available', 'ItemsController@show_available');
+Route::get('/items/available',['before' => 'access:items.show_available','uses' => 'ItemsController@show_available']);
 
 #Show create items page
-Route::get('/items/create', 'ItemsController@show_create');
-Route::post('/items/create', 'ItemsController@do_create');
+Route::get('/items/create',['before' => 'access:items.create_item','uses' => 'ItemsController@show_create']);
+Route::post('/items/create',['before' => 'access:items.create_item','uses' => 'ItemsController@do_create']);
 
 #Show assign items page
-Route::get('/items/assign', 'ItemsController@show_assign');
+Route::get('/items/assign',['before' => 'access:items.assign_item','uses' => 'ItemsController@show_assign']);
 
 #Show show_provider page
-Route::get('/items/show_provider', 'ItemsController@show_providers');
+Route::get('/items/show_provider',['before' => 'access:show_ip','uses' => 'ItemsController@show_providers']);
 
 #Show create provider page
-Route::get('/items/create_bought', 'ItemsController@show_create_provider');
+Route::get('/items/create_provider',['before' => 'access:payment.create_ip','uses' => 'ItemsController@show_create_provider']);
+Route::post('/items/create_provider',['before' => 'access:payment.create_ip','uses' => 'ItemsController@do_create_provider']);
 
 
 #
 # Payment Pages
 #
 # Show available payment provider
-Route::get('/payment/show_provider', 'PaymentController@show_providers');
+Route::get('/payment/show_provider',['before' => 'access:payment.show_pp','uses' => 'PaymentController@show_providers']);
 
 # Create new payment provider
-Route::get('/payment/create_provider', 'PaymentController@show_create_provider');
-Route::post('/payment/create_provider', 'PaymentController@do_create_provider');
+Route::get('/payment/create_provider',['before' => 'access:payment.create_pp','uses' => 'PaymentController@show_create_provider']);
+Route::post('/payment/create_provider',['before' => 'access:payment.create_pp','uses' => 'PaymentController@do_create_provider']);
 
 # Edit a existing payment provider
-Route::get('/payment/edit_provider/{ppid}', 'PaymentController@show_edit_provider');
-Route::post('/payment/edit_provider/{ppid}', 'PaymentController@do_edit_provider');
+Route::get('/payment/edit_provider/{ppid}',['before' => 'access:payment.edit_pp','uses' => 'PaymentController@show_edit_provider']);
+Route::post('/payment/edit_provider/{ppid}',['before' => 'access:payment.edit_pp','uses' => 'PaymentController@do_edit_provider']);
 
 # Delete a existing payment provider
-Route::get('/payment/delete_provider/{ppid}', 'PaymentController@show_delete_provider');
-Route::post('/payment/delete_provider/{ppid}', 'PaymentController@do_delete_provider');
+Route::get('/payment/delete_provider/{ppid}',['before' => 'access:payment.delete_pp','uses' => 'PaymentController@show_delete_provider']);
+Route::post('/payment/delete_provider/{ppid}',['before' => 'access:payment.delete_pp','uses' => 'PaymentController@do_delete_provider']);
 
 # Show payment transactions
-Route::get('/payment/show_transaction', 'PaymentController@show_transactions');
+Route::get('/payment/show_transactions',['before' => 'access:payment.show_transactions','uses' => 'PaymentController@show_transactions']);
 
 # Add manual transaction
-Route::get('/payment/add_transaction', 'PaymentController@add_transaction');
+Route::get('/payment/create_transaction',['before' => 'access:payment.create_transaction','uses' => 'PaymentController@show_create_transaction']);
+Route::post('/payment/create_transaction',['before' => 'access:payment.create_transaction','uses' => 'PaymentController@do_create_transaction']);
 
 
 #
 # Stats / Info Pages
 #
 # Show item stats
-Route::get('/stats/item', 'StatsController@show_itemstats');
+Route::get('/stats/item',['before' => 'access:stats.show_itemstats','uses' => 'StatsController@show_itemstats']);
 
 # Show payment stats
-Route::get('/stats/payment', 'StatsController@show_paymentstats');
+Route::get('/stats/payment',['before' => 'access:stats.show_paymentstats','uses' => 'StatsController@show_paymentstats']);
 
 # Show user stats
-Route::get('/stats/user', 'StatsController@show_userstats');
+Route::get('/stats/user',['before' => 'access:stats.show_paymentstats','uses' => 'StatsController@show_userstats']);

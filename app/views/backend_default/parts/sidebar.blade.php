@@ -54,8 +54,8 @@
                             <ul class="treeview-menu">
                                 <li><a href="{{url('payment/show_provider')}}"><i class="fa fa-angle-double-right"></i> Available PPs</a></li>
                                 <li><a href="{{url('payment/create_provider')}}"><i class="fa fa-angle-double-right"></i> Create new PP</a></li>
-                                <li><a href="{{url('payment/show_transaction')}}"><i class="fa fa-angle-double-right"></i> Show Transactions</a></li>
-                                <li><a href="{{url('payment/add_transaction')}}"><i class="fa fa-angle-double-right"></i> Add a manual transaction</a></li>
+                                <li><a href="{{url('payment/show_transactions')}}"><i class="fa fa-angle-double-right"></i> Show Transactions</a></li>
+                                <li><a href="{{url('payment/create_transaction')}}"><i class="fa fa-angle-double-right"></i> Add a manual transaction</a></li>
                             </ul>
                         </li>
                         <li class="treeview">

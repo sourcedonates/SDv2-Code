@@ -138,38 +138,24 @@ class PaymentController extends BaseController
      */
     public function show_providers()
     {
-        $user = $this->check_login();
+        $user = Sentinel::check();
 
-        if ($user != false)
+        //Load the User Infos
+        $data['user'] = $user;
+        $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+        foreach ($user_infos as $user_info)
         {
-            if ($user->hasAccess(['payment.show_pp']))
-            {
-                //Load the User Infos
-                $data['user'] = $user;
-                $user_infos = SDUserinfo::where('user_id', $user->id)->get();
-                foreach ($user_infos as $user_info)
-                {
-                    $data[$user_info->type] = $user_info->value;
-                }
-
-                //Get the PPs from the DB
-
-                $paymentproviders = SDPaymentProvider::get();
-
-                $data["paymentproviders"] = $paymentproviders;
-                // Return the page
-                $template = Config::get('sdv2.system_backendtemplate');
-                return View::make($template . ".payment.show_pp", $data);
-            }
-            else
-            {
-                return Redirect::to('/user/dashboard')->with('error', 'You do not have the required permissions to access the selected page');
-            }
+            $data[$user_info->type] = $user_info->value;
         }
-        else
-        {
-            return Redirect::to('/user/login');
-        }
+
+        //Get the PPs from the DB
+
+        $paymentproviders = SDPaymentProvider::get();
+
+        $data["paymentproviders"] = $paymentproviders;
+        // Return the page
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".payment.show_pp", $data);
     }
 
     /**
@@ -179,38 +165,21 @@ class PaymentController extends BaseController
      */
     public function show_create_provider()
     {
-        $has_access = $this->check_access(['payment.create_pp']);
-
-        if ($has_access['access'] == true)
+        //Load the User Infos
+        $user = Sentinel::check();
+        $data['user'] = $user;
+        $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+        foreach ($user_infos as $user_info)
         {
-            //Load the User Infos
-            $user = $has_access['user'];
-            $data['user'] = $user;
-            $user_infos = SDUserinfo::where('user_id', $user->id)->get();
-            foreach ($user_infos as $user_info)
-            {
-                $data[$user_info->type] = $user_info->value;
-            }
-
-            //Load the Provider Data
-            $data['edit_pp'] = false;
-
-
-            // Return the page
-            $template = Config::get('sdv2.system_backendtemplate');
-            return View::make($template . ".payment.create_edit_pp", $data);
+            $data[$user_info->type] = $user_info->value;
         }
-        else
-        {
-            if ($has_access['redirect'] != false)
-            {
-                return $has_access['redirect'];
-            }
-            else
-            {
-                return Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
-            }
-        }
+
+        //Load the Provider Data
+        $data['edit_pp'] = false;
+
+        // Return the page
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".payment.create_edit_pp", $data);
     }
 
     /**
@@ -220,39 +189,23 @@ class PaymentController extends BaseController
      */
     public function show_edit_provider($ppid)
     {
-        $has_access = $this->check_access(['payment.edit_pp']);
-
-        if ($has_access['access'] == true)
+        //Load the User Infos
+        $user = Sentinel::check();
+        $data['user'] = $user;
+        $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+        foreach ($user_infos as $user_info)
         {
-            //Load the User Infos
-            $user = $has_access['user'];
-            $data['user'] = $user;
-            $user_infos = SDUserinfo::where('user_id', $user->id)->get();
-            foreach ($user_infos as $user_info)
-            {
-                $data[$user_info->type] = $user_info->value;
-            }
-
-            //Load the Provider Data
-            $data['edit_pp'] = true;
-            $provider = SDPaymentProvider::find($ppid);
-            $data['provider'] = $provider;
-
-            // Return the page
-            $template = Config::get('sdv2.system_backendtemplate');
-            return View::make($template . ".payment.create_edit_pp", $data);
+            $data[$user_info->type] = $user_info->value;
         }
-        else
-        {
-            if ($has_access['redirect'] != false)
-            {
-                return $has_access['redirect'];
-            }
-            else
-            {
-                return Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
-            }
-        }
+
+        //Load the Provider Data
+        $data['edit_pp'] = true;
+        $provider = SDPaymentProvider::find($ppid);
+        $data['provider'] = $provider;
+
+        // Return the page
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".payment.create_edit_pp", $data);
     }
 
     /**
@@ -262,34 +215,18 @@ class PaymentController extends BaseController
      */
     public function do_create_provider()
     {
-        $has_access = $this->check_access(['payment.create_pp']);
+        $provider = new SDPaymentProvider;
+        $provider->pos = Input::get('pos');
+        $provider->name_short = Input::get('name_short');
+        $provider->name_long = Input::get('name_long');
+        $provider->provider_class = Input::get('provider_class');
+        $provider->type = Input::get('type');
+        $provider->currencies = Input::get('currencies');
+        $provider->settings = Input::get('settings');
+        $provider->price = Input::get('price');
+        $provider->save();
 
-        if ($has_access['access'] == true)
-        {
-            $provider = new SDPaymentProvider;
-            $provider->pos = Input::get('pos');
-            $provider->name_short = Input::get('name_short');
-            $provider->name_long = Input::get('name_long');
-            $provider->provider_class = Input::get('provider_class');
-            $provider->type = Input::get('type');
-            $provider->currencies = Input::get('currencies');
-            $provider->settings = Input::get('settings');
-            $provider->price = Input::get('price');
-            $provider->save();
-            
-            return Redirect::to('/user/dashboard')->with('message', 'Payment Provider has been created');
-        }
-        else
-        {
-            if ($has_access['redirect'] != false)
-            {
-                return $has_access['redirect'];
-            }
-            else
-            {
-                return Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
-            }
-        }
+        return Redirect::to('/user/dashboard')->with('message', 'Payment Provider has been created');
     }
 
     /**
@@ -299,86 +236,18 @@ class PaymentController extends BaseController
      */
     public function do_edit_provider($ppid)
     {
-        $has_access = $this->check_access(['payment.edit_pp']);
+        $provider = SDPaymentProvider::find($ppid);
+        $provider->pos = Input::get('pos');
+        $provider->name_short = Input::get('name_short');
+        $provider->name_long = Input::get('name_long');
+        $provider->provider_class = Input::get('provider_class');
+        $provider->type = Input::get('type');
+        $provider->currencies = Input::get('currencies');
+        $provider->settings = Input::get('settings');
+        $provider->price = Input::get('price');
+        $provider->save();
 
-        if ($has_access['access'] == true)
-        {
-            $provider = SDPaymentProvider::find($ppid);
-            $provider->pos = Input::get('pos');
-            $provider->name_short = Input::get('name_short');
-            $provider->name_long = Input::get('name_long');
-            $provider->provider_class = Input::get('provider_class');
-            $provider->type = Input::get('type');
-            $provider->currencies = Input::get('currencies');
-            $provider->settings = Input::get('settings');
-            $provider->price = Input::get('price');
-            $provider->save();
-            
-            return Redirect::to('/user/dashboard')->with('message', 'Payment Provider has been edited');
-        }
-        else
-        {
-            if ($has_access['redirect'] != false)
-            {
-                return $has_access['redirect'];
-            }
-            else
-            {
-                return Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
-            }
-        }
-    }
-
-    /**
-     * Login Check
-     * 
-     * Checks if a User is logged in and redirects him to the login page if he is not
-     */
-    private function check_login()
-    {
-        if ($user = Sentinel::check())
-        {
-            return $user;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    /**
-     * Access Check
-     * 
-     * Checks if the User has the required access
-     */
-    private function check_access($access)
-    {
-        $has_access = array();
-        if ($user = Sentinel::check())
-        {
-            if ($user->hasAccess($access))
-            {
-                $has_access['access'] = true;
-                $has_access['redirect'] = false;
-                $has_access['user'] = $user;
-                return $has_access;
-            }
-            else
-            {
-                $has_access['access'] = false;
-                $has_access['redirect'] = Redirect::to('/user/dashboard')->with('error', 'You do not have the required permissions to access the selected page');
-                $has_access['user'] = $user;
-                return $has_access;
-            }
-        }
-        else
-        {
-
-            $has_access['access'] = false;
-            $has_access['redirect'] = Redirect::to('/user/login');
-            $has_access['user'] = false;
-            return $has_access;
-        }
+        return Redirect::to('/user/dashboard')->with('message', 'Payment Provider has been edited');
     }
 
     /**
