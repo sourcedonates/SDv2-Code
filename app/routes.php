@@ -122,51 +122,48 @@ Route::get('/user', function()
 });
 
 #Login
-Route::get('/user/login', 'UserController@show_login');
-Route::post('/user/login', 'UserController@do_login');
-Route::get('/user/require_login', 'UserController@show_require_login');
+Route::get('user/login',['before' => 'guest','uses' => 'UserController@show_login']);
+Route::post('user/login',['before' => 'guest','uses' => 'UserController@do_login']);
+Route::get('user/login',['before' => 'guest','uses' => 'UserController@show_require_login']);
 
 #Logout
 Route::any('/user/logout', 'UserController@do_logout');
 
 #Register
-Route::get('/user/register', 'UserController@show_register');
-Route::post('/user/register', 'UserController@do_register');
+Route::get('user/login',['before' => 'guest','uses' => 'UserController@show_register']);
+Route::post('user/login',['before' => 'guest','uses' => 'UserController@do_register']);
 
 #Forgot Password
 Route::get('/user/forgot_password', 'UserController@show_password_reset');
 Route::post('/user/forgot_password', 'UserController@do_password_reset');
 
 #Dashboard
-Route::get('/user/dashboard', 'UserController@show_dashboard');
+Route::get('/user/dashboard',['before' => 'auth','uses' => 'UserController@show_dashboard']);
 
 #Profile
-Route::get('/user/profile', 'UserController@show_profile');
-Route::post('/user/profile', 'UserController@do_change_profile');
+Route::get('/user/profile',['before' => 'auth','uses' => 'UserController@show_profile']);
+Route::post('/user/profile',['before' => 'auth','uses' => 'UserController@do_change_profile']);
 
 #Upload image
-Route::post('/user/upload_image', 'UserController@do_upload_image');
-
+Route::post('/user/upload_image',['before' => 'auth','uses' => 'UserController@do_upload_image']);
 
 #
 #Users Routes
 #
 #Show SD Users
-Route::get('/users/show_users', 'UsersController@show_users');
+Route::get('/users/show_users',['before' => 'access:users.show_users','uses' => 'UsersController@show_users']);
 
 #Create SD User
-#Route::get('/users/create_user', 'UsersController@show_create_user');
-#Route::post('/users/create_user', 'UsersController@do_create_user');
 Route::get('/users/create_user',['before' => 'access:users.create_user','uses' => 'UsersController@show_create_user']);
+Route::post('/users/create_user',['before' => 'access:users.create_user','uses' => 'UsersController@do_create_user']);
 
 #Edit SD User
-#Route::get('/users/edit_user/{uid}','UsersController@show_edit_user');
-#Route::post('/users/edit_user/{uid}','UsersController@do_edit_user');
 Route::get('/users/edit_user/{uid}',['before' => 'access:users.edit_user','uses' => 'UsersController@show_edit_user']);
+Route::post('/users/edit_user/{uid}',['before' => 'access:users.edit_user','uses' => 'UsersController@do_edit_user']);
 
 #Delete SD User
-Route::get('/users/delete_user/{uid}','UsersController@show_delete_user');
-Route::post('/users/delete_user/{uid}','UsersController@do_delete_user');
+Route::get('/users/delete_user/{uid}',['before' => 'access:users.delete_user','uses' => 'UsersController@show_delete_user']);
+Route::post('/users/delete_user/{uid}',['before' => 'access:users.delete_user','uses' => 'UsersController@do_delete_user']);
 
 
 #

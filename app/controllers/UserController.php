@@ -32,14 +32,7 @@ class UserController extends BaseController
      */
     public function show_login()
     {
-        $login = $this->check_login();
 
-        if ($login != false)
-        {
-            return Redirect::to('/user/dashboard');
-        }
-        else
-        {
             $data = array(
                 "page_name" => "SDv2 | Login"
             );
@@ -50,7 +43,7 @@ class UserController extends BaseController
 
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".login.login", $data);
-        }
+
     }
 
     /**
@@ -66,14 +59,7 @@ class UserController extends BaseController
      */
     public function show_register()
     {
-        $login = $this->check_login();
 
-        if ($login != false)
-        {
-            return Redirect::to('/user/dashboard');
-        }
-        else
-        {
             $data = array(
                 "page_name" => "SDv2 | Registration"
             );
@@ -84,7 +70,7 @@ class UserController extends BaseController
 
             $template = Config::get('sdv2.system_backendtemplate');
             return View::make($template . ".login.register", $data);
-        }
+  
     }
 
     /**
@@ -92,22 +78,13 @@ class UserController extends BaseController
      */
     public function show_password_reset()
     {
-        $login = $this->check_login();
+        $data = array(
+            "page_name" => "SDv2 | Password Reset",
+        );
+        $data = array_merge($data, $data_in);
 
-        if ($login != false)
-        {
-            return Redirect::to('/user/dashboard');
-        }
-        else
-        {
-            $data = array(
-                "page_name" => "SDv2 | Password Reset",
-            );
-            $data = array_merge($data, $data_in);
-
-            $template = Config::get('sdv2.system_backendtemplate');
-            return View::make($template . ".login.reset_passwort", $data);
-        }
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".login.reset_passwort", $data);
     }
 
     /**
@@ -117,51 +94,44 @@ class UserController extends BaseController
      */
     public function show_profile()
     {
-        $user = $this->check_login();
+        $user = Sentinel::check();
 
-        if ($user != false)
+        $data = array();
+        //Check if there is a warning / error / message
+        if (Session::has('message'))
         {
-            $data = array();
-            //Check if there is a warning / error / message
-            if (Session::has('message'))
-            {
-                $data['message'] = Session::get('message');
-            }
-            if (Session::has('warning'))
-            {
-                $data['warning'] = Session::get('warning');
-            }
-            if (Session::has('error'))
-            {
-                $data['error'] = Session::get('error');
-            }
+            $data['message'] = Session::get('message');
+        }
+        if (Session::has('warning'))
+        {
+            $data['warning'] = Session::get('warning');
+        }
+        if (Session::has('error'))
+        {
+            $data['error'] = Session::get('error');
+        }
 
-            //Get the user details from the db
-            $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+        //Get the user details from the db
+        $user_infos = SDUserinfo::where('user_id', $user->id)->get();
 
-            foreach ($user_infos as $user_info)
-            {
-                $data[$user_info->type] = $user_info->value;
-            }
+        foreach ($user_infos as $user_info)
+        {
+            $data[$user_info->type] = $user_info->value;
+        }
 
-            //Check if the profile is setup
-            if (isset($data['username']) && isset($data['steamid']))
-            {
-                $data['setup'] = true;
-            }
-            else
-            {
-                $data['setup'] = false;
-            }
-
-            $data['user'] = $user;
-            $template = Config::get('sdv2.system_backendtemplate');
-            return View::make($template . ".user.profile", $data);
+        //Check if the profile is setup
+        if (isset($data['username']) && isset($data['steamid']))
+        {
+            $data['setup'] = true;
         }
         else
         {
-            return Redirect::to('/user/login');
+            $data['setup'] = false;
         }
+
+        $data['user'] = $user;
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".user.profile", $data);
     }
 
     /**
@@ -169,41 +139,34 @@ class UserController extends BaseController
      */
     public function show_dashboard()
     {
-        $user = $this->check_login();
+        $user = Sentinel::check();
 
-        if ($user != false)
+        $data = array();
+        //Check if there is a warning / error / message
+        if (Session::has('message'))
         {
-            $data = array();
-            //Check if there is a warning / error / message
-            if (Session::has('message'))
-            {
-                $data['message'] = Session::get('message');
-            }
-            if (Session::has('warning'))
-            {
-                $data['warning'] = Session::get('warning');
-            }
-            if (Session::has('error'))
-            {
-                $data['error'] = Session::get('error');
-            }
-            
-            //Get the user details from the db
-            $user_infos = SDUserinfo::where('user_id', $user->id)->get();
-
-            foreach ($user_infos as $user_info)
-            {
-                $data[$user_info->type] = $user_info->value;
-            }
-
-            $data['user'] = $user;
-            $template = Config::get('sdv2.system_backendtemplate');
-            return View::make($template . ".dashboard.index", $data);
+            $data['message'] = Session::get('message');
         }
-        else
+        if (Session::has('warning'))
         {
-            return Redirect::to('/user/login');
+            $data['warning'] = Session::get('warning');
         }
+        if (Session::has('error'))
+        {
+            $data['error'] = Session::get('error');
+        }
+
+        //Get the user details from the db
+        $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+
+        foreach ($user_infos as $user_info)
+        {
+            $data[$user_info->type] = $user_info->value;
+        }
+
+        $data['user'] = $user;
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".dashboard.index", $data);
     }
 
     /**
@@ -309,63 +272,56 @@ class UserController extends BaseController
      */
     public function do_change_profile()
     {
-        $user = $this->check_login();
+        $user = Sentinel::check();
 
-        if ($user != false)
+        //Check if the username and the steamid already exists
+        $check_username = SDUserinfo::where('type', 'username')->where('value', Input::get('username'))->first();
+        if ($check_username != NULL)
         {
-            //Check if the username and the steamid already exists
-            $check_username = SDUserinfo::where('type', 'username')->where('value', Input::get('username'))->first();
-            if ($check_username != NULL)
+            //The username already exists
+            if ($check_username->user_id != $user->id)
             {
-                //The username already exists
-                if ($check_username->user_id != $user->id)
-                {
-                    //The username has been taken by someone else
-                    return Redirect::to('/user/profile')->with('error', 'Update Failed. Username is already taken by someone else');
-                    exit(0);
-                }
+                //The username has been taken by someone else
+                return Redirect::to('/user/profile')->with('error', 'Update Failed. Username is already taken by someone else');
+                exit(0);
             }
-            //Check if the username and the steamid already exists
-            $check_steamid = SDUserinfo::where('type', 'steamid')->where('value', Input::get('steamid'))->first();
-            if ($check_steamid != NULL)
-            {
-                //The username already exists
-                if ($check_steamid->user_id != $user->id)
-                {
-                    //The steamid has been taken by someone else
-                    return Redirect::to('/user/profile')->with('error', 'Update Failed. Steamid is already taken by someone else');
-                    exit(0);
-                }
-            }
-
-            //Update the username has setup a username before
-            $username = SDUserinfo::where('user_id', $user->id)->where('type', 'username')->first();
-            if ($username == NULL)
-            {
-                $username = new SDUserinfo();
-                $username->user_id = $user->id;
-                $username->type = "username";
-            }
-            $username->value = Input::get('username');
-            $username->save();
-
-            //Update the steamid if the user has setup a steamid before
-            $steam_id = SDUserinfo::where('user_id', $user->id)->where('type', 'steamid')->first();
-            if ($steam_id == NULL)
-            {
-                $steam_id = new SDUserinfo();
-                $steam_id->user_id = $user->id;
-                $steam_id->type = "steamid";
-            }
-            $steam_id->value = Input::get('steamid');
-            $steam_id->save();
-
-            return Redirect::to('/user/profile')->with('error', 'Update Successful');
         }
-        else
+        //Check if the username and the steamid already exists
+        $check_steamid = SDUserinfo::where('type', 'steamid')->where('value', Input::get('steamid'))->first();
+        if ($check_steamid != NULL)
         {
-            return Redirect::to('/user/login');
+            //The username already exists
+            if ($check_steamid->user_id != $user->id)
+            {
+                //The steamid has been taken by someone else
+                return Redirect::to('/user/profile')->with('error', 'Update Failed. Steamid is already taken by someone else');
+                exit(0);
+            }
         }
+
+        //Update the username has setup a username before
+        $username = SDUserinfo::where('user_id', $user->id)->where('type', 'username')->first();
+        if ($username == NULL)
+        {
+            $username = new SDUserinfo();
+            $username->user_id = $user->id;
+            $username->type = "username";
+        }
+        $username->value = Input::get('username');
+        $username->save();
+
+        //Update the steamid if the user has setup a steamid before
+        $steam_id = SDUserinfo::where('user_id', $user->id)->where('type', 'steamid')->first();
+        if ($steam_id == NULL)
+        {
+            $steam_id = new SDUserinfo();
+            $steam_id->user_id = $user->id;
+            $steam_id->type = "steamid";
+        }
+        $steam_id->value = Input::get('steamid');
+        $steam_id->save();
+
+        return Redirect::to('/user/profile')->with('error', 'Update Successful');
     }
 
     /**
@@ -373,39 +329,32 @@ class UserController extends BaseController
      */
     public function do_upload_image()
     {
-        $user = $this->check_login();
+        $user = Sentinel::check();
 
-        if ($user != false)
+        Log::info("Picture Upload - Startet by User:" . $user->id);
+
+        if (Input::hasFile('userimage'))
         {
-            Log::info("Picture Upload - Startet by User:" . $user->id);
+            $file = Input::file('userimage');
 
-            if (Input::hasFile('userimage'))
+            Log::info("Picture Upload - File uploaded");
+
+            if ($file->getClientOriginalExtension() == 'png' && $file->getMimeType() == 'image/png')
             {
-                $file = Input::file('userimage');
-
-                Log::info("Picture Upload - File uploaded");
-
-                if ($file->getClientOriginalExtension() == 'png' && $file->getMimeType() == 'image/png')
-                {
-                    $file->move(public_path() . '/uploads/userimages/', $user->id . '-avatar.png');
-                    Log::info("Pciture Upload - Moved and Renamed");
-                    return Redirect::to('/user/profile')->with('message', 'Image upload successfull');
-                }
-                else
-                {
-                    Log::warning("Picture Upload - Wrong extension");
-                    return Redirect::to('/user/profile')->with('error', 'Wrong Extension / Mime Type');
-                }
+                $file->move(public_path() . '/uploads/userimages/', $user->id . '-avatar.png');
+                Log::info("Pciture Upload - Moved and Renamed");
+                return Redirect::to('/user/profile')->with('message', 'Image upload successfull');
             }
             else
             {
-                Log::warning("Picture Upload - No File");
-                return Redirect::to('/user/profile')->with('error', 'Uploaded File not found');
+                Log::warning("Picture Upload - Wrong extension");
+                return Redirect::to('/user/profile')->with('error', 'Wrong Extension / Mime Type');
             }
         }
         else
         {
-            return Redirect::to('/user/login');
+            Log::warning("Picture Upload - No File");
+            return Redirect::to('/user/profile')->with('error', 'Uploaded File not found');
         }
     }
 
@@ -416,23 +365,6 @@ class UserController extends BaseController
     {
         Sentinel::logout(null, true);
         return Redirect::to('/user/login');
-    }
-
-    /**
-     * Login Check
-     * 
-     * Checks if a User is logged in and redirects him to the login page if he is not
-     */
-    private function check_login()
-    {
-        if ($user = Sentinel::check())
-        {
-            return $user;
-        }
-        else
-        {
-            return false;
-        }
     }
 
 }

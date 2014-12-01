@@ -34,37 +34,21 @@ class UsersController extends BaseController
      */
     public function show_users()
     {
-        $has_access = $this->check_access(['user.show_users']);
-
-        if ($has_access['access'] == true)
+        //Load the User Infos
+        $user = Sentinel::check();
+        $data['user'] = $user;
+        $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+        foreach ($user_infos as $user_info)
         {
-            //Load the User Infos
-            $user = $has_access['user'];
-            $data['user'] = $user;
-            $user_infos = SDUserinfo::where('user_id', $user->id)->get();
-            foreach ($user_infos as $user_info)
-            {
-                $data[$user_info->type] = $user_info->value;
-            }
-
-            //Load the User Data
-            $data["users"] = DB::table('users')->get();
-
-            // Return the page
-            $template = Config::get('sdv2.system_backendtemplate');
-            return View::make($template . ".users.show_users", $data);
+            $data[$user_info->type] = $user_info->value;
         }
-        else
-        {
-            if ($has_access['redirect'] != false)
-            {
-                return $has_access['redirect'];
-            }
-            else
-            {
-                return Redirect::to('/user/dashboard')->with('error', 'There has been an SD Error: Code 501');
-            }
-        }
+
+        //Load the User Data
+        $data["users"] = DB::table('users')->get();
+
+        // Return the page
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".users.show_users", $data);
     }
 
     /**
@@ -86,7 +70,7 @@ class UsersController extends BaseController
         //Load the User Data
         $data["users"] = DB::table('users')->get();
         $data["edit_user"] = false;
-        
+
 
         // Return the page
         $template = Config::get('sdv2.system_backendtemplate');
@@ -112,7 +96,7 @@ class UsersController extends BaseController
         //Load the User Data
         $data["users"] = DB::table('users')->get();
         $data["edit_user"] = true;
-        
+
 
         // Return the page
         $template = Config::get('sdv2.system_backendtemplate');
@@ -127,41 +111,6 @@ class UsersController extends BaseController
     public function show_delete_user()
     {
         
-    }
-
-    /**
-     * Access Check
-     * 
-     * Checks if the User has the required access
-     */
-    private function check_access($access)
-    {
-        $has_access = array();
-        if ($user = Sentinel::check())
-        {
-            if ($user->hasAccess($access))
-            {
-                $has_access['access'] = true;
-                $has_access['redirect'] = false;
-                $has_access['user'] = $user;
-                return $has_access;
-            }
-            else
-            {
-                $has_access['access'] = false;
-                $has_access['redirect'] = Redirect::to('/user/dashboard')->with('error', 'You do not have the required permissions to access the selected page');
-                $has_access['user'] = $user;
-                return $has_access;
-            }
-        }
-        else
-        {
-
-            $has_access['access'] = false;
-            $has_access['redirect'] = Redirect::to('/user/login');
-            $has_access['user'] = false;
-            return $has_access;
-        }
     }
 
 }
