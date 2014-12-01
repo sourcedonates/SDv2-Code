@@ -41,13 +41,13 @@ Route::get('/perm/promote', function()
         'payment.create_pp' => true,
         'payment.create_transaction' => true,
         'user.show_profile' => true,
-        'user.show_users' => true,
-        'user.edit_users' => true,
-        'user.edit_useritems' => true,
-        'user.delete_useritems' => true,
-        'user.delete_user' => true,
-        'user.create_user' => true,
-        'user.create_useritems' => true,
+        'users.show_users' => true,
+        'users.edit_user' => true,
+        'users.edit_useritems' => true,
+        'usesr.delete_useritems' => true,
+        'users.delete_user' => true,
+        'users.create_user' => true,
+        'users.create_useritems' => true,
         'stats.show_itemstats' => true,
         'stats.show_paymentstats' => true,
         'stats.show_userstats' => true,
@@ -155,12 +155,14 @@ Route::post('/user/upload_image', 'UserController@do_upload_image');
 Route::get('/users/show_users', 'UsersController@show_users');
 
 #Create SD User
-Route::get('/users/create_user', 'UsersController@show_create_user');
-Route::post('/users/create_user', 'UsersController@do_create_user');
+#Route::get('/users/create_user', 'UsersController@show_create_user');
+#Route::post('/users/create_user', 'UsersController@do_create_user');
+Route::get('/users/create_user',['before' => 'access:users.create_user','uses' => 'UsersController@show_create_user']);
 
 #Edit SD User
-Route::get('/users/edit_user/{uid}','UsersController@show_edit_user');
-Route::post('/users/edit_user/{uid}','UsersController@do_edit_user');
+#Route::get('/users/edit_user/{uid}','UsersController@show_edit_user');
+#Route::post('/users/edit_user/{uid}','UsersController@do_edit_user');
+Route::get('/users/edit_user/{uid}',['before' => 'access:users.edit_user','uses' => 'UsersController@show_edit_user']);
 
 #Delete SD User
 Route::get('/users/delete_user/{uid}','UsersController@show_delete_user');

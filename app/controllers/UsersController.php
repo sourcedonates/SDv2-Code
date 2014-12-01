@@ -74,7 +74,23 @@ class UsersController extends BaseController
      */
     public function show_create_user()
     {
+        //Load the User Infos
+        $user = Sentinel::check();
+        $data['user'] = $user;
+        $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+        foreach ($user_infos as $user_info)
+        {
+            $data[$user_info->type] = $user_info->value;
+        }
+
+        //Load the User Data
+        $data["users"] = DB::table('users')->get();
+        $data["edit_user"] = false;
         
+
+        // Return the page
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".users.show_create_edit_user", $data);
     }
 
     /**
@@ -84,7 +100,23 @@ class UsersController extends BaseController
      */
     public function show_edit_user()
     {
+        //Load the User Infos
+        $user = Sentinel::check();
+        $data['user'] = $user;
+        $user_infos = SDUserinfo::where('user_id', $user->id)->get();
+        foreach ($user_infos as $user_info)
+        {
+            $data[$user_info->type] = $user_info->value;
+        }
+
+        //Load the User Data
+        $data["users"] = DB::table('users')->get();
+        $data["edit_user"] = true;
         
+
+        // Return the page
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".users.show_create_edit_user", $data);
     }
 
     /**
