@@ -47,13 +47,16 @@ Route::filter('auth.basic', function()
 
 Route::filter('access', function($route, $request, $access)
 {
-    if ($user != Sentinel::check())
+    if ($user = Sentinel::check())
     {
-        return Redirect::to('/user/login');
         if(! $user->hasAccess($access))
         {
             return Redirect::to('/user/dashboard')->with('error', 'You do not have the required permissions to access the selected page');
         }
+    }
+    else
+    {
+        return Redirect::to('/user/login');
     }
 });
 /*
