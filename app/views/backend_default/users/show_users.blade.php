@@ -41,7 +41,7 @@
                                         <th>Email</th>
                                         <th>Last Login</th>
                                         <th>Edit</th>
-                                        <th>Delete</th>
+                                        <!--<th>Delete</th>-->
                                     </tr>
                                     @foreach($users as $user)
                                     <tr>
@@ -49,9 +49,9 @@
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->last_login}}</td>
                                         <td><button type=submit form="ue{{$user->id}}" class="btn btn-warning btn-sm">Edit</button></td>
-                                        <td><button type=submit form="ud{{$user->id}}" class="btn btn-danger btn-sm">Delete</button></td>
+                                        <!--<td><button type=submit form="ud{{$user->id}}" class="btn btn-danger btn-sm">Delete</button></td>-->
                                     <form action="{{url('/users/edit_user/'.$user->id)}}" method="get" id="ue{{$user->id}}"></form>
-                                    <form action="{{url('/users/delete_user/'.$user->id)}}" method="get" id="ud{{$user->id}}"></form>
+                                    <!--<form action="{{url('/users/delete_user/'.$user->id)}}" method="get" id="ud{{$user->id}}"></form>-->
                                     </tr>
                                     @endforeach
                                 </table>
