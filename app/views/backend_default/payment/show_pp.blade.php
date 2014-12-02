@@ -57,7 +57,7 @@
                                         <td><button type=submit form="ppe{{$ppr->id}}" class="btn btn-warning btn-sm">Edit</button></td>
                                         <td><button type=submit form="ppd{{$ppr->id}}" class="btn btn-danger btn-sm">Delete</button></td>
                                     <form action="{{url('/payment/edit_provider/'.$ppr->id)}}" method="get" id="ppe{{$ppr->id}}"></form>
-                                    <form action="{{url('/payment/delete_provider/'.$ppr->id)}}" method="get" id="ppd{{$ppr->id}}"></form>
+                                    <form action="{{url('/payment/delete_provider/'.$ppr->id)}}" method="post" id="ppd{{$ppr->id}}"></form>
                                     </tr>
                                     @endforeach
                                 </table>

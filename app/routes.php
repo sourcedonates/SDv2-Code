@@ -206,7 +206,7 @@ Route::get('/payment/edit_provider/{ppid}',['before' => 'access:payment.edit_pp'
 Route::post('/payment/edit_provider/{ppid}',['before' => 'access:payment.edit_pp','uses' => 'PaymentController@do_edit_provider']);
 
 # Delete a existing payment provider
-Route::get('/payment/delete_provider/{ppid}',['before' => 'access:payment.delete_pp','uses' => 'PaymentController@show_delete_provider']);
+#Route::get('/payment/delete_provider/{ppid}',['before' => 'access:payment.delete_pp','uses' => 'PaymentController@show_delete_provider']);
 Route::post('/payment/delete_provider/{ppid}',['before' => 'access:payment.delete_pp','uses' => 'PaymentController@do_delete_provider']);
 
 # Show payment transactions

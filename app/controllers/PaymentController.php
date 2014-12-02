@@ -251,6 +251,18 @@ class PaymentController extends BaseController
     }
 
     /**
+     * Do Delete Provider
+     * 
+     * Deletes the specified Provider
+     */
+    public function do_delete_provider($ppid)
+    {
+        $paymentprovider = SDPaymentProvider::find($ppid);
+        $paymentprovider->delete();
+        return Redirect::to('/payment/show_provider');
+    }
+
+    /**
      * Generate a Tranaction ID
      * 
      * Generates a Transaction id for a SD Transaction
