@@ -147,10 +147,7 @@ class UsersController extends BaseController
                 $user_info->value = Input::get('value');
                 $user_info->save();
                 
-                echo "<p>".$user_id."</p>";
-                echo "<p>".Input::get('type')."</p>";
-                echo "<p>".Input::get('value')."</p>";
-                //return Redirect::to('/users/edit_user/'.$user_id);
+                return Redirect::to('/users/edit_user/'.$user_id);
                 break;
         }
     }

@@ -101,7 +101,7 @@
                                     <h3 class="box-title">Add new User Infos</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body table-responsive no-padding">
-                                    <form method="post" action="{{url('/users/edit_user/'.$mod_user->id)}}" id="user" role="form">
+                                    <form method="post" action="{{url('/users/edit_user/'.$mod_user->id)}}" id="userinfos_add" role="form">
                                         <div class="box-body">
                                             <div class="form-group">
                                                 <label>Type</label>
@@ -118,7 +118,7 @@
                                         </div>
                                     </form>
                                     <div class="box-footer">
-                                        <button type="submit" form="user" class="btn btn-default">Add</button>
+                                        <button type="submit" form="userinfos_add" class="btn btn-default">Add</button>
                                     </div>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
