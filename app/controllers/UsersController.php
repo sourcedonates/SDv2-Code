@@ -103,7 +103,7 @@ class UsersController extends BaseController
 
 
         // Return the page
-        $template = Config::get('sdv2.system_backendtemplate');
+        //$template = Config::get('sdv2.system_backendtemplate');
         // return View::make($template . ".users.show_create_edit_user", $data);
     }
 
