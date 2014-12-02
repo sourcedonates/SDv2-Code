@@ -83,10 +83,11 @@
                                             <td><input name="user_id" type="text" class="form-control" value="{{$user_info->user_id}}" disabled/></td>
                                             <td><input name="type" type="text" class="form-control" value="{{$user_info->type}}" /></td>
                                             <td><input name="value" type="text" class="form-control" value="{{$user_info->value}}" /></td>
+                                            <input name="userinfo_id" type="hidden" value="{{{$user_info->id}}}"/>
                                             <input name="part" type="hidden" value="userinfos_edit"/>
                                         </form>
                                         <form action="{{url('/users/edit_user/'.$user->id)}}" method="post" id="uid{{{$user_info->id}}}">
-                                            <input name="userinfo_id" type="hidden" class="form-control" value="{{{$user_info->id}}}"/>
+                                            <input name="userinfo_id" type="hidden" value="{{{$user_info->id}}}"/>
                                             <input name="part" type="hidden" value="userinfos_delete"/>
                                         </form>
                                         <td><button type="submit" form="uie{{{$user_info->id}}}" class="btn btn-warning btn-sm">Edit</button></td>
