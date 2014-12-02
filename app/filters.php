@@ -34,7 +34,7 @@ App::after(function($request, $response)
  */
 Route::filter('auth', function()
 {
-    if (isset(Sentinel::guest()))
+    if (Sentinel::guest())
         return Redirect::to('/user/login');
 });
 
@@ -71,7 +71,7 @@ Route::filter('access', function($route, $request, $access)
  */
 Route::filter('guest', function()
 {
-    if (isset(Sentinel::check()))
+    if (Sentinel::check())
         return Redirect::to('/user/dashboard');
 });
 
