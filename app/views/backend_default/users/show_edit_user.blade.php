@@ -48,7 +48,7 @@
 
                                             <div class="form-group">
                                                 <label>Permissions</label>
-                                                <textarea name="permissions" class="form-control" rows="3" >{{{$mod_user->permissions}}}</textarea>
+                                                <textarea name="permissions" class="form-control" rows="3" >{{{json_encode(json_decode($mod_user->permissions),JSON_PRETTY_PRINT)}}}</textarea>
                                             </div>
                                         </div>
                                         <input name="part" type="hidden" value="user"/>
