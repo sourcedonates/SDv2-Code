@@ -16,22 +16,17 @@
                 <section class="content-header">
                     <h1>
                         Users
-                        @if($edit_user==true)<small>Edit a User</small>
-                        @else <small>Create a User</small>
-                        @endif
+                        <small>Edit a User</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li class="active">Users</li>
-                        @if($edit_user==true)<li class="active">Edit User/li>
-                            @else <li class="active">Create User</li>
-                        @endif
+                        <li class="active">Edit User</li>
                     </ol>
                 </section>
 
                 <!-- Main content -->
                 <section class="content">
-                    @if($edit_user==true)
                     <div class="col-xs-6">
                         <div class="box">
                             <div class="box-header">
@@ -125,19 +120,6 @@
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
                     </div>
-                    @else
-                    <div class="col-xs-12">
-                        <div class="box">
-                            <div class="box-header">
-
-                                <h3 class="box-title">Create a new User</h3>
-
-                            </div><!-- /.box-header -->
-                            <div class="box-body table-responsive no-padding">
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box -->
-                    </div>
-                    @endif
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
