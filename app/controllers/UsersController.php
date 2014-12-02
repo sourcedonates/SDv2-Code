@@ -111,7 +111,7 @@ class UsersController extends BaseController
         switch ($part)
         {
             case "user":
-                $user_id = Input::get('id');
+                $user_id = Input::get('user_id');
                 $mod_user = Sentinel::findById($user_id);
                 $credentials = [
                     'email' => Input::get('email'),
@@ -121,6 +121,7 @@ class UsersController extends BaseController
                 break;
             
             case "userinfos_edit":
+                $user_id = Input::get('user_id');
                 $userinfo_id = Input::get('userinfo_id');
                 $user_info = SDUserinfo::find($userinfo_id);
                 
@@ -132,7 +133,7 @@ class UsersController extends BaseController
                 break;
             
             case "userinfos_delete":
-                $user_id = Input::get('id');
+                $user_id = Input::get('user_id');
                 $user_info = SDUserinfo::find($user_id);
                 $user_info->delete();
                 
