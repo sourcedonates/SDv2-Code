@@ -52,6 +52,7 @@
                                             </div>
                                         </div>
                                         <input name="part" type="hidden" value="user"/>
+                                        <input name="id" type="hidden" value="{{{$mod_user->id}}}" />
                                         <div class="box-footer">
                                             <button type=submit form="user" class="btn btn-warning">Edit</button>
                                         </div>
