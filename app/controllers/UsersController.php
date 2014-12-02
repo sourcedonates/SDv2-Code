@@ -142,12 +142,15 @@ class UsersController extends BaseController
             case "userinfos_add":
                 $user_id = Input::get('user_id');
                 $user_info = new SDUserinfo;
-                $user_info->user_id = Input::get('user_id');
+                $user_info->user_id = $user_id;
                 $user_info->type = Input::get('type');
                 $user_info->value = Input::get('value');
                 $user_info->save();
                 
-                return Redirect::to('/users/edit_user/'.$user_id);
+                echo "<p>".$user_id."</p>";
+                echo "<p>".Input::get('type')."</p>";
+                echo "<p>".Input::get('value')."</p>";
+                //return Redirect::to('/users/edit_user/'.$user_id);
                 break;
         }
     }
