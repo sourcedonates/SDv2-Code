@@ -27,98 +27,100 @@
 
                 <!-- Main content -->
                 <section class="content">
-                    <div class="col-xs-6">
-                        <div class="box">
-                            <div class="box-header">
-                                <h3 class="box-title">Edit the User</h3>
-                            </div><!-- /.box-header -->
-                            <div class="box-body table-responsive no-padding">
-                                <form method="post" action="{{url('/users/edit_user/'.$mod_user->id)}}" id="user" role="form">
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label>ID</label>
-                                            <input name=id" type="text" class="form-control" value="{{{$mod_user->id}}}" disabled/>
-                                        </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Edit the User</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body table-responsive no-padding">
+                                    <form method="post" action="{{url('/users/edit_user/'.$mod_user->id)}}" id="user" role="form">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label>ID</label>
+                                                <input name=id" type="text" class="form-control" value="{{{$mod_user->id}}}" disabled/>
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label>E-Mail</label>
-                                            <input name="email" type="text" class="form-control" value="{{{$mod_user->email}}}"/>
-                                        </div>
+                                            <div class="form-group">
+                                                <label>E-Mail</label>
+                                                <input name="email" type="text" class="form-control" value="{{{$mod_user->email}}}"/>
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label>Permissions</label>
-                                            <textarea name="permissions" class="form-control" rows="3" >{{{$mod_user->permissions}}}</textarea>
+                                            <div class="form-group">
+                                                <label>Permissions</label>
+                                                <textarea name="permissions" class="form-control" rows="3" >{{{$mod_user->permissions}}}</textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <input name="part" type="hidden" value="user"/>
+                                        <input name="part" type="hidden" value="user"/>
+                                        <div class="box-footer">
+                                            <button type=submit form="user" class="btn btn-warning">Edit</button>
+                                        </div>
+                                    </form>
+
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Edit the User Infos</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>User ID</th>
+                                            <th>Type</th>
+                                            <th>Value</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        @foreach($mod_user_infos as $user_info)
+                                        <tr>
+                                        <form action="{{url('/users/edit_user/'.$mod_user->id)}}" method="post" id="uie{{{$user_info->id}}}">
+                                            <td><input name="id" type="text" class="form-control" value="{{{$user_info->id}}}" disabled/></td>
+                                            <td><input name="user_id" type="text" class="form-control" value="{{$user_info->user_id}}" disabled/></td>
+                                            <td><input name="type" type="text" class="form-control" value="{{$user_info->type}}" /></td>
+                                            <td><input name="value" type="text" class="form-control" value="{{$user_info->value}}" /></td>
+                                            <input name="part" type="hidden" value="userinfos_edit"/>
+                                        </form>
+                                        <form action="{{url('/users/edit_user/'.$user->id)}}" method="post" id="uid{{{$user_info->id}}}">
+                                            <input name="id" type="hidden" class="form-control" value="{{{$user_info->id}}}"/>
+                                            <input name="part" type="hidden" value="userinfos_delete"/>
+                                        </form>
+                                        <td><button type=submit form="uie{{{$user_info->id}}}" class="btn btn-warning btn-sm">Edit</button></td>
+                                        <td><button type=submit form="uid{{{$user_info->id}}}" class="btn btn-danger btn-sm">Delete</button></td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Add new User Infos</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body table-responsive no-padding">
+                                    <form method="post" action="{{url('/users/edit_user/'.$mod_user->id)}}" id="user" role="form">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label>Type</label>
+                                                <input name="type" type="text" class="form-control""/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Value</label>
+                                                <input name="permissions" type="text" class="form-control"/>
+                                            </div>
+
+                                            <input name="part" type="hidden" value="userinfos_add"/>
+                                        </div>
+                                    </form>
                                     <div class="box-footer">
                                         <button type=submit form="user" class="btn btn-warning">Edit</button>
                                     </div>
-                                </form>
-
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box -->
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="box">
-                            <div class="box-header">
-                                <h3 class="box-title">Edit the User Infos</h3>
-                            </div><!-- /.box-header -->
-                            <div class="box-body table-responsive no-padding">
-                                <table class="table table-hover">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>User ID</th>
-                                        <th>Type</th>
-                                        <th>Value</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                    @foreach($mod_user_infos as $user_info)
-                                    <tr>
-                                    <form action="{{url('/users/edit_user/'.$mod_user->id)}}" method="post" id="uie{{{$user_info->id}}}">
-                                        <td><input name="id" type="text" class="form-control" value="{{{$user_info->id}}}" disabled/></td>
-                                        <td><input name="user_id" type="text" class="form-control" value="{{$user_info->user_id}}" disabled/></td>
-                                        <td><input name="type" type="text" class="form-control" value="{{$user_info->type}}" /></td>
-                                        <td><input name="value" type="text" class="form-control" value="{{$user_info->value}}" /></td>
-                                        <input name="part" type="hidden" value="userinfos_edit"/>
-                                    </form>
-                                    <form action="{{url('/users/edit_user/'.$user->id)}}" method="post" id="uid{{{$user_info->id}}}">
-                                        <input name="id" type="hidden" class="form-control" value="{{{$user_info->id}}}"/>
-                                        <input name="part" type="hidden" value="userinfos_delete"/>
-                                    </form>
-                                    <td><button type=submit form="uie{{{$user_info->id}}}" class="btn btn-warning btn-sm">Edit</button></td>
-                                    <td><button type=submit form="uid{{{$user_info->id}}}" class="btn btn-danger btn-sm">Delete</button></td>
-                                    </tr>
-                                    @endforeach
-                                </table>
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box -->
-                        <div class="box">
-                            <div class="box-header">
-                                <h3 class="box-title">Add new User Infos</h3>
-                            </div><!-- /.box-header -->
-                            <div class="box-body table-responsive no-padding">
-                                <form method="post" action="{{url('/users/edit_user/'.$mod_user->id)}}" id="user" role="form">
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label>Type</label>
-                                            <input name="type" type="text" class="form-control""/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Value</label>
-                                            <input name="permissions" type="text" class="form-control"/>
-                                        </div>
-
-                                        <input name="part" type="hidden" value="userinfos_add"/>
-                                    </div>
-                                </form>
-                                <div class="box-footer">
-                                    <button type=submit form="user" class="btn btn-warning">Edit</button>
-                                </div>
-                            </div><!-- /.box-body -->
-                        </div><!-- /.box -->
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+                        </div>  
                     </div>
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
