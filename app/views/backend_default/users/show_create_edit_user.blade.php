@@ -38,25 +38,29 @@
                                 <h3 class="box-title">Edit the User</h3>
                             </div><!-- /.box-header -->
                             <div class="box-body table-responsive no-padding">
-                                <form method="post" action="{{url('/users/edit_user/'.$mod_user->id)}}" id="user">
-                                    <div class="form-group">
-                                        <label>ID</label>
-                                        <input name=id" type="text" class="form-control" value="{{{$mod_user->id}}}" disabled/>
-                                    </div>
+                                <form method="post" action="{{url('/users/edit_user/'.$mod_user->id)}}" id="user" role="form">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label>ID</label>
+                                            <input name=id" type="text" class="form-control" value="{{{$mod_user->id}}}" disabled/>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label>E-Mail</label>
-                                        <input name="email" type="text" class="form-control" value="{{{$mod_user->email}}}"/>
-                                    </div>
+                                        <div class="form-group">
+                                            <label>E-Mail</label>
+                                            <input name="email" type="text" class="form-control" value="{{{$mod_user->email}}}"/>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label>Permissions</label>
-                                        <textarea name="permissions" class="form-control" rows="3" >{{{$mod_user->permissions}}}</textarea>
+                                        <div class="form-group">
+                                            <label>Permissions</label>
+                                            <textarea name="permissions" class="form-control" rows="3" >{{{$mod_user->permissions}}}</textarea>
+                                        </div>
                                     </div>
-
                                     <input name="part" type="hidden" value="user"/>
+                                    <div class="box-footer">
+                                        <button type=submit form="user" class="btn btn-warning">Edit</button>
+                                    </div>
                                 </form>
-                                <button type=submit form="user" class="btn btn-warning btn-sm">Edit</button>
+
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
                     </div>
@@ -100,19 +104,24 @@
                                 <h3 class="box-title">Add new User Infos</h3>
                             </div><!-- /.box-header -->
                             <div class="box-body table-responsive no-padding">
-                                <form method="post" action="{{url('/users/edit_user/'.$mod_user->id)}}" id="user">
-                                    <div class="form-group">
-                                        <label>Type</label>
-                                        <input name="type" type="text" class="form-control""/>
-                                    </div>
+                                <form method="post" action="{{url('/users/edit_user/'.$mod_user->id)}}" id="user" role="form">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label>Type</label>
+                                            <input name="type" type="text" class="form-control""/>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label>Value</label>
-                                        <input name="permissions" type="text" class="form-control"/>
-                                    </div>
+                                        <div class="form-group">
+                                            <label>Value</label>
+                                            <input name="permissions" type="text" class="form-control"/>
+                                        </div>
 
-                                    <input name="part" type="hidden" value="userinfos_add"/>
+                                        <input name="part" type="hidden" value="userinfos_add"/>
+                                    </div>
                                 </form>
+                                <div class="box-footer">
+                                    <button type=submit form="user" class="btn btn-warning">Edit</button>
+                                </div>
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
                     </div>
