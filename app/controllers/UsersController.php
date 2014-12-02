@@ -94,8 +94,10 @@ class UsersController extends BaseController
         }
 
         //Load the User Data
-        $data["mod_user"] = DB::table('users')->where('id',$uid)->get();
-        $data["mod_user_infos"] = SDUserinfo::where('user_id', $uid)->get();
+        $mod_user = DB::table('users')->where('id',$uid)->get();
+        $data["mod_user"] = $mod_user;
+        $mod_user_infos = SDUserinfo::where('user_id', $uid)->get();
+        $data["mod_user_infos"] = $mod_user_infos;
         $data["edit_user"] = true;
 
 
