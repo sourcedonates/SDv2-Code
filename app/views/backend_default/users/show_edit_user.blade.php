@@ -38,7 +38,7 @@
                                         <div class="box-body">
                                             <div class="form-group">
                                                 <label>ID</label>
-                                                <input name=id" type="text" class="form-control" value="{{{$mod_user->id}}}" disabled/>
+                                                <input name="id" type="text" class="form-control" value="{{{$mod_user->id}}}" disabled/>
                                             </div>
 
                                             <div class="form-group">
@@ -48,7 +48,7 @@
 
                                             <div class="form-group">
                                                 <label>Permissions</label>
-                                                <textarea name="permissions" class="form-control" rows="3" >{{{json_encode(json_decode($mod_user->permissions),JSON_PRETTY_PRINT)}}}</textarea>
+                                                <textarea name="permissions" class="form-control" rows="3" disabled>{{{json_encode(json_decode($mod_user->permissions),JSON_PRETTY_PRINT)}}}</textarea>
                                             </div>
                                         </div>
                                         <input name="part" type="hidden" value="user"/>
@@ -88,8 +88,8 @@
                                             <input name="id" type="hidden" class="form-control" value="{{{$user_info->id}}}"/>
                                             <input name="part" type="hidden" value="userinfos_delete"/>
                                         </form>
-                                        <td><button type=submit form="uie{{{$user_info->id}}}" class="btn btn-warning btn-sm">Edit</button></td>
-                                        <td><button type=submit form="uid{{{$user_info->id}}}" class="btn btn-danger btn-sm">Delete</button></td>
+                                        <td><button type="submit" form="uie{{{$user_info->id}}}" class="btn btn-warning btn-sm">Edit</button></td>
+                                        <td><button type="submit" form="uid{{{$user_info->id}}}" class="btn btn-danger btn-sm">Delete</button></td>
                                         </tr>
                                         @endforeach
                                     </table>
@@ -109,14 +109,15 @@
 
                                             <div class="form-group">
                                                 <label>Value</label>
-                                                <input name="permissions" type="text" class="form-control"/>
+                                                <input name="value" type="text" class="form-control"/>
                                             </div>
 
                                             <input name="part" type="hidden" value="userinfos_add"/>
+                                            <input name="user_id" type="hidden" value="{{{$mod_user->id}}}" />
                                         </div>
                                     </form>
                                     <div class="box-footer">
-                                        <button type=submit form="user" class="btn btn-warning">Edit</button>
+                                        <button type="submit" form="user" class="btn btn-default">Add</button>
                                     </div>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->

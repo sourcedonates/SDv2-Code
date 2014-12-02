@@ -68,8 +68,6 @@ class UsersController extends BaseController
         }
 
         //Load the User Data
-
-
         // Return the page
         $template = Config::get('sdv2.system_backendtemplate');
         return View::make($template . ".users.show_create_user", $data);
@@ -92,12 +90,12 @@ class UsersController extends BaseController
         }
 
         //Load the User Data of the User being modded
-        $mod_user = DB::table('users')->where('id',$uid)->first();
-        $data["mod_user"] = $mod_user; 
+        $mod_user = DB::table('users')->where('id', $uid)->first();
+        $data["mod_user"] = $mod_user;
         $mod_user_infos = SDUserinfo::where('user_id', $uid)->get();
         $data["mod_user_infos"] = $mod_user_infos;
 
-        
+
         // Return the page
         $template = Config::get('sdv2.system_backendtemplate');
         return View::make($template . ".users.show_edit_user", $data);
@@ -108,7 +106,50 @@ class UsersController extends BaseController
      */
     public function do_edit_user($uid)
     {
-        
+        $part = Input::get('part');
+
+        switch ($part)
+        {
+            case "user":
+                $user_id = Input::get('id');
+                $mod_user = Sentinel::findById($user_id);
+                $credentials = [
+                    'email' => Input::get('email'),
+                ];
+                Sentinel::update($mod_user,$credentials);
+                return Redirect::to('/users/edit_user/'.$user_id);
+                break;
+            
+            case "userinfos_edit":
+                $user_id = Input::get('id');
+                $user_info = SDUserinfo::find($user_id);
+                
+                $user_info->type = Input::get('type');
+                $user_info->value = Input::get('value');
+                $user_info->save();
+                
+                return Redirect::to('/users/edit_user/'.$user_id);
+                break;
+            
+            case "userinfos_delete":
+                $user_id = Input::get('id');
+                $user_info = SDUserinfo::find($user_id);
+                $user_info->delete();
+                
+                return Redirect::to('/users/edit_user/'.$user_id);
+                break;
+            
+            case "userinfos_add":
+                $user_id = Input::get('user_id');
+                $user_info = new SDUserinfo();
+                $user_info->user_id = Input::get('user_id');
+                $user_info->type = Input::get('type');
+                $user_info->value = Input::get('value');
+                $user_info->save();
+                
+                return Redirect::to('/users/edit_user/'.$user_id);
+                break;
+        }
     }
 
     /**
