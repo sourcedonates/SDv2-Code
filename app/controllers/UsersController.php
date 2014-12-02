@@ -141,7 +141,7 @@ class UsersController extends BaseController
             
             case "userinfos_add":
                 $user_id = Input::get('user_id');
-                $user_info = new SDUserinfo();
+                $user_info = new SDUserinfo;
                 $user_info->user_id = Input::get('user_id');
                 $user_info->type = Input::get('type');
                 $user_info->value = Input::get('value');
