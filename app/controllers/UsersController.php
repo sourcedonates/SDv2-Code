@@ -94,17 +94,16 @@ class UsersController extends BaseController
         }
 
         //Load the User Data
-        $mod_user = DB::table('users')->where('id',$uid)->get();
+        $mod_user = DB::table('users')->where('id',$uid)->first();
         $data["mod_user"] = $mod_user; 
         $mod_user_infos = SDUserinfo::where('user_id', $uid)->get();
         $data["mod_user_infos"] = $mod_user_infos;
         $data["edit_user"] = true;
 
         
-        return $mod_user->id;
         // Return the page
-        //$template = Config::get('sdv2.system_backendtemplate');
-        // return View::make($template . ".users.show_create_edit_user", $data);
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".users.show_create_edit_user", $data);
     }
 
     /**
