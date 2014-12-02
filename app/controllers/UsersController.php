@@ -82,7 +82,7 @@ class UsersController extends BaseController
      * 
      * Shows the Edit User Page
      */
-    public function show_edit_user()
+    public function show_edit_user($uid)
     {
         //Load the User Infos
         $user = Sentinel::check();
@@ -94,7 +94,8 @@ class UsersController extends BaseController
         }
 
         //Load the User Data
-        $data["users"] = DB::table('users')->get();
+        $data["user"] = DB::table('users')->where()->get();
+        $data["user_infos"] = SDUserinfo::where('user_id', $uid)->get();
         $data["edit_user"] = true;
 
 
@@ -104,11 +105,19 @@ class UsersController extends BaseController
     }
 
     /**
+     * Edits the User
+     */
+    public function do_edit_user($uid)
+    {
+        
+    }
+
+    /**
      * Show Delete User
      * 
      * Shows the Delete User Page
      */
-    public function show_delete_user()
+    public function show_delete_user($uid)
     {
         
     }

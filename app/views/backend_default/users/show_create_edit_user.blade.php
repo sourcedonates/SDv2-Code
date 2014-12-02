@@ -24,26 +24,49 @@
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li class="active">Users</li>
                         @if($edit_user==true)<li class="active">Edit User/li>
-                        @else <li class="active">Create User</li>
+                            @else <li class="active">Create User</li>
                         @endif
                     </ol>
                 </section>
 
                 <!-- Main content -->
                 <section class="content">
-                    <div class="col-xs-12">
+                    @if($edit_user==true)
+                    <div class="col-xs-6">
                         <div class="box">
                             <div class="box-header">
-                                @if($edit_user==true)
+
                                 <h3 class="box-title">Edit the User</h3>
-                                @else
-                                <h3 class="box-title">Create a new User</h3>
-                                @endif
+
                             </div><!-- /.box-header -->
                             <div class="box-body table-responsive no-padding">
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
                     </div>
+                    <div class="col-xs-6">
+                        <div class="box">
+                            <div class="box-header">
+
+                                <h3 class="box-title">Edit the User Infos</h3>
+
+                            </div><!-- /.box-header -->
+                            <div class="box-body table-responsive no-padding">
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
+                    @else
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+
+                                <h3 class="box-title">Create a new User</h3>
+
+                            </div><!-- /.box-header -->
+                            <div class="box-body table-responsive no-padding">
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
+                    @endif
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
