@@ -123,16 +123,16 @@ Route::get('/user', function()
 });
 
 #Login
-Route::get('user/login',['before' => 'guest','uses' => 'UserController@show_login']);
-Route::post('user/login',['before' => 'guest','uses' => 'UserController@do_login']);
-Route::get('user/login',['before' => 'guest','uses' => 'UserController@show_require_login']);
+Route::get('/user/login',['before' => 'guest','uses' => 'UserController@show_login']);
+Route::post('/user/login',['before' => 'guest','uses' => 'UserController@do_login']);
+Route::get('/user/login',['before' => 'guest','uses' => 'UserController@show_require_login']);
 
 #Logout
 Route::any('/user/logout', 'UserController@do_logout');
 
 #Register
-Route::get('user/login',['before' => 'guest','uses' => 'UserController@show_register']);
-Route::post('user/login',['before' => 'guest','uses' => 'UserController@do_register']);
+Route::get('/user/register',['before' => 'guest','uses' => 'UserController@show_register']);
+Route::post('/user/register',['before' => 'guest','uses' => 'UserController@do_register']);
 
 #Forgot Password
 Route::get('/user/forgot_password', 'UserController@show_password_reset');
