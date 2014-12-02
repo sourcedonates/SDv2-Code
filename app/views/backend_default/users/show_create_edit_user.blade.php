@@ -46,7 +46,7 @@
 
                                     <div class="form-group">
                                         <label>E-Mail</label>
-                                        <input name="email" type="text" class="form-control" value="{{{$mod_user->pos}}}"/>
+                                        <input name="email" type="text" class="form-control" value="{{{$mod_user->email}}}"/>
                                     </div>
 
                                     <div class="form-group">
