@@ -121,8 +121,8 @@ class UsersController extends BaseController
                 break;
             
             case "userinfos_edit":
-                $user_id = Input::get('id');
-                $user_info = SDUserinfo::find($user_id);
+                $userinfo_id = Input::get('userinfo_id');
+                $user_info = SDUserinfo::find($userinfo_id);
                 
                 $user_info->type = Input::get('type');
                 $user_info->value = Input::get('value');

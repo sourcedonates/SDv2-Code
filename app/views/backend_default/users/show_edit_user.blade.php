@@ -86,7 +86,7 @@
                                             <input name="part" type="hidden" value="userinfos_edit"/>
                                         </form>
                                         <form action="{{url('/users/edit_user/'.$user->id)}}" method="post" id="uid{{{$user_info->id}}}">
-                                            <input name="id" type="hidden" class="form-control" value="{{{$user_info->id}}}"/>
+                                            <input name="userinfo_id" type="hidden" class="form-control" value="{{{$user_info->id}}}"/>
                                             <input name="part" type="hidden" value="userinfos_delete"/>
                                         </form>
                                         <td><button type="submit" form="uie{{{$user_info->id}}}" class="btn btn-warning btn-sm">Edit</button></td>
