@@ -51,11 +51,12 @@
 
                                     <div class="form-group">
                                         <label>Permissions</label>
-                                        <input name="permissions" type="text" class="form-control" value="{{{$mod_user->permissions}}}"/>
+                                        <textarea name="permissions" class="form-control" rows="3" >{{{$mod_user->permissions}}}</textarea>
                                     </div>
 
                                     <input name="part" type="hidden" value="user"/>
                                 </form>
+                                <button type=submit form="user" class="btn btn-warning btn-sm">Edit</button>
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
                     </div>
