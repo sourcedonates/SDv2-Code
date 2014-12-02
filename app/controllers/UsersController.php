@@ -134,7 +134,8 @@ class UsersController extends BaseController
             
             case "userinfos_delete":
                 $user_id = Input::get('user_id');
-                $user_info = SDUserinfo::find($user_id);
+                $userinfo_id = Input::get('userinfo_id');
+                $user_info = SDUserinfo::find($userinfo_id);
                 $user_info->delete();
                 
                 return Redirect::to('/users/edit_user/'.$user_id);
