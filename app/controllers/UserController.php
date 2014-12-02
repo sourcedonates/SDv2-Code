@@ -32,18 +32,16 @@ class UserController extends BaseController
      */
     public function show_login()
     {
+        $data = array(
+            "page_name" => "SDv2 | Login"
+        );
+        if (Session::has('message'))
+        {
+            $data['message'] = Session::get('message');
+        }
 
-            $data = array(
-                "page_name" => "SDv2 | Login"
-            );
-            if (Session::has('message'))
-            {
-                $data['message'] = Session::get('message');
-            }
-
-            $template = Config::get('sdv2.system_backendtemplate');
-            return View::make($template . ".login.login", $data);
-
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".login.login", $data);
     }
 
     /**
@@ -60,17 +58,16 @@ class UserController extends BaseController
     public function show_register()
     {
 
-            $data = array(
-                "page_name" => "SDv2 | Registration"
-            );
-            if (Session::has('message'))
-            {
-                $data['message'] = Session::get('message');
-            }
+        $data = array(
+            "page_name" => "SDv2 | Registration"
+        );
+        if (Session::has('message'))
+        {
+            $data['message'] = Session::get('message');
+        }
 
-            $template = Config::get('sdv2.system_backendtemplate');
-            return View::make($template . ".login.register", $data);
-  
+        $template = Config::get('sdv2.system_backendtemplate');
+        return View::make($template . ".login.register", $data);
     }
 
     /**
