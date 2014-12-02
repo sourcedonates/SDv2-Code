@@ -42,9 +42,9 @@
                             <div class="box-body">
                                 @if($edit_pp==true)
                                 <form method="post" action="{{url('/payment/edit_provider/'.$provider->id)}}" id="provider">
-                                    @else 
-                                    <!--<form method="post" action="{{url('/payment/create_provider/')}}">-->
-                                    @endif
+                                @else 
+                                <form method="post" action="{{url('/payment/create_provider/')}}">
+                                @endif
 
                                     @if($edit_pp==true)
                                     <div class="form-group">
