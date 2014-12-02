@@ -43,7 +43,7 @@
                                 @if($edit_pp==true)
                                 <form method="post" action="{{url('/payment/edit_provider/'.$provider->id)}}" id="provider">
                                 @else 
-                                <form method="post" action="{{url('/payment/create_provider/')}}">
+                                <form method="post" action="{{url('/payment/create_provider/')}}" id="provider">
                                 @endif
 
                                     @if($edit_pp==true)
